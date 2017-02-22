@@ -1,31 +1,66 @@
 ﻿Imports System.Text.RegularExpressions
-Imports System.Windows.Forms
 
 Public Class dialog_add_person
     Dim gender, sql As String
+    Dim datechange As Boolean = False
     Dim errorProvider As ErrorProvider = New ErrorProvider()
     Public sal As Integer
-
 
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         If rb_male.Checked Then
             gender = "Male"
-        ElseIf rb_female.Checked Then
+        Else rb_female.Checked Then
             gender = "Female"
         End If
 
-        sql = "INSERT INTO Emp_basic_details (firstname, lastname, dob, mob, city, address, zipcode, qualification, curr_exp, start_date, gender, married_status)
-        VALUES('" & tb_firstname.Text & "', '" & tb_lastname.Text & "', '" & dtp_dob.Text & "', " & tb_mob.Text & ", '" & tb_city.Text & "', '" & tb_add.Text & "', " & tb_zip.Text & ", '" & tb_qual.Text & "', " & tb_exp.Text & "," & Date.Today & ", '" & gender & "', '" & cb_married_status.SelectedText & "')"
+        Dim EmptyTextBoxFound As Boolean = False 'Boolean flag for empty textbox 
+        Dim EmptyTextBoxName As String = ""
 
-        MessageBox.Show(sql)
-        If Not ValidateChildren() Then
-            DialogResult = DialogResult.None
-        Else
-            Me.DialogResult = DialogResult.OK
-            Me.Close()
-        End If
+        For Each ctl As Control In Me.Controls
 
+            If TypeOf ctl Is TextBox And ctl.Text.Length = 0 Then
+                EmptyTextBoxName = ctl.Name
+                EmptyTextBoxFound = True
+                Exit For
+            End If
+        Next
+
+        Dim todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
+
+        Try
+
+            If ValidateChildren() = False Then
+                DialogResult = DialogResult.None
+            Else
+                sql = "INSERT INTO Emp_basic_details (firstname, lastname, dob, mob, city, address,
+               zipcode, qualification, curr_exp, start_date, gender, married_status)
+               VALUES('" & tb_firstname.Text & "', '" & tb_lastname.Text & "', '" & dtp_dob.Text &
+                       "', " & tb_mob.Text & ", '" & tb_city.Text & "', '" & tb_add.Text & "', " & tb_zip.Text &
+                       ", '" & tb_qual.Text & "', " & tb_exp.Text & ",'" & todayDate & "', '" & gender & "', '" & cb_married_status.Text & "')"
+                MessageBox.Show(sql)
+                'employeeINST(sql) ' inserts row in Emp_basic_details table
+
+                sql = "INSERT INTO Work_history (comp_name, emp_name, p_start_date, p_end_date, post)
+                VALUES ('" & tb_comp_name.Text & "','" & tb_firstname.Text & "','" & dtp_join_date.Text &
+                        "','" & dtp_left_date.Text & "','" & tb_qual.Text & "')"
+                MessageBox.Show(sql)
+                'employeeINST(sql) ' inserts row in Work_history table
+
+                sql = "INSERT INTO Salary_information (monthly_sal, monthly_taxes, monthly_deduct, monthly_insurances)
+                VALUES (" & tb_sal.Text & "," & tb_taxes.Text & "," & tb_allow.Text & "," & tb_insure.Text & ")"
+                MessageBox.Show(sql)
+                'employeeINST(sql)  ' inserts row in Salary_information table
+
+                Me.DialogResult = DialogResult.OK
+                Me.Close()
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            MessageBox.Show("Something went wrong try again")
+        End Try
 
     End Sub
 
@@ -83,7 +118,7 @@ Public Class dialog_add_person
     End Sub
 
     Private Sub tb_exp_Validated(sender As Object, e As EventArgs) Handles tb_exp.Validated
-        If Not Regex.IsMatch(tb_exp.Text, rgx_digit) Then
+        If Not IsNumeric(tb_exp.Text) Then
             errorProvider.SetError(tb_exp, "Enter a valid digit")
         Else
             errorProvider.SetError(tb_exp, String.Empty)
@@ -115,11 +150,58 @@ Public Class dialog_add_person
     End Sub
 
     Private Sub tb_sal_Validated(sender As Object, e As EventArgs) Handles tb_sal.Validated
-        If Not Regex.IsMatch(tb_sal.Text, rgx_digit) And Not Nothing Then
-            errorProvider.SetError(tb_sal, "Enter a valid amount")
+        If Not IsNumeric(tb_sal.Text) Or IsNothing(tb_sal.Text) Then
+
+            errorProvider.SetError(tb_sal, "Enter a valid Number")
         Else
             errorProvider.SetError(tb_sal, String.Empty)
         End If
+
+    End Sub
+
+    Private Sub cb_married_status_Validated(sender As Object, e As EventArgs) Handles cb_married_status.Validated
+        If cb_married_status.SelectionLength < 0 Then
+            errorProvider.SetError(cb_married_status, "Please Select your maratial status")
+        Else
+            errorProvider.SetError(cb_married_status, String.Empty)
+        End If
+    End Sub
+
+    Private Sub tb_allow_Validated(sender As Object, e As EventArgs) Handles tb_allow.Validated
+        If Not IsNumeric(tb_allow.Text) Or IsNothing(tb_allow.Text) Then
+
+            errorProvider.SetError(tb_allow, "Enter a valid Number")
+        Else
+            errorProvider.SetError(tb_allow, String.Empty)
+        End If
+
+    End Sub
+
+    Private Sub dtp_dob_Validated(sender As Object, e As EventArgs) Handles dtp_dob.Validated
+        If Not dtp_dob.Checked Then
+            errorProvider.SetError(dtp_dob, "Enter your Birth date")
+        Else
+            errorProvider.SetError(dtp_dob, String.Empty)
+        End If
+    End Sub
+
+    Private Sub dtp_join_date_Validated(sender As Object, e As EventArgs) Handles dtp_join_date.Validated
+        If Not dtp_dob.Checked Then
+            errorProvider.SetError(dtp_join_date, "Enter your Birth date")
+        Else
+            errorProvider.SetError(dtp_join_date, String.Empty)
+        End If
+    End Sub
+
+    Private Sub dtp_left_date_Validated(sender As Object, e As EventArgs) Handles dtp_left_date.Validated
+        If Not dtp_dob.Checked Then
+            errorProvider.SetError(dtp_left_date, "Enter your Birth date")
+        Else
+            errorProvider.SetError(dtp_left_date, String.Empty)
+        End If
+    End Sub
+
+    Private Sub rb_female_CheckedChanged(sender As Object, e As EventArgs) Handles rb_female.CheckedChanged
 
     End Sub
 

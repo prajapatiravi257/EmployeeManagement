@@ -62,13 +62,10 @@ Partial Class dialog_add_person
         Me.tb_comp_name = New System.Windows.Forms.TextBox()
         Me.lbl_comp_name = New System.Windows.Forms.Label()
         Me.gb_sal_info = New System.Windows.Forms.GroupBox()
+        Me.tb_allow = New System.Windows.Forms.TextBox()
         Me.lbl_sal_insure_yearly = New System.Windows.Forms.Label()
         Me.lbl_sal_percent = New System.Windows.Forms.Label()
-        Me.lbl_sal_month = New System.Windows.Forms.Label()
-        Me.dtp_sal_to = New System.Windows.Forms.DateTimePicker()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.dtp_sal_from = New System.Windows.Forms.DateTimePicker()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lbl_allow = New System.Windows.Forms.Label()
         Me.tb_insure = New System.Windows.Forms.TextBox()
         Me.lbl_insure = New System.Windows.Forms.Label()
         Me.tb_taxes = New System.Windows.Forms.TextBox()
@@ -167,13 +164,15 @@ Partial Class dialog_add_person
         '
         'dtp_dob
         '
+        Me.dtp_dob.Checked = False
         Me.dtp_dob.CustomFormat = "dd/MM/yyyy"
         Me.dtp_dob.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_dob.Location = New System.Drawing.Point(93, 47)
+        Me.dtp_dob.Location = New System.Drawing.Point(93, 48)
         Me.dtp_dob.MaxDate = New Date(1998, 12, 31, 0, 0, 0, 0)
         Me.dtp_dob.MinDate = New Date(1970, 1, 1, 0, 0, 0, 0)
         Me.dtp_dob.Name = "dtp_dob"
-        Me.dtp_dob.Size = New System.Drawing.Size(84, 20)
+        Me.dtp_dob.ShowCheckBox = True
+        Me.dtp_dob.Size = New System.Drawing.Size(111, 20)
         Me.dtp_dob.TabIndex = 9
         Me.dtp_dob.Value = New Date(1998, 12, 31, 0, 0, 0, 0)
         '
@@ -221,15 +220,15 @@ Partial Class dialog_add_person
         Me.panel_gen.Controls.Add(Me.lbl_gender)
         Me.panel_gen.Controls.Add(Me.rb_male)
         Me.panel_gen.Controls.Add(Me.rb_female)
-        Me.panel_gen.Location = New System.Drawing.Point(189, 39)
+        Me.panel_gen.Location = New System.Drawing.Point(223, 39)
         Me.panel_gen.Name = "panel_gen"
-        Me.panel_gen.Size = New System.Drawing.Size(176, 35)
+        Me.panel_gen.Size = New System.Drawing.Size(164, 35)
         Me.panel_gen.TabIndex = 0
         '
         'lbl_gender
         '
         Me.lbl_gender.AutoSize = True
-        Me.lbl_gender.Location = New System.Drawing.Point(9, 13)
+        Me.lbl_gender.Location = New System.Drawing.Point(3, 12)
         Me.lbl_gender.Name = "lbl_gender"
         Me.lbl_gender.Size = New System.Drawing.Size(42, 13)
         Me.lbl_gender.TabIndex = 13
@@ -238,7 +237,8 @@ Partial Class dialog_add_person
         'rb_male
         '
         Me.rb_male.AutoSize = True
-        Me.rb_male.Location = New System.Drawing.Point(59, 11)
+        Me.rb_male.Checked = True
+        Me.rb_male.Location = New System.Drawing.Point(51, 11)
         Me.rb_male.Name = "rb_male"
         Me.rb_male.Size = New System.Drawing.Size(48, 17)
         Me.rb_male.TabIndex = 14
@@ -249,7 +249,7 @@ Partial Class dialog_add_person
         'rb_female
         '
         Me.rb_female.AutoSize = True
-        Me.rb_female.Location = New System.Drawing.Point(113, 11)
+        Me.rb_female.Location = New System.Drawing.Point(102, 11)
         Me.rb_female.Name = "rb_female"
         Me.rb_female.Size = New System.Drawing.Size(59, 17)
         Me.rb_female.TabIndex = 15
@@ -260,11 +260,11 @@ Partial Class dialog_add_person
         'lbl_note
         '
         Me.lbl_note.AutoSize = True
-        Me.lbl_note.Location = New System.Drawing.Point(218, 179)
+        Me.lbl_note.Location = New System.Drawing.Point(230, 179)
         Me.lbl_note.Name = "lbl_note"
-        Me.lbl_note.Size = New System.Drawing.Size(214, 13)
+        Me.lbl_note.Size = New System.Drawing.Size(220, 13)
         Me.lbl_note.TabIndex = 29
-        Me.lbl_note.Text = "Note* All the fields are mandatory to be filled"
+        Me.lbl_note.Text = "NOTE: All the fields are mandatory to be filled"
         '
         'lbl_exp
         '
@@ -278,11 +278,12 @@ Partial Class dialog_add_person
         'cb_married_status
         '
         Me.cb_married_status.FormattingEnabled = True
-        Me.cb_married_status.Items.AddRange(New Object() {"Married", "Single", "Widow"})
+        Me.cb_married_status.Items.AddRange(New Object() {"Married", "Single"})
         Me.cb_married_status.Location = New System.Drawing.Point(489, 81)
         Me.cb_married_status.Name = "cb_married_status"
         Me.cb_married_status.Size = New System.Drawing.Size(141, 21)
         Me.cb_married_status.TabIndex = 28
+        Me.cb_married_status.Text = "Single"
         '
         'lbl_married_status
         '
@@ -419,21 +420,25 @@ Partial Class dialog_add_person
         '
         'dtp_join_date
         '
+        Me.dtp_join_date.Checked = False
         Me.dtp_join_date.CustomFormat = "dd/MM/yyyy"
         Me.dtp_join_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtp_join_date.Location = New System.Drawing.Point(105, 63)
         Me.dtp_join_date.Name = "dtp_join_date"
-        Me.dtp_join_date.Size = New System.Drawing.Size(84, 20)
+        Me.dtp_join_date.ShowCheckBox = True
+        Me.dtp_join_date.Size = New System.Drawing.Size(99, 20)
         Me.dtp_join_date.TabIndex = 11
         Me.dtp_join_date.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
         '
         'dtp_left_date
         '
+        Me.dtp_left_date.Checked = False
         Me.dtp_left_date.CustomFormat = "dd/MM/yyyy"
         Me.dtp_left_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtp_left_date.Location = New System.Drawing.Point(105, 99)
         Me.dtp_left_date.Name = "dtp_left_date"
-        Me.dtp_left_date.Size = New System.Drawing.Size(84, 20)
+        Me.dtp_left_date.ShowCheckBox = True
+        Me.dtp_left_date.Size = New System.Drawing.Size(99, 20)
         Me.dtp_left_date.TabIndex = 10
         Me.dtp_left_date.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
         '
@@ -464,13 +469,10 @@ Partial Class dialog_add_person
         '
         'gb_sal_info
         '
+        Me.gb_sal_info.Controls.Add(Me.tb_allow)
         Me.gb_sal_info.Controls.Add(Me.lbl_sal_insure_yearly)
         Me.gb_sal_info.Controls.Add(Me.lbl_sal_percent)
-        Me.gb_sal_info.Controls.Add(Me.lbl_sal_month)
-        Me.gb_sal_info.Controls.Add(Me.dtp_sal_to)
-        Me.gb_sal_info.Controls.Add(Me.Label3)
-        Me.gb_sal_info.Controls.Add(Me.dtp_sal_from)
-        Me.gb_sal_info.Controls.Add(Me.Label2)
+        Me.gb_sal_info.Controls.Add(Me.lbl_allow)
         Me.gb_sal_info.Controls.Add(Me.tb_insure)
         Me.gb_sal_info.Controls.Add(Me.lbl_insure)
         Me.gb_sal_info.Controls.Add(Me.tb_taxes)
@@ -484,10 +486,17 @@ Partial Class dialog_add_person
         Me.gb_sal_info.TabStop = False
         Me.gb_sal_info.Text = "Salary Info"
         '
+        'tb_allow
+        '
+        Me.tb_allow.Location = New System.Drawing.Point(96, 132)
+        Me.tb_allow.Name = "tb_allow"
+        Me.tb_allow.Size = New System.Drawing.Size(100, 20)
+        Me.tb_allow.TabIndex = 16
+        '
         'lbl_sal_insure_yearly
         '
         Me.lbl_sal_insure_yearly.AutoSize = True
-        Me.lbl_sal_insure_yearly.Location = New System.Drawing.Point(212, 103)
+        Me.lbl_sal_insure_yearly.Location = New System.Drawing.Point(202, 103)
         Me.lbl_sal_insure_yearly.Name = "lbl_sal_insure_yearly"
         Me.lbl_sal_insure_yearly.Size = New System.Drawing.Size(36, 13)
         Me.lbl_sal_insure_yearly.TabIndex = 15
@@ -496,58 +505,20 @@ Partial Class dialog_add_person
         'lbl_sal_percent
         '
         Me.lbl_sal_percent.AutoSize = True
-        Me.lbl_sal_percent.Location = New System.Drawing.Point(157, 70)
+        Me.lbl_sal_percent.Location = New System.Drawing.Point(151, 70)
         Me.lbl_sal_percent.Name = "lbl_sal_percent"
-        Me.lbl_sal_percent.Size = New System.Drawing.Size(44, 13)
+        Me.lbl_sal_percent.Size = New System.Drawing.Size(15, 13)
         Me.lbl_sal_percent.TabIndex = 14
-        Me.lbl_sal_percent.Text = "Percent"
+        Me.lbl_sal_percent.Text = "%"
         '
-        'lbl_sal_month
+        'lbl_allow
         '
-        Me.lbl_sal_month.AutoSize = True
-        Me.lbl_sal_month.Location = New System.Drawing.Point(212, 34)
-        Me.lbl_sal_month.Name = "lbl_sal_month"
-        Me.lbl_sal_month.Size = New System.Drawing.Size(44, 13)
-        Me.lbl_sal_month.TabIndex = 13
-        Me.lbl_sal_month.Text = "Monthly"
-        '
-        'dtp_sal_to
-        '
-        Me.dtp_sal_to.CustomFormat = "dd/MM/yyyy"
-        Me.dtp_sal_to.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_sal_to.Location = New System.Drawing.Point(228, 132)
-        Me.dtp_sal_to.Name = "dtp_sal_to"
-        Me.dtp_sal_to.Size = New System.Drawing.Size(84, 20)
-        Me.dtp_sal_to.TabIndex = 12
-        Me.dtp_sal_to.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(195, 135)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(16, 13)
-        Me.Label3.TabIndex = 11
-        Me.Label3.Text = "to"
-        '
-        'dtp_sal_from
-        '
-        Me.dtp_sal_from.CustomFormat = "dd/MM/yyyy"
-        Me.dtp_sal_from.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtp_sal_from.Location = New System.Drawing.Point(96, 132)
-        Me.dtp_sal_from.Name = "dtp_sal_from"
-        Me.dtp_sal_from.Size = New System.Drawing.Size(84, 20)
-        Me.dtp_sal_from.TabIndex = 10
-        Me.dtp_sal_from.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(20, 135)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(59, 13)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Salary from"
+        Me.lbl_allow.AutoSize = True
+        Me.lbl_allow.Location = New System.Drawing.Point(20, 135)
+        Me.lbl_allow.Name = "lbl_allow"
+        Me.lbl_allow.Size = New System.Drawing.Size(61, 13)
+        Me.lbl_allow.TabIndex = 6
+        Me.lbl_allow.Text = "Allowances"
         '
         'tb_insure
         '
@@ -574,7 +545,7 @@ Partial Class dialog_add_person
         Me.tb_taxes.ReadOnly = True
         Me.tb_taxes.Size = New System.Drawing.Size(49, 20)
         Me.tb_taxes.TabIndex = 3
-        Me.tb_taxes.Text = "15.00%"
+        Me.tb_taxes.Text = "15"
         '
         'lbl_taxes
         '
@@ -670,10 +641,7 @@ Partial Class dialog_add_person
     Friend WithEvents tb_comp_name As TextBox
     Friend WithEvents lbl_comp_name As Label
     Friend WithEvents gb_sal_info As GroupBox
-    Friend WithEvents dtp_sal_to As DateTimePicker
-    Friend WithEvents Label3 As Label
-    Friend WithEvents dtp_sal_from As DateTimePicker
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lbl_allow As Label
     Friend WithEvents tb_insure As TextBox
     Friend WithEvents lbl_insure As Label
     Friend WithEvents tb_taxes As TextBox
@@ -682,6 +650,6 @@ Partial Class dialog_add_person
     Friend WithEvents lbl_sal As Label
     Friend WithEvents lbl_sal_insure_yearly As Label
     Friend WithEvents lbl_sal_percent As Label
-    Friend WithEvents lbl_sal_month As Label
     Friend WithEvents tb_exp As TextBox
+    Friend WithEvents tb_allow As TextBox
 End Class
