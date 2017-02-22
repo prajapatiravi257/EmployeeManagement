@@ -14,9 +14,9 @@ Module connection
     Public loginSuccess As Boolean = False
 
 
-    Public Sub addEmployee(ByVal sql As String)
+    Public Sub employeeINST(ByVal sql As String)
         Try
-            If sqlCon.State = False Then
+            If sqlCon.State = ConnectionState.Closed Then
                 sqlCon.Open()
             End If
             sqlcmd = New SqlCommand(sql, sqlCon)
@@ -29,39 +29,33 @@ Module connection
         Catch ex As Exception
             MsgBox(ex.Message)
             Return
-
         End Try
         sqlCon.Close()
     End Sub
 
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
 
-        Dim query As String = "select * from Login_users where username='" + user.Text + "' and passwd='" + passwd.Text + "'"
+        Dim query As String = "SELECT * FROM Login_users WHERE username='" + user.Text + "' AND passwd='" + passwd.Text + "'"
         Try
-            If sqlCon.State = False Then
+            If sqlCon.State = ConnectionState.Closed Then
                 sqlCon.Open()
             End If
 
             sqlcmd = New SqlCommand(query, sqlCon)
 
             sql_dr = sqlcmd.ExecuteReader
-            Dim type As String
+            Dim type As String = user.Text.ToUpper()
 
-            If sql_dr.Read Then
-                type = sql_dr.GetString(1)
+            If sql_dr.Read And sql_dr.HasRows Then
 
-                If sql_dr.HasRows Then
-                    loginSuccess = True
+                Dim adminpage As admin = New admin()
 
-                    Dim adminpage As admin = New admin()
+                loginSuccess = True
 
-                    With adminpage
-                        .Show()
-                        .lbl_loginuser.Text = type
-                    End With
-
-                End If
-
+                With adminpage
+                    .Show()
+                    .lbl_loginuser.Text = type
+                End With
             Else
 
                 'integer variable to count the number of times
