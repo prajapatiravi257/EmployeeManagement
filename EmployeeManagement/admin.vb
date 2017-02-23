@@ -3,6 +3,7 @@
     Private Sub btn_newperson_Click(sender As Object, e As EventArgs) Handles btn_newperson.Click
         Dim dialogbox As dialog_add_person = New dialog_add_person()
         dialogbox.ShowDialog()
+        dialogbox.tb_firstname.Focus()
 
     End Sub
 

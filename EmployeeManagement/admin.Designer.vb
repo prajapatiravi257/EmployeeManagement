@@ -77,7 +77,7 @@ Partial Class admin
         'lbl_loginuser
         '
         Me.lbl_loginuser.AutoSize = True
-        Me.lbl_loginuser.Location = New System.Drawing.Point(1177, 6)
+        Me.lbl_loginuser.Location = New System.Drawing.Point(88, 6)
         Me.lbl_loginuser.Name = "lbl_loginuser"
         Me.lbl_loginuser.Size = New System.Drawing.Size(0, 13)
         Me.lbl_loginuser.TabIndex = 5
@@ -85,7 +85,7 @@ Partial Class admin
         'lbl_login
         '
         Me.lbl_login.AutoSize = True
-        Me.lbl_login.Location = New System.Drawing.Point(1118, 6)
+        Me.lbl_login.Location = New System.Drawing.Point(29, 6)
         Me.lbl_login.Name = "lbl_login"
         Me.lbl_login.Size = New System.Drawing.Size(59, 13)
         Me.lbl_login.TabIndex = 4
