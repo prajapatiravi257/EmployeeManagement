@@ -122,7 +122,7 @@ Partial Class Login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
-        Me.ClientSize = New System.Drawing.Size(468, 222)
+        Me.ClientSize = New System.Drawing.Size(480, 222)
         Me.Controls.Add(Me.llbl_forgotpasswd)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
