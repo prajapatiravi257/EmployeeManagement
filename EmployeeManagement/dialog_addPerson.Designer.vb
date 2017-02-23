@@ -22,8 +22,8 @@ Partial Class dialog_add_person
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
-        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.tbl_button = New System.Windows.Forms.TableLayoutPanel()
+        Me.btn_save = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.lbl_Fullname = New System.Windows.Forms.Label()
         Me.lbl_dob = New System.Windows.Forms.Label()
@@ -52,10 +52,10 @@ Partial Class dialog_add_person
         Me.lbl_city = New System.Windows.Forms.Label()
         Me.tb_mob = New System.Windows.Forms.TextBox()
         Me.lbl_mob = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gb_workHistory = New System.Windows.Forms.GroupBox()
         Me.tb_post = New System.Windows.Forms.TextBox()
         Me.lbl_post = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lbl_left_date = New System.Windows.Forms.Label()
         Me.dtp_join_date = New System.Windows.Forms.DateTimePicker()
         Me.dtp_left_date = New System.Windows.Forms.DateTimePicker()
         Me.lbl_start_date = New System.Windows.Forms.Label()
@@ -72,36 +72,36 @@ Partial Class dialog_add_person
         Me.lbl_taxes = New System.Windows.Forms.Label()
         Me.tb_sal = New System.Windows.Forms.TextBox()
         Me.lbl_sal = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel.SuspendLayout()
+        Me.tbl_button.SuspendLayout()
         Me.gb_basic_info.SuspendLayout()
         Me.panel_gen.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.gb_workHistory.SuspendLayout()
         Me.gb_sal_info.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TableLayoutPanel
+        'tbl_button
         '
-        Me.TableLayoutPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel.ColumnCount = 2
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel.Controls.Add(Me.OK_Button, 0, 0)
-        Me.TableLayoutPanel.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel.Location = New System.Drawing.Point(541, 386)
-        Me.TableLayoutPanel.Name = "TableLayoutPanel"
-        Me.TableLayoutPanel.RowCount = 1
-        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel.Size = New System.Drawing.Size(146, 29)
-        Me.TableLayoutPanel.TabIndex = 0
+        Me.tbl_button.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tbl_button.ColumnCount = 2
+        Me.tbl_button.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tbl_button.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tbl_button.Controls.Add(Me.btn_save, 0, 0)
+        Me.tbl_button.Controls.Add(Me.Cancel_Button, 1, 0)
+        Me.tbl_button.Location = New System.Drawing.Point(541, 386)
+        Me.tbl_button.Name = "tbl_button"
+        Me.tbl_button.RowCount = 1
+        Me.tbl_button.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tbl_button.Size = New System.Drawing.Size(146, 29)
+        Me.tbl_button.TabIndex = 0
         '
-        'OK_Button
+        'btn_save
         '
-        Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.OK_Button.Location = New System.Drawing.Point(3, 3)
-        Me.OK_Button.Name = "OK_Button"
-        Me.OK_Button.Size = New System.Drawing.Size(67, 23)
-        Me.OK_Button.TabIndex = 0
-        Me.OK_Button.Text = "OK"
+        Me.btn_save.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btn_save.Location = New System.Drawing.Point(3, 3)
+        Me.btn_save.Name = "btn_save"
+        Me.btn_save.Size = New System.Drawing.Size(67, 23)
+        Me.btn_save.TabIndex = 19
+        Me.btn_save.Text = "Save"
         '
         'Cancel_Button
         '
@@ -110,7 +110,7 @@ Partial Class dialog_add_person
         Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
         Me.Cancel_Button.Name = "Cancel_Button"
         Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
-        Me.Cancel_Button.TabIndex = 1
+        Me.Cancel_Button.TabIndex = 20
         Me.Cancel_Button.Text = "Cancel"
         '
         'lbl_Fullname
@@ -143,24 +143,27 @@ Partial Class dialog_add_person
         'tb_firstname
         '
         Me.tb_firstname.Location = New System.Drawing.Point(93, 13)
+        Me.tb_firstname.MaxLength = 30
         Me.tb_firstname.Name = "tb_firstname"
         Me.tb_firstname.Size = New System.Drawing.Size(122, 20)
-        Me.tb_firstname.TabIndex = 5
+        Me.tb_firstname.TabIndex = 0
         '
         'tb_lastname
         '
         Me.tb_lastname.Location = New System.Drawing.Point(233, 13)
+        Me.tb_lastname.MaxLength = 30
         Me.tb_lastname.Name = "tb_lastname"
         Me.tb_lastname.Size = New System.Drawing.Size(132, 20)
-        Me.tb_lastname.TabIndex = 7
+        Me.tb_lastname.TabIndex = 1
         '
         'tb_email
         '
         Me.tb_email.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.tb_email.Location = New System.Drawing.Point(93, 79)
+        Me.tb_email.MaxLength = 60
         Me.tb_email.Name = "tb_email"
         Me.tb_email.Size = New System.Drawing.Size(272, 20)
-        Me.tb_email.TabIndex = 8
+        Me.tb_email.TabIndex = 5
         '
         'dtp_dob
         '
@@ -173,7 +176,7 @@ Partial Class dialog_add_person
         Me.dtp_dob.Name = "dtp_dob"
         Me.dtp_dob.ShowCheckBox = True
         Me.dtp_dob.Size = New System.Drawing.Size(111, 20)
-        Me.dtp_dob.TabIndex = 9
+        Me.dtp_dob.TabIndex = 2
         Me.dtp_dob.Value = New Date(1998, 12, 31, 0, 0, 0, 0)
         '
         'gb_basic_info
@@ -211,9 +214,10 @@ Partial Class dialog_add_person
         'tb_exp
         '
         Me.tb_exp.Location = New System.Drawing.Point(488, 113)
+        Me.tb_exp.MaxLength = 2
         Me.tb_exp.Name = "tb_exp"
         Me.tb_exp.Size = New System.Drawing.Size(51, 20)
-        Me.tb_exp.TabIndex = 30
+        Me.tb_exp.TabIndex = 12
         '
         'panel_gen
         '
@@ -241,7 +245,7 @@ Partial Class dialog_add_person
         Me.rb_male.Location = New System.Drawing.Point(51, 11)
         Me.rb_male.Name = "rb_male"
         Me.rb_male.Size = New System.Drawing.Size(48, 17)
-        Me.rb_male.TabIndex = 14
+        Me.rb_male.TabIndex = 3
         Me.rb_male.TabStop = True
         Me.rb_male.Text = "Male"
         Me.rb_male.UseVisualStyleBackColor = True
@@ -252,7 +256,7 @@ Partial Class dialog_add_person
         Me.rb_female.Location = New System.Drawing.Point(102, 11)
         Me.rb_female.Name = "rb_female"
         Me.rb_female.Size = New System.Drawing.Size(59, 17)
-        Me.rb_female.TabIndex = 15
+        Me.rb_female.TabIndex = 4
         Me.rb_female.TabStop = True
         Me.rb_female.Text = "Female"
         Me.rb_female.UseVisualStyleBackColor = True
@@ -282,7 +286,7 @@ Partial Class dialog_add_person
         Me.cb_married_status.Location = New System.Drawing.Point(489, 81)
         Me.cb_married_status.Name = "cb_married_status"
         Me.cb_married_status.Size = New System.Drawing.Size(141, 21)
-        Me.cb_married_status.TabIndex = 28
+        Me.cb_married_status.TabIndex = 11
         Me.cb_married_status.Text = "Single"
         '
         'lbl_married_status
@@ -297,9 +301,10 @@ Partial Class dialog_add_person
         'tb_qual
         '
         Me.tb_qual.Location = New System.Drawing.Point(488, 50)
+        Me.tb_qual.MaxLength = 30
         Me.tb_qual.Name = "tb_qual"
         Me.tb_qual.Size = New System.Drawing.Size(141, 20)
-        Me.tb_qual.TabIndex = 26
+        Me.tb_qual.TabIndex = 10
         '
         'lbl_qual
         '
@@ -316,7 +321,7 @@ Partial Class dialog_add_person
         Me.tb_zip.MaxLength = 6
         Me.tb_zip.Name = "tb_zip"
         Me.tb_zip.Size = New System.Drawing.Size(102, 20)
-        Me.tb_zip.TabIndex = 24
+        Me.tb_zip.TabIndex = 7
         '
         'lbl_zip
         '
@@ -330,10 +335,11 @@ Partial Class dialog_add_person
         'tb_add
         '
         Me.tb_add.Location = New System.Drawing.Point(91, 142)
+        Me.tb_add.MaxLength = 50
         Me.tb_add.Multiline = True
         Me.tb_add.Name = "tb_add"
         Me.tb_add.Size = New System.Drawing.Size(538, 20)
-        Me.tb_add.TabIndex = 22
+        Me.tb_add.TabIndex = 8
         '
         'lbl_add
         '
@@ -347,9 +353,10 @@ Partial Class dialog_add_person
         'tb_city
         '
         Me.tb_city.Location = New System.Drawing.Point(93, 110)
+        Me.tb_city.MaxLength = 40
         Me.tb_city.Name = "tb_city"
         Me.tb_city.Size = New System.Drawing.Size(100, 20)
-        Me.tb_city.TabIndex = 20
+        Me.tb_city.TabIndex = 6
         '
         'lbl_city
         '
@@ -363,9 +370,10 @@ Partial Class dialog_add_person
         'tb_mob
         '
         Me.tb_mob.Location = New System.Drawing.Point(488, 15)
+        Me.tb_mob.MaxLength = 10
         Me.tb_mob.Name = "tb_mob"
         Me.tb_mob.Size = New System.Drawing.Size(142, 20)
-        Me.tb_mob.TabIndex = 18
+        Me.tb_mob.TabIndex = 9
         '
         'lbl_mob
         '
@@ -376,29 +384,30 @@ Partial Class dialog_add_person
         Me.lbl_mob.TabIndex = 17
         Me.lbl_mob.Text = "Mobile no."
         '
-        'GroupBox1
+        'gb_workHistory
         '
-        Me.GroupBox1.Controls.Add(Me.tb_post)
-        Me.GroupBox1.Controls.Add(Me.lbl_post)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.dtp_join_date)
-        Me.GroupBox1.Controls.Add(Me.dtp_left_date)
-        Me.GroupBox1.Controls.Add(Me.lbl_start_date)
-        Me.GroupBox1.Controls.Add(Me.tb_comp_name)
-        Me.GroupBox1.Controls.Add(Me.lbl_comp_name)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 213)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(326, 170)
-        Me.GroupBox1.TabIndex = 16
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Work History"
+        Me.gb_workHistory.Controls.Add(Me.tb_post)
+        Me.gb_workHistory.Controls.Add(Me.lbl_post)
+        Me.gb_workHistory.Controls.Add(Me.lbl_left_date)
+        Me.gb_workHistory.Controls.Add(Me.dtp_join_date)
+        Me.gb_workHistory.Controls.Add(Me.dtp_left_date)
+        Me.gb_workHistory.Controls.Add(Me.lbl_start_date)
+        Me.gb_workHistory.Controls.Add(Me.tb_comp_name)
+        Me.gb_workHistory.Controls.Add(Me.lbl_comp_name)
+        Me.gb_workHistory.Location = New System.Drawing.Point(12, 213)
+        Me.gb_workHistory.Name = "gb_workHistory"
+        Me.gb_workHistory.Size = New System.Drawing.Size(326, 170)
+        Me.gb_workHistory.TabIndex = 16
+        Me.gb_workHistory.TabStop = False
+        Me.gb_workHistory.Text = "Work History"
         '
         'tb_post
         '
         Me.tb_post.Location = New System.Drawing.Point(105, 132)
+        Me.tb_post.MaxLength = 50
         Me.tb_post.Name = "tb_post"
         Me.tb_post.Size = New System.Drawing.Size(120, 20)
-        Me.tb_post.TabIndex = 14
+        Me.tb_post.TabIndex = 16
         '
         'lbl_post
         '
@@ -409,14 +418,14 @@ Partial Class dialog_add_person
         Me.lbl_post.TabIndex = 13
         Me.lbl_post.Text = "Designation"
         '
-        'Label1
+        'lbl_left_date
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 103)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 13)
-        Me.Label1.TabIndex = 12
-        Me.Label1.Text = "Left date"
+        Me.lbl_left_date.AutoSize = True
+        Me.lbl_left_date.Location = New System.Drawing.Point(7, 103)
+        Me.lbl_left_date.Name = "lbl_left_date"
+        Me.lbl_left_date.Size = New System.Drawing.Size(49, 13)
+        Me.lbl_left_date.TabIndex = 12
+        Me.lbl_left_date.Text = "Left date"
         '
         'dtp_join_date
         '
@@ -427,7 +436,7 @@ Partial Class dialog_add_person
         Me.dtp_join_date.Name = "dtp_join_date"
         Me.dtp_join_date.ShowCheckBox = True
         Me.dtp_join_date.Size = New System.Drawing.Size(99, 20)
-        Me.dtp_join_date.TabIndex = 11
+        Me.dtp_join_date.TabIndex = 14
         Me.dtp_join_date.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
         '
         'dtp_left_date
@@ -439,7 +448,7 @@ Partial Class dialog_add_person
         Me.dtp_left_date.Name = "dtp_left_date"
         Me.dtp_left_date.ShowCheckBox = True
         Me.dtp_left_date.Size = New System.Drawing.Size(99, 20)
-        Me.dtp_left_date.TabIndex = 10
+        Me.dtp_left_date.TabIndex = 15
         Me.dtp_left_date.Value = New Date(2017, 2, 12, 0, 0, 0, 0)
         '
         'lbl_start_date
@@ -454,9 +463,10 @@ Partial Class dialog_add_person
         'tb_comp_name
         '
         Me.tb_comp_name.Location = New System.Drawing.Point(105, 31)
+        Me.tb_comp_name.MaxLength = 30
         Me.tb_comp_name.Name = "tb_comp_name"
         Me.tb_comp_name.Size = New System.Drawing.Size(120, 20)
-        Me.tb_comp_name.TabIndex = 1
+        Me.tb_comp_name.TabIndex = 13
         '
         'lbl_comp_name
         '
@@ -489,9 +499,10 @@ Partial Class dialog_add_person
         'tb_allow
         '
         Me.tb_allow.Location = New System.Drawing.Point(96, 132)
+        Me.tb_allow.MaxLength = 4
         Me.tb_allow.Name = "tb_allow"
         Me.tb_allow.Size = New System.Drawing.Size(100, 20)
-        Me.tb_allow.TabIndex = 16
+        Me.tb_allow.TabIndex = 18
         '
         'lbl_sal_insure_yearly
         '
@@ -527,6 +538,7 @@ Partial Class dialog_add_person
         Me.tb_insure.ReadOnly = True
         Me.tb_insure.Size = New System.Drawing.Size(100, 20)
         Me.tb_insure.TabIndex = 5
+        Me.tb_insure.TabStop = False
         Me.tb_insure.Text = "100000"
         '
         'lbl_insure
@@ -545,6 +557,7 @@ Partial Class dialog_add_person
         Me.tb_taxes.ReadOnly = True
         Me.tb_taxes.Size = New System.Drawing.Size(49, 20)
         Me.tb_taxes.TabIndex = 3
+        Me.tb_taxes.TabStop = False
         Me.tb_taxes.Text = "15"
         '
         'lbl_taxes
@@ -559,9 +572,10 @@ Partial Class dialog_add_person
         'tb_sal
         '
         Me.tb_sal.Location = New System.Drawing.Point(96, 31)
+        Me.tb_sal.MaxLength = 7
         Me.tb_sal.Name = "tb_sal"
         Me.tb_sal.Size = New System.Drawing.Size(100, 20)
-        Me.tb_sal.TabIndex = 1
+        Me.tb_sal.TabIndex = 17
         '
         'lbl_sal
         '
@@ -574,15 +588,13 @@ Partial Class dialog_add_person
         '
         'dialog_add_person
         '
-        Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(699, 427)
         Me.Controls.Add(Me.gb_sal_info)
         Me.Controls.Add(Me.gb_basic_info)
-        Me.Controls.Add(Me.TableLayoutPanel)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.tbl_button)
+        Me.Controls.Add(Me.gb_workHistory)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -590,20 +602,20 @@ Partial Class dialog_add_person
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Add Person"
-        Me.TableLayoutPanel.ResumeLayout(False)
+        Me.tbl_button.ResumeLayout(False)
         Me.gb_basic_info.ResumeLayout(False)
         Me.gb_basic_info.PerformLayout()
         Me.panel_gen.ResumeLayout(False)
         Me.panel_gen.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gb_workHistory.ResumeLayout(False)
+        Me.gb_workHistory.PerformLayout()
         Me.gb_sal_info.ResumeLayout(False)
         Me.gb_sal_info.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TableLayoutPanel As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents OK_Button As System.Windows.Forms.Button
+    Friend WithEvents tbl_button As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents btn_save As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents lbl_Fullname As Label
     Friend WithEvents lbl_dob As Label
@@ -615,7 +627,7 @@ Partial Class dialog_add_person
     Friend WithEvents gb_basic_info As GroupBox
     Friend WithEvents lbl_gender As Label
     Friend WithEvents rb_female As RadioButton
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gb_workHistory As GroupBox
     Friend WithEvents rb_male As RadioButton
     Friend WithEvents tb_mob As TextBox
     Friend WithEvents lbl_mob As Label
@@ -634,7 +646,7 @@ Partial Class dialog_add_person
     Friend WithEvents lbl_exp As Label
     Friend WithEvents tb_post As TextBox
     Friend WithEvents lbl_post As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lbl_left_date As Label
     Friend WithEvents dtp_join_date As DateTimePicker
     Friend WithEvents dtp_left_date As DateTimePicker
     Friend WithEvents lbl_start_date As Label
