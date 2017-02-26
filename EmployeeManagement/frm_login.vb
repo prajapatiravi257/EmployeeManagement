@@ -1,4 +1,4 @@
-﻿Public Class Login
+﻿Public Class frm_login
 
     ' TODO: Insert code to perform custom authentication using the provided username and password 
     ' (See http://go.microsoft.com/fwlink/?LinkId=35339).  

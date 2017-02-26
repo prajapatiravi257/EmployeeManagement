@@ -6,11 +6,12 @@ Module connection
     Public conString As String = "Data Source=DESKTOP-KKN0DTS;Initial Catalog=EmployeeManagement;User ID=sa;Password=123456"
     Public sqlCon As New SqlConnection(conString)
     Public dataAdapter As SqlDataAdapter
-    Public sqlcmd As New SqlCommand
+    Public sqlcmd As SqlCommand
     Public sql_dr As SqlDataReader
     Public ds As DataSet
     Public query As SqlCommandBuilder
     Public dt As DataTable
+    Public bindNavigate As BindingNavigator()
     Public loginSuccess As Boolean = False
 
 
@@ -33,6 +34,25 @@ Module connection
         sqlCon.Close()
     End Sub
 
+    Public Sub employeeDTV_bindnavigate(ByVal sql As String, ByVal dtv As DataGridView)
+        Try
+            If sqlCon.State = ConnectionState.Closed Then
+                sqlCon.Open()
+            End If
+            sqlcmd = New SqlCommand(sql, sqlCon)
+
+            dataAdapter = New SqlDataAdapter(sqlcmd)
+            ds = New DataSet()
+            dataAdapter.Fill(ds, "Emp_basic_info")
+
+            dtv.DataSource =
+            dtv.DataMember = "Emp_basic_info"
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return
+        End Try
+        sqlCon.Close()
+    End Sub
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
 
         Dim query As String = "SELECT * FROM Login_users WHERE username='" + user.Text + "' AND passwd='" + passwd.Text + "'"
@@ -48,7 +68,8 @@ Module connection
 
             If sql_dr.Read And sql_dr.HasRows Then
 
-                Dim adminpage As admin = New admin()
+                sql_dr.Close()
+                Dim adminpage As frm_admin = New frm_admin()
 
                 loginSuccess = True
 
@@ -56,6 +77,7 @@ Module connection
                     .Show()
                     .lbl_loginuser.Text = type
                 End With
+
             Else
 
                 'integer variable to count the number of times
