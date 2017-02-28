@@ -6,6 +6,8 @@ Public Class dialog_add_person
     Dim errorProvider As New ErrorProvider()
     Dim todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
     Dim sal As Integer
+    Dim frm_admin As New frm_admin()
+
 
 
     Private Sub dialog_add_person_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -19,11 +21,13 @@ Public Class dialog_add_person
             gender = "Female"
         End If
 
-
         If ValidateChildren(ValidationConstraints.None) Then
             insertSql()
+            frm_admin.dgv_emp_info.Update()
             DialogResult = DialogResult.OK
             Close()
+        Else
+            DialogResult = DialogResult.None
         End If
 
     End Sub
@@ -55,12 +59,12 @@ Public Class dialog_add_person
 
             employeeINST(sql)  ' inserts row in Salary_information table
 
-            sql = "INSERT INTO Contact_person (emp_id,c_firstname,c_lastname,c_mob,c_city,c_address)
+            sql = "INSERT INTO Contact_person_info (emp_id,c_firstname,c_lastname,c_mob,c_city,c_address)
                     SELECT emp_id, '" & tb_firstname.Text & "', '" & tb_lastname.Text &
-                    "', '" & tb_mob.Text & ", '" & tb_city.Text & "', '" & tb_add.Text & "', 
+                    "', '" & tb_mob.Text & "', '" & tb_city.Text & "', '" & tb_add.Text & "' 
                     FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "'"
-            employeeINST(sql)   'inserts row in Contact_person
 
+            employeeINST(sql)   'inserts row in Contact_person_info
         Catch ex As Exception
             MessageBox.Show(MessageBoxIcon.Error, "Something went wrong try again")
         End Try
@@ -76,16 +80,13 @@ Public Class dialog_add_person
 
     Private Sub tb_firstname_Validated(sender As Object, e As EventArgs) Handles tb_firstname.Validated
         errorProvider.SetError(tb_firstname, String.Empty)
-
     End Sub
 
     Private Sub tb_lastname_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_lastname.Validating
         If Not Regex.IsMatch(tb_lastname.Text, rgx_str) Then
             errorProvider.SetError(tb_lastname, "Enter a valid lastname")
             e.Cancel = True
-
         End If
-
     End Sub
 
     Private Sub tb_lastname_Validated(sender As Object, e As EventArgs) Handles tb_lastname.Validated
@@ -97,7 +98,6 @@ Public Class dialog_add_person
             errorProvider.SetError(tb_mob, "Enter a valid Mobile number")
             e.Cancel = True
         End If
-
     End Sub
 
     Private Sub tb_mob_Validated(sender As Object, e As EventArgs) Handles tb_mob.Validated
@@ -143,7 +143,6 @@ Public Class dialog_add_person
             errorProvider.SetError(tb_exp, "Enter a valid digit")
             e.Cancel = True
         End If
-
     End Sub
 
     Private Sub tb_exp_Validated(sender As Object, e As EventArgs) Handles tb_exp.Validated
@@ -234,7 +233,6 @@ Public Class dialog_add_person
             errorProvider.SetError(dtp_join_date, "Enter the joining date")
             e.Cancel = True
         End If
-
     End Sub
 
     Private Sub dtp_join_date_Validated(sender As Object, e As EventArgs) Handles dtp_join_date.Validated
@@ -246,16 +244,12 @@ Public Class dialog_add_person
             errorProvider.SetError(dtp_left_date, "Enter the date you left")
             e.Cancel = True
         End If
-
     End Sub
 
     Private Sub dtp_left_date_Validated(sender As Object, e As EventArgs) Handles dtp_left_date.Validated
         errorProvider.SetError(dtp_left_date, String.Empty)
     End Sub
 
-    Private Sub dialog_add_person_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub tb_email_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_email.Validating
         If Not String.IsNullOrWhiteSpace(tb_email.Text) Then
@@ -266,6 +260,9 @@ Public Class dialog_add_person
         End If
     End Sub
 
+    Private Sub dialog_add_person_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 
     Private Sub tb_email_Validated(sender As Object, e As EventArgs) Handles tb_email.Validated
         errorProvider.SetError(tb_email, String.Empty)

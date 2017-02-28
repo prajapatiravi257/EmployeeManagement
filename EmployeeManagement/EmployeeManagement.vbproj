@@ -70,6 +70,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,8 +91,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DGV_bindnavigator.Designer.vb">
+      <DependentUpon>DGV_bindnavigator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DGV_bindnavigator.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="EmployeeManagementDataSet.vb">
       <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManagementDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="frm_admin.Designer.vb">
       <DependentUpon>frm_admin.vb</DependentUpon>
@@ -155,6 +167,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DGV_bindnavigator.resx">
+      <DependentUpon>DGV_bindnavigator.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_admin.resx">
       <DependentUpon>frm_admin.vb</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +206,17 @@
     </None>
     <None Include="EmployeeManagementDataSet.xss">
       <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeManagementDataSet1.xsc">
+      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeManagementDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeManagementDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmployeeManagementDataSet1.xss">
+      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

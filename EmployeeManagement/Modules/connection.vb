@@ -9,10 +9,7 @@ Module connection
     Public sqlcmd As SqlCommand
     Public sql_dr As SqlDataReader
     Public ds As DataSet
-    Public query As SqlCommandBuilder
     Public dt As DataTable
-    Public bindNavigate As BindingNavigator()
-    Public loginSuccess As Boolean = False
 
 
     Public Sub employeeINST(ByVal sql As String)
@@ -68,16 +65,23 @@ Module connection
 
             If sql_dr.Read And sql_dr.HasRows Then
 
+                If user.Text = "admin" Then
+
+                    Dim adminpage As New frm_admin()
+
+                    With adminpage
+                        .Show()
+                        .lbl_loginuser.Text = type
+                    End With
+                Else
+                    Dim userPage As New frm_user()
+                    With userPage
+                        .Show()
+                        .lbl_loginuser.Text = type
+                    End With
+
+                End If
                 sql_dr.Close()
-                Dim adminpage As frm_admin = New frm_admin()
-
-                loginSuccess = True
-
-                With adminpage
-                    .Show()
-                    .lbl_loginuser.Text = type
-                End With
-
             Else
 
                 'integer variable to count the number of times
