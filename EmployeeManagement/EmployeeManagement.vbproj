@@ -97,13 +97,14 @@
     <Compile Include="DGV_bindnavigator.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EmployeeManagementDataSet.vb">
-      <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeManagementDataSet1.Designer.vb">
+    <Compile Include="EmployeeManagementDS.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
+      <DependentUpon>EmployeeManagementDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="EmployeeManagementDS.vb">
+      <DependentUpon>EmployeeManagementDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="frm_admin.Designer.vb">
       <DependentUpon>frm_admin.vb</DependentUpon>
@@ -117,11 +118,6 @@
     </Compile>
     <Compile Include="dialog_addPerson.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmployeeManagementDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="frm_user.Designer.vb">
       <DependentUpon>frm_user.vb</DependentUpon>
@@ -143,6 +139,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\connection.vb" />
+    <Compile Include="Modules\Usable_functions.vb" />
     <Compile Include="Modules\validation.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -196,27 +193,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="EmployeeManagementDataSet.xsc">
-      <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
+    <None Include="EmployeeManagementDS.xsc">
+      <DependentUpon>EmployeeManagementDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="EmployeeManagementDataSet.xsd">
+    <None Include="EmployeeManagementDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EmployeeManagementDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>EmployeeManagementDS.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="EmployeeManagementDataSet.xss">
-      <DependentUpon>EmployeeManagementDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="EmployeeManagementDataSet1.xsc">
-      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="EmployeeManagementDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EmployeeManagementDataSet1.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="EmployeeManagementDataSet1.xss">
-      <DependentUpon>EmployeeManagementDataSet1.xsd</DependentUpon>
+    <None Include="EmployeeManagementDS.xss">
+      <DependentUpon>EmployeeManagementDS.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
@@ -244,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

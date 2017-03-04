@@ -33,6 +33,7 @@ Partial Class dialog_add_person
         Me.tb_email = New System.Windows.Forms.TextBox()
         Me.dtp_dob = New System.Windows.Forms.DateTimePicker()
         Me.gb_basic_info = New System.Windows.Forms.GroupBox()
+        Me.CheckBox_addLoginUser = New System.Windows.Forms.CheckBox()
         Me.tb_exp = New System.Windows.Forms.TextBox()
         Me.panel_gen = New System.Windows.Forms.Panel()
         Me.lbl_gender = New System.Windows.Forms.Label()
@@ -181,6 +182,7 @@ Partial Class dialog_add_person
         '
         'gb_basic_info
         '
+        Me.gb_basic_info.Controls.Add(Me.CheckBox_addLoginUser)
         Me.gb_basic_info.Controls.Add(Me.tb_exp)
         Me.gb_basic_info.Controls.Add(Me.panel_gen)
         Me.gb_basic_info.Controls.Add(Me.lbl_note)
@@ -210,6 +212,16 @@ Partial Class dialog_add_person
         Me.gb_basic_info.TabIndex = 1
         Me.gb_basic_info.TabStop = False
         Me.gb_basic_info.Text = "Basic Info"
+        '
+        'CheckBox_addLoginUser
+        '
+        Me.CheckBox_addLoginUser.AutoSize = True
+        Me.CheckBox_addLoginUser.Location = New System.Drawing.Point(408, 144)
+        Me.CheckBox_addLoginUser.Name = "CheckBox_addLoginUser"
+        Me.CheckBox_addLoginUser.Size = New System.Drawing.Size(234, 17)
+        Me.CheckBox_addLoginUser.TabIndex = 30
+        Me.CheckBox_addLoginUser.Text = "Check this to give employee the login acces"
+        Me.CheckBox_addLoginUser.UseVisualStyleBackColor = True
         '
         'tb_exp
         '
@@ -338,7 +350,7 @@ Partial Class dialog_add_person
         Me.tb_add.MaxLength = 50
         Me.tb_add.Multiline = True
         Me.tb_add.Name = "tb_add"
-        Me.tb_add.Size = New System.Drawing.Size(538, 20)
+        Me.tb_add.Size = New System.Drawing.Size(296, 20)
         Me.tb_add.TabIndex = 8
         '
         'lbl_add
@@ -664,4 +676,5 @@ Partial Class dialog_add_person
     Friend WithEvents lbl_sal_percent As Label
     Friend WithEvents tb_exp As TextBox
     Friend WithEvents tb_allow As TextBox
+    Friend WithEvents CheckBox_addLoginUser As CheckBox
 End Class

@@ -9,7 +9,6 @@ Public Class dialog_add_person
     Dim frm_admin As New frm_admin()
 
 
-
     Private Sub dialog_add_person_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         tb_firstname.Focus()
     End Sub
@@ -39,33 +38,39 @@ Public Class dialog_add_person
 
     Private Sub insertSql()
         Try
-            sql = "INSERT INTO Emp_basic_details (firstname, lastname, dob, mob, city, address,
+            sql = "INSERT INTO Emp_basic_details (firstname, lastname,email, dob, mob, city, address,
                zipcode, qualification, curr_exp, start_date, gender, married_status)
-               VALUES('" & tb_firstname.Text & "', '" & tb_lastname.Text & "', '" & dtp_dob.Text &
+               VALUES('" & tb_firstname.Text & "', '" & tb_lastname.Text & "', '" & tb_email.Text & "', '" & dtp_dob.Text &
                        "', " & tb_mob.Text & ", '" & tb_city.Text & "', '" & tb_add.Text & "', " & tb_zip.Text &
                        ", '" & tb_qual.Text & "', " & tb_exp.Text & ",'" & todayDate & "', '" & gender & "', '" & cb_married_status.Text & "')"
 
             employeeINST(sql) ' inserts row in Emp_basic_details table
-
             sql = "INSERT INTO Work_history (emp_id,comp_name, emp_name, p_start_date, p_end_date, post)
                 SELECT emp_id, '" & tb_comp_name.Text & "','" & tb_firstname.Text & "','" & dtp_join_date.Text &
-                        "','" & dtp_left_date.Text & "','" & tb_qual.Text & "' FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "'"
+                        "','" & dtp_left_date.Text & "','" & tb_qual.Text & "' FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "' AND lastname='" & tb_lastname.Text & "'"
 
             employeeINST(sql) ' inserts row in Work_history table
-
             sql = "INSERT INTO Salary_information (emp_id,monthly_sal, monthly_taxes, monthly_deduct, monthly_insurances)
                 SELECT emp_id," & tb_sal.Text & "," & tb_taxes.Text & "," & tb_allow.Text & "," & tb_insure.Text &
-                " FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "'"
+                " FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "' AND lastname='" & tb_lastname.Text & "'"
 
             employeeINST(sql)  ' inserts row in Salary_information table
-
-            sql = "INSERT INTO Contact_person_info (emp_id,c_firstname,c_lastname,c_mob,c_city,c_address)
+            sql = "INSERT INTO Contact_person_info (emp_id,c_firstname,c_lastname,c_email.c_mob,c_city,c_address)
                     SELECT emp_id, '" & tb_firstname.Text & "', '" & tb_lastname.Text &
-                    "', '" & tb_mob.Text & "', '" & tb_city.Text & "', '" & tb_add.Text & "' 
-                    FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "'"
-
+                    "', '" & tb_email.Text & "', '" & tb_mob.Text & "', '" & tb_city.Text & "', '" & tb_add.Text & "' 
+                    FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "' AND lastname='" & tb_lastname.Text & "'"
             employeeINST(sql)   'inserts row in Contact_person_info
+
+            If CheckBox_addLoginUser.Checked Then 'add user to login_users table if checked
+                sql = "INSERT INTO Login_users (emp_id,username,passwd)
+                SELECT emp_id, '" & tb_firstname.Text & "', '" & tb_lastname.Text & "' 
+                    FROM Emp_basic_details WHERE firstname='" & tb_firstname.Text & "' AND lastname='" & tb_lastname.Text & "'"
+                employeeINST(sql)
+            End If
+
+
         Catch ex As Exception
+            MsgBox(ex.Message())
             MessageBox.Show(MessageBoxIcon.Error, "Something went wrong try again")
         End Try
 
@@ -258,10 +263,6 @@ Public Class dialog_add_person
                 e.Cancel = True
             End If
         End If
-    End Sub
-
-    Private Sub dialog_add_person_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
 
     Private Sub tb_email_Validated(sender As Object, e As EventArgs) Handles tb_email.Validated

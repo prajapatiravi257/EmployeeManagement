@@ -9,15 +9,17 @@
     ' such as the username, display name, etc.
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
+
         userLogin(UsernameTextBox, PasswordTextBox)
+
         If loginSuccess = True Then
             Close()
         End If
+        loginSuccess = False
+
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         Close()
     End Sub
-
-
 End Class

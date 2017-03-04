@@ -3,15 +3,27 @@ Imports System.Data.SqlClient
 Imports System.Net.Mail
 
 Module connection
-    Public conString As String = "Data Source=DESKTOP-KKN0DTS;Initial Catalog=EmployeeManagement;User ID=sa;Password=123456"
+
+    Public conString As String = "Data Source=DESKTOP-KKN0DTS;Initial Catalog=EmployeeManagement; MultipleActiveResultSets=True; User ID=sa;Password=123456"
     Public sqlCon As New SqlConnection(conString)
     Public dataAdapter As SqlDataAdapter
     Public sqlcmd As SqlCommand
     Public sql_dr As SqlDataReader
     Public ds As DataSet
     Public dt As DataTable
+    Public loginSuccess As Boolean = False
+    Public username, password As String
 
-
+    Public Sub logout(page As Form)
+        Dim login As New frm_login()
+        login.Show()
+        page.Close()
+    End Sub
+    Public Sub closeDR(dr As SqlDataReader)
+        If Not dr.IsClosed Then
+            dr.Close()
+        End If
+    End Sub
     Public Sub employeeINST(ByVal sql As String)
         Try
             If sqlCon.State = ConnectionState.Closed Then
@@ -21,49 +33,39 @@ Module connection
 
             dataAdapter = New SqlDataAdapter(sqlcmd)
 
-            dt = New DataTable
+            dt = New DataTable()
+
             dataAdapter.Fill(dt)
 
         Catch ex As Exception
+
             MsgBox(ex.Message)
-            Return
+
+            sqlCon.Close()
         End Try
-        sqlCon.Close()
-    End Sub
-
-    Public Sub employeeDTV_bindnavigate(ByVal sql As String, ByVal dtv As DataGridView)
-        Try
-            If sqlCon.State = ConnectionState.Closed Then
-                sqlCon.Open()
-            End If
-            sqlcmd = New SqlCommand(sql, sqlCon)
-
-            dataAdapter = New SqlDataAdapter(sqlcmd)
-            ds = New DataSet()
-            dataAdapter.Fill(ds, "Emp_basic_info")
-
-            dtv.DataSource =
-            dtv.DataMember = "Emp_basic_info"
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            Return
-        End Try
-        sqlCon.Close()
     End Sub
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
+        username = user.Text
+        password = passwd.Text
 
-        Dim query As String = "SELECT * FROM Login_users WHERE username='" + user.Text + "' AND passwd='" + passwd.Text + "'"
+        Dim query As String = "SELECT * FROM Login_users WHERE username='" + username + "' AND passwd='" + password + "'"
+
         Try
-            If sqlCon.State = ConnectionState.Closed Then
+            If Not sqlCon.State = ConnectionState.Open Then
                 sqlCon.Open()
             End If
 
             sqlcmd = New SqlCommand(query, sqlCon)
 
-            sql_dr = sqlcmd.ExecuteReader
-            Dim type As String = user.Text.ToUpper()
+            sql_dr = sqlcmd.ExecuteReader()
 
-            If sql_dr.Read And sql_dr.HasRows Then
+            Dim type As String
+
+            If sql_dr.Read() And sql_dr.HasRows Then
+
+                type = sql_dr(2).ToString().ToUpper()
+
+                loginSuccess = True
 
                 If user.Text = "admin" Then
 
@@ -73,15 +75,18 @@ Module connection
                         .Show()
                         .lbl_loginuser.Text = type
                     End With
+
                 Else
+
                     Dim userPage As New frm_user()
+
                     With userPage
                         .Show()
                         .lbl_loginuser.Text = type
                     End With
 
                 End If
-                sql_dr.Close()
+
             Else
 
                 'integer variable to count the number of times
@@ -111,15 +116,15 @@ Module connection
                         Application.Exit()  'terminate application
 
                 End Select
-
             End If
+
+            closeDR(sql_dr)
+            sqlCon.Close()
 
         Catch ex As Exception
             MsgBox("account does not exist!", MsgBoxStyle.Exclamation, "Failed to login with exception")
 
         End Try
-
-        sqlCon.Close()
 
     End Sub
 
