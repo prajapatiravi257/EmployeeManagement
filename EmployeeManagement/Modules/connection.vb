@@ -14,6 +14,10 @@ Module connection
     Public loginSuccess As Boolean = False
     Public username, password As String
 
+    Public gender, sql, maritalStatus As String
+    Public errorProvider As New ErrorProvider()
+    Public todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
+
     Public Sub logout(page As Form)
         Dim login As New frm_login()
         login.Show()
@@ -24,11 +28,15 @@ Module connection
             dr.Close()
         End If
     End Sub
-    Public Sub employeeINST(ByVal sql As String)
+    Public Function employeeINST(ByVal sql As String) As Integer
+
+        Dim rowsAffected As Integer
+
         Try
             If sqlCon.State = ConnectionState.Closed Then
                 sqlCon.Open()
             End If
+
             sqlcmd = New SqlCommand(sql, sqlCon)
 
             dataAdapter = New SqlDataAdapter(sqlcmd)
@@ -37,13 +45,15 @@ Module connection
 
             dataAdapter.Fill(dt)
 
+
         Catch ex As Exception
 
             MsgBox(ex.Message)
 
             sqlCon.Close()
         End Try
-    End Sub
+
+    End Function
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
         username = user.Text
         password = passwd.Text

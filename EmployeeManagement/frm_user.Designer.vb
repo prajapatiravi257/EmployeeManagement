@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_user
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,19 +20,30 @@ Partial Class frm_user
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_user))
         Me.pnl_header = New System.Windows.Forms.Panel()
         Me.lbl_loginuser = New System.Windows.Forms.Label()
         Me.lbl_login = New System.Windows.Forms.Label()
         Me.llbl_logout = New System.Windows.Forms.LinkLabel()
         Me.TabPage_holiday = New System.Windows.Forms.TabPage()
-        Me.lb_holiday = New System.Windows.Forms.ListBox()
+        Me.gb_events = New System.Windows.Forms.GroupBox()
+        Me.DGV_user_events = New System.Windows.Forms.DataGridView()
+        Me.EventsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.EmployeeManagementDataSet = New EmployeeManagement.EmployeeManagementDataSet()
+        Me.gb_holidays = New System.Windows.Forms.GroupBox()
+        Me.DGV_holidays = New System.Windows.Forms.DataGridView()
+        Me.HolidayinfoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPage_leave = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gb_leave_ctrl = New System.Windows.Forms.GroupBox()
+        Me.gb_leave_counter = New System.Windows.Forms.GroupBox()
         Me.tb_extra_leaves = New System.Windows.Forms.TextBox()
+        Me.lbl_totalLeave = New System.Windows.Forms.Label()
+        Me.lbl_leaveLeft = New System.Windows.Forms.Label()
         Me.tb_leaves_left = New System.Windows.Forms.TextBox()
+        Me.lbl_extraLeave = New System.Windows.Forms.Label()
         Me.tb_total_leaves = New System.Windows.Forms.TextBox()
         Me.gb_applyLeave = New System.Windows.Forms.GroupBox()
         Me.btn_appl = New System.Windows.Forms.Button()
@@ -41,21 +52,30 @@ Partial Class frm_user
         Me.tb_reason = New System.Windows.Forms.TextBox()
         Me.lbl_reason = New System.Windows.Forms.Label()
         Me.MonthCalendar_leaveDatePicker = New System.Windows.Forms.MonthCalendar()
-        Me.lbl_extraLeave = New System.Windows.Forms.Label()
-        Me.lbl_leaveLeft = New System.Windows.Forms.Label()
-        Me.lbl_totalLeave = New System.Windows.Forms.Label()
         Me.TabPage_personal_details = New System.Windows.Forms.TabPage()
         Me.gb_personal_info_parent = New System.Windows.Forms.GroupBox()
+        Me.gb_profilw = New System.Windows.Forms.GroupBox()
+        Me.lbl_val_dob = New System.Windows.Forms.Label()
+        Me.lbl_val_empName = New System.Windows.Forms.Label()
+        Me.lbl_val_empid = New System.Windows.Forms.Label()
+        Me.lbl_name = New System.Windows.Forms.Label()
+        Me.lbl_empName = New System.Windows.Forms.Label()
+        Me.lbl_dob = New System.Windows.Forms.Label()
+        Me.PictureBox_profilePic = New System.Windows.Forms.PictureBox()
         Me.gb_personal_info = New System.Windows.Forms.GroupBox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btn_personalInfo_edit = New System.Windows.Forms.Button()
+        Me.btn_update = New System.Windows.Forms.Button()
+        Me.pnl_maritalStatus = New System.Windows.Forms.Panel()
+        Me.rb_single = New System.Windows.Forms.RadioButton()
+        Me.rb_married = New System.Windows.Forms.RadioButton()
+        Me.lbl_married_status = New System.Windows.Forms.Label()
         Me.tb_zip = New System.Windows.Forms.TextBox()
         Me.lbl_zip = New System.Windows.Forms.Label()
         Me.tb_add = New System.Windows.Forms.TextBox()
         Me.lbl_add = New System.Windows.Forms.Label()
         Me.tb_city = New System.Windows.Forms.TextBox()
         Me.lbl_city = New System.Windows.Forms.Label()
-        Me.cb_married_status = New System.Windows.Forms.ComboBox()
-        Me.lbl_married_status = New System.Windows.Forms.Label()
         Me.tb_qual = New System.Windows.Forms.TextBox()
         Me.lbl_qual = New System.Windows.Forms.Label()
         Me.tb_mob = New System.Windows.Forms.TextBox()
@@ -67,26 +87,36 @@ Partial Class frm_user
         Me.lbl_email = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lbl_Fullname = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.lbl_val_dob = New System.Windows.Forms.Label()
-        Me.lbl_val_empName = New System.Windows.Forms.Label()
-        Me.lbl_val_empid = New System.Windows.Forms.Label()
-        Me.lbl_dob = New System.Windows.Forms.Label()
-        Me.lbl_empName = New System.Windows.Forms.Label()
-        Me.PictureBox_profilePic = New System.Windows.Forms.PictureBox()
-        Me.lbl_name = New System.Windows.Forms.Label()
         Me.TabControl_employee = New System.Windows.Forms.TabControl()
         Me.TabPage_reports = New System.Windows.Forms.TabPage()
+        Me.Holiday_infoTableAdapter = New EmployeeManagement.EmployeeManagementDataSetTableAdapters.Holiday_infoTableAdapter()
+        Me.EventsTableAdapter = New EmployeeManagement.EmployeeManagementDataSetTableAdapters.EventsTableAdapter()
+        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EventnameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EventdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HolidaydateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HolidaynameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnl_header.SuspendLayout()
         Me.TabPage_holiday.SuspendLayout()
+        Me.gb_events.SuspendLayout()
+        CType(Me.DGV_user_events, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EventsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmployeeManagementDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gb_holidays.SuspendLayout()
+        CType(Me.DGV_holidays, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HolidayinfoBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage_leave.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.gb_leave_ctrl.SuspendLayout()
+        Me.gb_leave_counter.SuspendLayout()
         Me.gb_applyLeave.SuspendLayout()
         Me.TabPage_personal_details.SuspendLayout()
         Me.gb_personal_info_parent.SuspendLayout()
-        Me.gb_personal_info.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.gb_profilw.SuspendLayout()
         CType(Me.PictureBox_profilePic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gb_personal_info.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.pnl_maritalStatus.SuspendLayout()
         Me.TabControl_employee.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -130,26 +160,93 @@ Partial Class frm_user
         '
         'TabPage_holiday
         '
-        Me.TabPage_holiday.Controls.Add(Me.lb_holiday)
+        Me.TabPage_holiday.Controls.Add(Me.gb_events)
+        Me.TabPage_holiday.Controls.Add(Me.gb_holidays)
         Me.TabPage_holiday.Location = New System.Drawing.Point(4, 36)
         Me.TabPage_holiday.Name = "TabPage_holiday"
         Me.TabPage_holiday.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage_holiday.Size = New System.Drawing.Size(1276, 462)
         Me.TabPage_holiday.TabIndex = 2
-        Me.TabPage_holiday.Text = "Holidays"
+        Me.TabPage_holiday.Text = "Holidays & Events  "
         Me.TabPage_holiday.UseVisualStyleBackColor = True
         '
-        'lb_holiday
+        'gb_events
         '
-        Me.lb_holiday.FormattingEnabled = True
-        Me.lb_holiday.Location = New System.Drawing.Point(290, 37)
-        Me.lb_holiday.Name = "lb_holiday"
-        Me.lb_holiday.Size = New System.Drawing.Size(703, 381)
-        Me.lb_holiday.TabIndex = 0
+        Me.gb_events.Controls.Add(Me.DGV_user_events)
+        Me.gb_events.Location = New System.Drawing.Point(45, 37)
+        Me.gb_events.Name = "gb_events"
+        Me.gb_events.Size = New System.Drawing.Size(395, 370)
+        Me.gb_events.TabIndex = 2
+        Me.gb_events.TabStop = False
+        Me.gb_events.Text = "Upcoming Events"
+        '
+        'DGV_user_events
+        '
+        Me.DGV_user_events.AllowUserToAddRows = False
+        Me.DGV_user_events.AllowUserToDeleteRows = False
+        Me.DGV_user_events.AllowUserToOrderColumns = True
+        Me.DGV_user_events.AutoGenerateColumns = False
+        Me.DGV_user_events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DGV_user_events.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DGV_user_events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGV_user_events.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn1, Me.EventnameDataGridViewTextBoxColumn, Me.EventdateDataGridViewTextBoxColumn})
+        Me.DGV_user_events.DataSource = Me.EventsBindingSource
+        Me.DGV_user_events.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGV_user_events.Location = New System.Drawing.Point(3, 16)
+        Me.DGV_user_events.Name = "DGV_user_events"
+        Me.DGV_user_events.ReadOnly = True
+        Me.DGV_user_events.RowHeadersVisible = False
+        Me.DGV_user_events.Size = New System.Drawing.Size(389, 351)
+        Me.DGV_user_events.TabIndex = 0
+        '
+        'EventsBindingSource
+        '
+        Me.EventsBindingSource.DataMember = "Events"
+        Me.EventsBindingSource.DataSource = Me.EmployeeManagementDataSet
+        '
+        'EmployeeManagementDataSet
+        '
+        Me.EmployeeManagementDataSet.DataSetName = "EmployeeManagementDataSet"
+        Me.EmployeeManagementDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'gb_holidays
+        '
+        Me.gb_holidays.Controls.Add(Me.DGV_holidays)
+        Me.gb_holidays.Location = New System.Drawing.Point(489, 37)
+        Me.gb_holidays.Name = "gb_holidays"
+        Me.gb_holidays.Size = New System.Drawing.Size(659, 370)
+        Me.gb_holidays.TabIndex = 1
+        Me.gb_holidays.TabStop = False
+        Me.gb_holidays.Text = "Holidays"
+        '
+        'DGV_holidays
+        '
+        Me.DGV_holidays.AllowUserToAddRows = False
+        Me.DGV_holidays.AllowUserToDeleteRows = False
+        Me.DGV_holidays.AllowUserToOrderColumns = True
+        Me.DGV_holidays.AutoGenerateColumns = False
+        Me.DGV_holidays.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DGV_holidays.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DGV_holidays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGV_holidays.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.HolidaydateDataGridViewTextBoxColumn, Me.HolidaynameDataGridViewTextBoxColumn})
+        Me.DGV_holidays.DataSource = Me.HolidayinfoBindingSource
+        Me.DGV_holidays.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGV_holidays.Location = New System.Drawing.Point(3, 16)
+        Me.DGV_holidays.Name = "DGV_holidays"
+        Me.DGV_holidays.ReadOnly = True
+        Me.DGV_holidays.RowHeadersVisible = False
+        Me.DGV_holidays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DGV_holidays.Size = New System.Drawing.Size(653, 351)
+        Me.DGV_holidays.TabIndex = 0
+        '
+        'HolidayinfoBindingSource
+        '
+        Me.HolidayinfoBindingSource.DataMember = "Holiday_info"
+        Me.HolidayinfoBindingSource.DataSource = Me.EmployeeManagementDataSet
         '
         'TabPage_leave
         '
-        Me.TabPage_leave.Controls.Add(Me.GroupBox1)
+        Me.TabPage_leave.Controls.Add(Me.gb_leave_ctrl)
         Me.TabPage_leave.Location = New System.Drawing.Point(4, 36)
         Me.TabPage_leave.Name = "TabPage_leave"
         Me.TabPage_leave.Padding = New System.Windows.Forms.Padding(3)
@@ -158,44 +255,82 @@ Partial Class frm_user
         Me.TabPage_leave.Text = "Leave"
         Me.TabPage_leave.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'gb_leave_ctrl
         '
-        Me.GroupBox1.Controls.Add(Me.tb_extra_leaves)
-        Me.GroupBox1.Controls.Add(Me.tb_leaves_left)
-        Me.GroupBox1.Controls.Add(Me.tb_total_leaves)
-        Me.GroupBox1.Controls.Add(Me.gb_applyLeave)
-        Me.GroupBox1.Controls.Add(Me.lbl_extraLeave)
-        Me.GroupBox1.Controls.Add(Me.lbl_leaveLeft)
-        Me.GroupBox1.Controls.Add(Me.lbl_totalLeave)
-        Me.GroupBox1.Location = New System.Drawing.Point(208, 64)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(847, 348)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Leave Control Panel"
+        Me.gb_leave_ctrl.Controls.Add(Me.gb_leave_counter)
+        Me.gb_leave_ctrl.Controls.Add(Me.gb_applyLeave)
+        Me.gb_leave_ctrl.Location = New System.Drawing.Point(192, 64)
+        Me.gb_leave_ctrl.Name = "gb_leave_ctrl"
+        Me.gb_leave_ctrl.Size = New System.Drawing.Size(863, 348)
+        Me.gb_leave_ctrl.TabIndex = 0
+        Me.gb_leave_ctrl.TabStop = False
+        Me.gb_leave_ctrl.Text = "Leave Control Panel"
+        '
+        'gb_leave_counter
+        '
+        Me.gb_leave_counter.Controls.Add(Me.tb_extra_leaves)
+        Me.gb_leave_counter.Controls.Add(Me.lbl_totalLeave)
+        Me.gb_leave_counter.Controls.Add(Me.lbl_leaveLeft)
+        Me.gb_leave_counter.Controls.Add(Me.tb_leaves_left)
+        Me.gb_leave_counter.Controls.Add(Me.lbl_extraLeave)
+        Me.gb_leave_counter.Controls.Add(Me.tb_total_leaves)
+        Me.gb_leave_counter.Location = New System.Drawing.Point(30, 81)
+        Me.gb_leave_counter.Name = "gb_leave_counter"
+        Me.gb_leave_counter.Size = New System.Drawing.Size(157, 219)
+        Me.gb_leave_counter.TabIndex = 6
+        Me.gb_leave_counter.TabStop = False
+        Me.gb_leave_counter.Text = "leaves Counter"
         '
         'tb_extra_leaves
         '
-        Me.tb_extra_leaves.Location = New System.Drawing.Point(107, 246)
+        Me.tb_extra_leaves.Location = New System.Drawing.Point(107, 168)
         Me.tb_extra_leaves.Name = "tb_extra_leaves"
         Me.tb_extra_leaves.ReadOnly = True
         Me.tb_extra_leaves.Size = New System.Drawing.Size(35, 20)
         Me.tb_extra_leaves.TabIndex = 8
         Me.tb_extra_leaves.Text = "0"
         '
+        'lbl_totalLeave
+        '
+        Me.lbl_totalLeave.AutoSize = True
+        Me.lbl_totalLeave.Location = New System.Drawing.Point(21, 48)
+        Me.lbl_totalLeave.Name = "lbl_totalLeave"
+        Me.lbl_totalLeave.Size = New System.Drawing.Size(69, 13)
+        Me.lbl_totalLeave.TabIndex = 0
+        Me.lbl_totalLeave.Text = "Total Leaves"
+        '
+        'lbl_leaveLeft
+        '
+        Me.lbl_leaveLeft.AutoSize = True
+        Me.lbl_leaveLeft.Location = New System.Drawing.Point(21, 111)
+        Me.lbl_leaveLeft.Name = "lbl_leaveLeft"
+        Me.lbl_leaveLeft.Size = New System.Drawing.Size(59, 13)
+        Me.lbl_leaveLeft.TabIndex = 1
+        Me.lbl_leaveLeft.Text = "Leaves left"
+        '
         'tb_leaves_left
         '
-        Me.tb_leaves_left.Location = New System.Drawing.Point(107, 176)
+        Me.tb_leaves_left.Location = New System.Drawing.Point(107, 108)
         Me.tb_leaves_left.Name = "tb_leaves_left"
         Me.tb_leaves_left.ReadOnly = True
         Me.tb_leaves_left.Size = New System.Drawing.Size(35, 20)
         Me.tb_leaves_left.TabIndex = 7
         Me.tb_leaves_left.Text = "0"
         '
+        'lbl_extraLeave
+        '
+        Me.lbl_extraLeave.AutoSize = True
+        Me.lbl_extraLeave.Location = New System.Drawing.Point(21, 171)
+        Me.lbl_extraLeave.Name = "lbl_extraLeave"
+        Me.lbl_extraLeave.Size = New System.Drawing.Size(69, 13)
+        Me.lbl_extraLeave.TabIndex = 3
+        Me.lbl_extraLeave.Text = "Extra Leaves"
+        '
         'tb_total_leaves
         '
-        Me.tb_total_leaves.Location = New System.Drawing.Point(107, 104)
+        Me.tb_total_leaves.Location = New System.Drawing.Point(107, 45)
         Me.tb_total_leaves.Name = "tb_total_leaves"
+        Me.tb_total_leaves.ReadOnly = True
         Me.tb_total_leaves.Size = New System.Drawing.Size(35, 20)
         Me.tb_total_leaves.TabIndex = 6
         Me.tb_total_leaves.Text = "0"
@@ -268,33 +403,6 @@ Partial Class frm_user
         Me.MonthCalendar_leaveDatePicker.Name = "MonthCalendar_leaveDatePicker"
         Me.MonthCalendar_leaveDatePicker.TabIndex = 4
         '
-        'lbl_extraLeave
-        '
-        Me.lbl_extraLeave.AutoSize = True
-        Me.lbl_extraLeave.Location = New System.Drawing.Point(21, 249)
-        Me.lbl_extraLeave.Name = "lbl_extraLeave"
-        Me.lbl_extraLeave.Size = New System.Drawing.Size(69, 13)
-        Me.lbl_extraLeave.TabIndex = 3
-        Me.lbl_extraLeave.Text = "Extra Leaves"
-        '
-        'lbl_leaveLeft
-        '
-        Me.lbl_leaveLeft.AutoSize = True
-        Me.lbl_leaveLeft.Location = New System.Drawing.Point(21, 179)
-        Me.lbl_leaveLeft.Name = "lbl_leaveLeft"
-        Me.lbl_leaveLeft.Size = New System.Drawing.Size(59, 13)
-        Me.lbl_leaveLeft.TabIndex = 1
-        Me.lbl_leaveLeft.Text = "Leaves left"
-        '
-        'lbl_totalLeave
-        '
-        Me.lbl_totalLeave.AutoSize = True
-        Me.lbl_totalLeave.Location = New System.Drawing.Point(21, 107)
-        Me.lbl_totalLeave.Name = "lbl_totalLeave"
-        Me.lbl_totalLeave.Size = New System.Drawing.Size(69, 13)
-        Me.lbl_totalLeave.TabIndex = 0
-        Me.lbl_totalLeave.Text = "Total Leaves"
-        '
         'TabPage_personal_details
         '
         Me.TabPage_personal_details.Controls.Add(Me.gb_personal_info_parent)
@@ -308,25 +416,106 @@ Partial Class frm_user
         '
         'gb_personal_info_parent
         '
+        Me.gb_personal_info_parent.Controls.Add(Me.gb_profilw)
         Me.gb_personal_info_parent.Controls.Add(Me.gb_personal_info)
-        Me.gb_personal_info_parent.Controls.Add(Me.Panel1)
-        Me.gb_personal_info_parent.Location = New System.Drawing.Point(99, 38)
+        Me.gb_personal_info_parent.Location = New System.Drawing.Point(84, 42)
         Me.gb_personal_info_parent.Name = "gb_personal_info_parent"
         Me.gb_personal_info_parent.Size = New System.Drawing.Size(1098, 376)
         Me.gb_personal_info_parent.TabIndex = 1
         Me.gb_personal_info_parent.TabStop = False
         '
+        'gb_profilw
+        '
+        Me.gb_profilw.Controls.Add(Me.lbl_val_dob)
+        Me.gb_profilw.Controls.Add(Me.lbl_val_empName)
+        Me.gb_profilw.Controls.Add(Me.lbl_val_empid)
+        Me.gb_profilw.Controls.Add(Me.lbl_name)
+        Me.gb_profilw.Controls.Add(Me.lbl_empName)
+        Me.gb_profilw.Controls.Add(Me.lbl_dob)
+        Me.gb_profilw.Controls.Add(Me.PictureBox_profilePic)
+        Me.gb_profilw.Location = New System.Drawing.Point(39, 53)
+        Me.gb_profilw.Name = "gb_profilw"
+        Me.gb_profilw.Size = New System.Drawing.Size(270, 275)
+        Me.gb_profilw.TabIndex = 4
+        Me.gb_profilw.TabStop = False
+        Me.gb_profilw.Text = "Profile"
+        '
+        'lbl_val_dob
+        '
+        Me.lbl_val_dob.AutoSize = True
+        Me.lbl_val_dob.Location = New System.Drawing.Point(173, 244)
+        Me.lbl_val_dob.Name = "lbl_val_dob"
+        Me.lbl_val_dob.Size = New System.Drawing.Size(25, 13)
+        Me.lbl_val_dob.TabIndex = 9
+        Me.lbl_val_dob.Text = "dob"
+        '
+        'lbl_val_empName
+        '
+        Me.lbl_val_empName.AutoSize = True
+        Me.lbl_val_empName.Location = New System.Drawing.Point(173, 220)
+        Me.lbl_val_empName.Name = "lbl_val_empName"
+        Me.lbl_val_empName.Size = New System.Drawing.Size(33, 13)
+        Me.lbl_val_empName.TabIndex = 8
+        Me.lbl_val_empName.Text = "name"
+        '
+        'lbl_val_empid
+        '
+        Me.lbl_val_empid.AutoSize = True
+        Me.lbl_val_empid.Location = New System.Drawing.Point(173, 194)
+        Me.lbl_val_empid.Name = "lbl_val_empid"
+        Me.lbl_val_empid.Size = New System.Drawing.Size(41, 13)
+        Me.lbl_val_empid.TabIndex = 7
+        Me.lbl_val_empid.Text = "emp_id"
+        '
+        'lbl_name
+        '
+        Me.lbl_name.AutoSize = True
+        Me.lbl_name.Location = New System.Drawing.Point(31, 194)
+        Me.lbl_name.Name = "lbl_name"
+        Me.lbl_name.Size = New System.Drawing.Size(67, 13)
+        Me.lbl_name.TabIndex = 1
+        Me.lbl_name.Text = "Employee ID"
+        '
+        'lbl_empName
+        '
+        Me.lbl_empName.AutoSize = True
+        Me.lbl_empName.Location = New System.Drawing.Point(31, 220)
+        Me.lbl_empName.Name = "lbl_empName"
+        Me.lbl_empName.Size = New System.Drawing.Size(84, 13)
+        Me.lbl_empName.TabIndex = 2
+        Me.lbl_empName.Text = "Employee Name"
+        '
+        'lbl_dob
+        '
+        Me.lbl_dob.AutoSize = True
+        Me.lbl_dob.Location = New System.Drawing.Point(31, 244)
+        Me.lbl_dob.Name = "lbl_dob"
+        Me.lbl_dob.Size = New System.Drawing.Size(68, 13)
+        Me.lbl_dob.TabIndex = 3
+        Me.lbl_dob.Text = "Date Of Birth"
+        '
+        'PictureBox_profilePic
+        '
+        Me.PictureBox_profilePic.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox_profilePic.Image = CType(resources.GetObject("PictureBox_profilePic.Image"), System.Drawing.Image)
+        Me.PictureBox_profilePic.Location = New System.Drawing.Point(34, 19)
+        Me.PictureBox_profilePic.Name = "PictureBox_profilePic"
+        Me.PictureBox_profilePic.Size = New System.Drawing.Size(180, 165)
+        Me.PictureBox_profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox_profilePic.TabIndex = 0
+        Me.PictureBox_profilePic.TabStop = False
+        Me.PictureBox_profilePic.WaitOnLoad = True
+        '
         'gb_personal_info
         '
-        Me.gb_personal_info.Controls.Add(Me.btn_personalInfo_edit)
+        Me.gb_personal_info.Controls.Add(Me.TableLayoutPanel1)
+        Me.gb_personal_info.Controls.Add(Me.pnl_maritalStatus)
         Me.gb_personal_info.Controls.Add(Me.tb_zip)
         Me.gb_personal_info.Controls.Add(Me.lbl_zip)
         Me.gb_personal_info.Controls.Add(Me.tb_add)
         Me.gb_personal_info.Controls.Add(Me.lbl_add)
         Me.gb_personal_info.Controls.Add(Me.tb_city)
         Me.gb_personal_info.Controls.Add(Me.lbl_city)
-        Me.gb_personal_info.Controls.Add(Me.cb_married_status)
-        Me.gb_personal_info.Controls.Add(Me.lbl_married_status)
         Me.gb_personal_info.Controls.Add(Me.tb_qual)
         Me.gb_personal_info.Controls.Add(Me.lbl_qual)
         Me.gb_personal_info.Controls.Add(Me.tb_mob)
@@ -340,19 +529,83 @@ Partial Class frm_user
         Me.gb_personal_info.Controls.Add(Me.lbl_Fullname)
         Me.gb_personal_info.Location = New System.Drawing.Point(367, 53)
         Me.gb_personal_info.Name = "gb_personal_info"
-        Me.gb_personal_info.Size = New System.Drawing.Size(675, 267)
+        Me.gb_personal_info.Size = New System.Drawing.Size(675, 275)
         Me.gb_personal_info.TabIndex = 3
         Me.gb_personal_info.TabStop = False
         Me.gb_personal_info.Text = "Personal Info"
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btn_personalInfo_edit, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btn_update, 1, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(481, 235)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(176, 34)
+        Me.TableLayoutPanel1.TabIndex = 5
+        '
         'btn_personalInfo_edit
         '
-        Me.btn_personalInfo_edit.Location = New System.Drawing.Point(569, 234)
+        Me.btn_personalInfo_edit.Location = New System.Drawing.Point(3, 3)
         Me.btn_personalInfo_edit.Name = "btn_personalInfo_edit"
         Me.btn_personalInfo_edit.Size = New System.Drawing.Size(75, 23)
         Me.btn_personalInfo_edit.TabIndex = 34
         Me.btn_personalInfo_edit.Text = "Edit"
         Me.btn_personalInfo_edit.UseVisualStyleBackColor = True
+        '
+        'btn_update
+        '
+        Me.btn_update.Location = New System.Drawing.Point(91, 3)
+        Me.btn_update.Name = "btn_update"
+        Me.btn_update.Size = New System.Drawing.Size(75, 23)
+        Me.btn_update.TabIndex = 36
+        Me.btn_update.Text = "Update"
+        Me.btn_update.UseVisualStyleBackColor = True
+        '
+        'pnl_maritalStatus
+        '
+        Me.pnl_maritalStatus.Controls.Add(Me.rb_single)
+        Me.pnl_maritalStatus.Controls.Add(Me.rb_married)
+        Me.pnl_maritalStatus.Controls.Add(Me.lbl_married_status)
+        Me.pnl_maritalStatus.Location = New System.Drawing.Point(417, 92)
+        Me.pnl_maritalStatus.Name = "pnl_maritalStatus"
+        Me.pnl_maritalStatus.Size = New System.Drawing.Size(228, 26)
+        Me.pnl_maritalStatus.TabIndex = 35
+        '
+        'rb_single
+        '
+        Me.rb_single.AutoSize = True
+        Me.rb_single.Location = New System.Drawing.Point(162, 7)
+        Me.rb_single.Name = "rb_single"
+        Me.rb_single.Size = New System.Drawing.Size(54, 17)
+        Me.rb_single.TabIndex = 35
+        Me.rb_single.TabStop = True
+        Me.rb_single.Text = "Single"
+        Me.rb_single.UseVisualStyleBackColor = True
+        '
+        'rb_married
+        '
+        Me.rb_married.AutoSize = True
+        Me.rb_married.Location = New System.Drawing.Point(87, 7)
+        Me.rb_married.Name = "rb_married"
+        Me.rb_married.Size = New System.Drawing.Size(60, 17)
+        Me.rb_married.TabIndex = 34
+        Me.rb_married.TabStop = True
+        Me.rb_married.Text = "Married"
+        Me.rb_married.UseVisualStyleBackColor = True
+        '
+        'lbl_married_status
+        '
+        Me.lbl_married_status.AutoSize = True
+        Me.lbl_married_status.Location = New System.Drawing.Point(3, 9)
+        Me.lbl_married_status.Name = "lbl_married_status"
+        Me.lbl_married_status.Size = New System.Drawing.Size(71, 13)
+        Me.lbl_married_status.TabIndex = 33
+        Me.lbl_married_status.Text = "Marital Status"
         '
         'tb_zip
         '
@@ -406,25 +659,6 @@ Partial Class frm_user
         Me.lbl_city.TabIndex = 31
         Me.lbl_city.Text = "City"
         '
-        'cb_married_status
-        '
-        Me.cb_married_status.FormattingEnabled = True
-        Me.cb_married_status.Items.AddRange(New Object() {"Married", "Single"})
-        Me.cb_married_status.Location = New System.Drawing.Point(504, 98)
-        Me.cb_married_status.Name = "cb_married_status"
-        Me.cb_married_status.Size = New System.Drawing.Size(141, 21)
-        Me.cb_married_status.TabIndex = 11
-        Me.cb_married_status.Text = "Single"
-        '
-        'lbl_married_status
-        '
-        Me.lbl_married_status.AutoSize = True
-        Me.lbl_married_status.Location = New System.Drawing.Point(420, 102)
-        Me.lbl_married_status.Name = "lbl_married_status"
-        Me.lbl_married_status.Size = New System.Drawing.Size(75, 13)
-        Me.lbl_married_status.TabIndex = 27
-        Me.lbl_married_status.Text = "Married Status"
-        '
         'tb_qual
         '
         Me.tb_qual.Location = New System.Drawing.Point(503, 191)
@@ -461,7 +695,6 @@ Partial Class frm_user
         '
         'dtp_dob
         '
-        Me.dtp_dob.Checked = False
         Me.dtp_dob.CustomFormat = "dd/MM/yyyy"
         Me.dtp_dob.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtp_dob.Location = New System.Drawing.Point(504, 54)
@@ -471,7 +704,7 @@ Partial Class frm_user
         Me.dtp_dob.ShowCheckBox = True
         Me.dtp_dob.Size = New System.Drawing.Size(111, 20)
         Me.dtp_dob.TabIndex = 2
-        Me.dtp_dob.Value = New Date(1998, 12, 31, 0, 0, 0, 0)
+        Me.dtp_dob.Value = New Date(1988, 12, 31, 0, 0, 0, 0)
         '
         'tb_email
         '
@@ -525,83 +758,6 @@ Partial Class frm_user
         Me.lbl_Fullname.TabIndex = 0
         Me.lbl_Fullname.Text = "Full Name"
         '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.lbl_val_dob)
-        Me.Panel1.Controls.Add(Me.lbl_val_empName)
-        Me.Panel1.Controls.Add(Me.lbl_val_empid)
-        Me.Panel1.Controls.Add(Me.lbl_dob)
-        Me.Panel1.Controls.Add(Me.lbl_empName)
-        Me.Panel1.Controls.Add(Me.PictureBox_profilePic)
-        Me.Panel1.Controls.Add(Me.lbl_name)
-        Me.Panel1.Location = New System.Drawing.Point(52, 32)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(278, 314)
-        Me.Panel1.TabIndex = 2
-        '
-        'lbl_val_dob
-        '
-        Me.lbl_val_dob.AutoSize = True
-        Me.lbl_val_dob.Location = New System.Drawing.Point(186, 265)
-        Me.lbl_val_dob.Name = "lbl_val_dob"
-        Me.lbl_val_dob.Size = New System.Drawing.Size(0, 13)
-        Me.lbl_val_dob.TabIndex = 6
-        '
-        'lbl_val_empName
-        '
-        Me.lbl_val_empName.AutoSize = True
-        Me.lbl_val_empName.Location = New System.Drawing.Point(186, 241)
-        Me.lbl_val_empName.Name = "lbl_val_empName"
-        Me.lbl_val_empName.Size = New System.Drawing.Size(0, 13)
-        Me.lbl_val_empName.TabIndex = 5
-        '
-        'lbl_val_empid
-        '
-        Me.lbl_val_empid.AutoSize = True
-        Me.lbl_val_empid.Location = New System.Drawing.Point(186, 215)
-        Me.lbl_val_empid.Name = "lbl_val_empid"
-        Me.lbl_val_empid.Size = New System.Drawing.Size(0, 13)
-        Me.lbl_val_empid.TabIndex = 4
-        '
-        'lbl_dob
-        '
-        Me.lbl_dob.AutoSize = True
-        Me.lbl_dob.Location = New System.Drawing.Point(43, 265)
-        Me.lbl_dob.Name = "lbl_dob"
-        Me.lbl_dob.Size = New System.Drawing.Size(68, 13)
-        Me.lbl_dob.TabIndex = 3
-        Me.lbl_dob.Text = "Date Of Birth"
-        '
-        'lbl_empName
-        '
-        Me.lbl_empName.AutoSize = True
-        Me.lbl_empName.Location = New System.Drawing.Point(43, 241)
-        Me.lbl_empName.Name = "lbl_empName"
-        Me.lbl_empName.Size = New System.Drawing.Size(84, 13)
-        Me.lbl_empName.TabIndex = 2
-        Me.lbl_empName.Text = "Employee Name"
-        '
-        'PictureBox_profilePic
-        '
-        Me.PictureBox_profilePic.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox_profilePic.Image = CType(resources.GetObject("PictureBox_profilePic.Image"), System.Drawing.Image)
-        Me.PictureBox_profilePic.Location = New System.Drawing.Point(46, 21)
-        Me.PictureBox_profilePic.Name = "PictureBox_profilePic"
-        Me.PictureBox_profilePic.Size = New System.Drawing.Size(180, 165)
-        Me.PictureBox_profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox_profilePic.TabIndex = 0
-        Me.PictureBox_profilePic.TabStop = False
-        Me.PictureBox_profilePic.WaitOnLoad = True
-        '
-        'lbl_name
-        '
-        Me.lbl_name.AutoSize = True
-        Me.lbl_name.Location = New System.Drawing.Point(43, 215)
-        Me.lbl_name.Name = "lbl_name"
-        Me.lbl_name.Size = New System.Drawing.Size(67, 13)
-        Me.lbl_name.TabIndex = 1
-        Me.lbl_name.Text = "Employee ID"
-        '
         'TabControl_employee
         '
         Me.TabControl_employee.Controls.Add(Me.TabPage_personal_details)
@@ -627,6 +783,58 @@ Partial Class frm_user
         Me.TabPage_reports.Text = "Reports"
         Me.TabPage_reports.UseVisualStyleBackColor = True
         '
+        'Holiday_infoTableAdapter
+        '
+        Me.Holiday_infoTableAdapter.ClearBeforeFill = True
+        '
+        'EventsTableAdapter
+        '
+        Me.EventsTableAdapter.ClearBeforeFill = True
+        '
+        'IdDataGridViewTextBoxColumn1
+        '
+        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "id"
+        Me.IdDataGridViewTextBoxColumn1.FillWeight = 25.0!
+        Me.IdDataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
+        Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'EventnameDataGridViewTextBoxColumn
+        '
+        Me.EventnameDataGridViewTextBoxColumn.DataPropertyName = "event_name"
+        Me.EventnameDataGridViewTextBoxColumn.HeaderText = "Event Name"
+        Me.EventnameDataGridViewTextBoxColumn.Name = "EventnameDataGridViewTextBoxColumn"
+        Me.EventnameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'EventdateDataGridViewTextBoxColumn
+        '
+        Me.EventdateDataGridViewTextBoxColumn.DataPropertyName = "event_date"
+        Me.EventdateDataGridViewTextBoxColumn.HeaderText = "Event Date"
+        Me.EventdateDataGridViewTextBoxColumn.Name = "EventdateDataGridViewTextBoxColumn"
+        Me.EventdateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IdDataGridViewTextBoxColumn.FillWeight = 25.0!
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'HolidaydateDataGridViewTextBoxColumn
+        '
+        Me.HolidaydateDataGridViewTextBoxColumn.DataPropertyName = "holiday_date"
+        Me.HolidaydateDataGridViewTextBoxColumn.HeaderText = "Holiday Date"
+        Me.HolidaydateDataGridViewTextBoxColumn.Name = "HolidaydateDataGridViewTextBoxColumn"
+        Me.HolidaydateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'HolidaynameDataGridViewTextBoxColumn
+        '
+        Me.HolidaynameDataGridViewTextBoxColumn.DataPropertyName = "holiday_name"
+        Me.HolidaynameDataGridViewTextBoxColumn.HeaderText = "Holiday Name"
+        Me.HolidaynameDataGridViewTextBoxColumn.Name = "HolidaynameDataGridViewTextBoxColumn"
+        Me.HolidaynameDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'frm_user
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -635,23 +843,34 @@ Partial Class frm_user
         Me.Controls.Add(Me.pnl_header)
         Me.Controls.Add(Me.TabControl_employee)
         Me.Name = "frm_user"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frm_user"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "User Panel"
         Me.pnl_header.ResumeLayout(False)
         Me.pnl_header.PerformLayout()
         Me.TabPage_holiday.ResumeLayout(False)
+        Me.gb_events.ResumeLayout(False)
+        CType(Me.DGV_user_events, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EventsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmployeeManagementDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gb_holidays.ResumeLayout(False)
+        CType(Me.DGV_holidays, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HolidayinfoBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage_leave.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gb_leave_ctrl.ResumeLayout(False)
+        Me.gb_leave_counter.ResumeLayout(False)
+        Me.gb_leave_counter.PerformLayout()
         Me.gb_applyLeave.ResumeLayout(False)
         Me.gb_applyLeave.PerformLayout()
         Me.TabPage_personal_details.ResumeLayout(False)
         Me.gb_personal_info_parent.ResumeLayout(False)
+        Me.gb_profilw.ResumeLayout(False)
+        Me.gb_profilw.PerformLayout()
+        CType(Me.PictureBox_profilePic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_personal_info.ResumeLayout(False)
         Me.gb_personal_info.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        CType(Me.PictureBox_profilePic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.pnl_maritalStatus.ResumeLayout(False)
+        Me.pnl_maritalStatus.PerformLayout()
         Me.TabControl_employee.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -662,7 +881,7 @@ Partial Class frm_user
     Friend WithEvents llbl_logout As LinkLabel
     Friend WithEvents TabPage_holiday As TabPage
     Friend WithEvents TabPage_leave As TabPage
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gb_leave_ctrl As GroupBox
     Friend WithEvents gb_applyLeave As GroupBox
     Friend WithEvents lbl_char_require As Label
     Friend WithEvents checkBox_addToPaidLeave As CheckBox
@@ -681,10 +900,6 @@ Partial Class frm_user
     Friend WithEvents btn_appl As Button
     Friend WithEvents PictureBox_profilePic As PictureBox
     Friend WithEvents gb_personal_info_parent As GroupBox
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents lbl_val_dob As Label
-    Friend WithEvents lbl_val_empName As Label
-    Friend WithEvents lbl_val_empid As Label
     Friend WithEvents lbl_dob As Label
     Friend WithEvents lbl_empName As Label
     Friend WithEvents lbl_name As Label
@@ -695,8 +910,6 @@ Partial Class frm_user
     Friend WithEvents lbl_add As Label
     Friend WithEvents tb_city As TextBox
     Friend WithEvents lbl_city As Label
-    Friend WithEvents cb_married_status As ComboBox
-    Friend WithEvents lbl_married_status As Label
     Friend WithEvents tb_qual As TextBox
     Friend WithEvents lbl_qual As Label
     Friend WithEvents tb_mob As TextBox
@@ -709,5 +922,34 @@ Partial Class frm_user
     Friend WithEvents Label1 As Label
     Friend WithEvents lbl_Fullname As Label
     Friend WithEvents btn_personalInfo_edit As Button
-    Friend WithEvents lb_holiday As ListBox
+    Friend WithEvents gb_profilw As GroupBox
+    Friend WithEvents lbl_val_dob As Label
+    Friend WithEvents lbl_val_empName As Label
+    Friend WithEvents lbl_val_empid As Label
+    Friend WithEvents gb_leave_counter As GroupBox
+    Friend WithEvents DGV_holidays As DataGridView
+    Friend WithEvents EmpidDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HolidayDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HfromdateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HenddateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents gb_events As GroupBox
+    Friend WithEvents DGV_user_events As DataGridView
+    Friend WithEvents gb_holidays As GroupBox
+    Friend WithEvents EmployeeManagementDataSet As EmployeeManagementDataSet
+    Friend WithEvents HolidayinfoBindingSource As BindingSource
+    Friend WithEvents Holiday_infoTableAdapter As EmployeeManagementDataSetTableAdapters.Holiday_infoTableAdapter
+    Friend WithEvents EventsBindingSource As BindingSource
+    Friend WithEvents EventsTableAdapter As EmployeeManagementDataSetTableAdapters.EventsTableAdapter
+    Friend WithEvents pnl_maritalStatus As Panel
+    Friend WithEvents rb_single As RadioButton
+    Friend WithEvents rb_married As RadioButton
+    Friend WithEvents lbl_married_status As Label
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents btn_update As Button
+    Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents EventnameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents EventdateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HolidaydateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents HolidaynameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

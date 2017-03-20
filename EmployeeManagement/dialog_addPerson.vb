@@ -1,10 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Class dialog_add_person
-    Dim gender, sql As String
     Dim datechange As Boolean = False
-    Dim errorProvider As New ErrorProvider()
-    Dim todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
     Dim sal As Integer
     Dim frm_admin As New frm_admin()
 
@@ -18,6 +15,12 @@ Public Class dialog_add_person
             gender = "Male"
         Else
             gender = "Female"
+        End If
+
+        If rb_married.Checked Then
+            maritalStatus = "Married"
+        Else
+            maritalStatus = "Single"
         End If
 
         If ValidateChildren(ValidationConstraints.None) Then
@@ -42,7 +45,7 @@ Public Class dialog_add_person
                zipcode, qualification, curr_exp, start_date, gender, married_status)
                VALUES('" & tb_firstname.Text & "', '" & tb_lastname.Text & "', '" & tb_email.Text & "', '" & dtp_dob.Text &
                        "', " & tb_mob.Text & ", '" & tb_city.Text & "', '" & tb_add.Text & "', " & tb_zip.Text &
-                       ", '" & tb_qual.Text & "', " & tb_exp.Text & ",'" & todayDate & "', '" & gender & "', '" & cb_married_status.Text & "')"
+                       ", '" & tb_qual.Text & "', " & tb_exp.Text & ",'" & todayDate & "', '" & gender & "', '" & maritalStatus & "')"
 
             employeeINST(sql) ' inserts row in Emp_basic_details table
             sql = "INSERT INTO Work_history (emp_id,comp_name, emp_name, p_start_date, p_end_date, post)
@@ -195,20 +198,8 @@ Public Class dialog_add_person
 
     End Sub
 
-
     Private Sub tb_sal_Validated(sender As Object, e As EventArgs) Handles tb_sal.Validated
         errorProvider.SetError(tb_sal, String.Empty)
-    End Sub
-
-    Private Sub cb_married_status_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles cb_married_status.Validating
-        If String.IsNullOrEmpty(cb_married_status.Text) Then
-            errorProvider.SetError(cb_married_status, "Please Select your maratial status")
-            e.Cancel = True
-        End If
-    End Sub
-
-    Private Sub cb_married_status_Validated(sender As Object, e As EventArgs) Handles cb_married_status.Validated
-        errorProvider.SetError(cb_married_status, String.Empty)
     End Sub
 
     Private Sub tb_allow_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_allow.Validating
@@ -255,7 +246,6 @@ Public Class dialog_add_person
         errorProvider.SetError(dtp_left_date, String.Empty)
     End Sub
 
-
     Private Sub tb_email_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_email.Validating
         If Not String.IsNullOrWhiteSpace(tb_email.Text) Then
             If ValidateEmail(tb_email.Text) = False Then
@@ -264,6 +254,8 @@ Public Class dialog_add_person
             End If
         End If
     End Sub
+
+
 
     Private Sub tb_email_Validated(sender As Object, e As EventArgs) Handles tb_email.Validated
         errorProvider.SetError(tb_email, String.Empty)

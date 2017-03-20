@@ -33,6 +33,10 @@ Partial Class dialog_add_person
         Me.tb_email = New System.Windows.Forms.TextBox()
         Me.dtp_dob = New System.Windows.Forms.DateTimePicker()
         Me.gb_basic_info = New System.Windows.Forms.GroupBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.tb_single = New System.Windows.Forms.RadioButton()
+        Me.rb_married = New System.Windows.Forms.RadioButton()
+        Me.lbl_married_status = New System.Windows.Forms.Label()
         Me.CheckBox_addLoginUser = New System.Windows.Forms.CheckBox()
         Me.tb_exp = New System.Windows.Forms.TextBox()
         Me.panel_gen = New System.Windows.Forms.Panel()
@@ -41,8 +45,6 @@ Partial Class dialog_add_person
         Me.rb_female = New System.Windows.Forms.RadioButton()
         Me.lbl_note = New System.Windows.Forms.Label()
         Me.lbl_exp = New System.Windows.Forms.Label()
-        Me.cb_married_status = New System.Windows.Forms.ComboBox()
-        Me.lbl_married_status = New System.Windows.Forms.Label()
         Me.tb_qual = New System.Windows.Forms.TextBox()
         Me.lbl_qual = New System.Windows.Forms.Label()
         Me.tb_zip = New System.Windows.Forms.TextBox()
@@ -75,6 +77,7 @@ Partial Class dialog_add_person
         Me.lbl_sal = New System.Windows.Forms.Label()
         Me.tbl_button.SuspendLayout()
         Me.gb_basic_info.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.panel_gen.SuspendLayout()
         Me.gb_workHistory.SuspendLayout()
         Me.gb_sal_info.SuspendLayout()
@@ -88,7 +91,7 @@ Partial Class dialog_add_person
         Me.tbl_button.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tbl_button.Controls.Add(Me.btn_save, 0, 0)
         Me.tbl_button.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.tbl_button.Location = New System.Drawing.Point(541, 386)
+        Me.tbl_button.Location = New System.Drawing.Point(541, 383)
         Me.tbl_button.Name = "tbl_button"
         Me.tbl_button.RowCount = 1
         Me.tbl_button.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -182,13 +185,12 @@ Partial Class dialog_add_person
         '
         'gb_basic_info
         '
+        Me.gb_basic_info.Controls.Add(Me.Panel1)
         Me.gb_basic_info.Controls.Add(Me.CheckBox_addLoginUser)
         Me.gb_basic_info.Controls.Add(Me.tb_exp)
         Me.gb_basic_info.Controls.Add(Me.panel_gen)
         Me.gb_basic_info.Controls.Add(Me.lbl_note)
         Me.gb_basic_info.Controls.Add(Me.lbl_exp)
-        Me.gb_basic_info.Controls.Add(Me.cb_married_status)
-        Me.gb_basic_info.Controls.Add(Me.lbl_married_status)
         Me.gb_basic_info.Controls.Add(Me.tb_qual)
         Me.gb_basic_info.Controls.Add(Me.lbl_qual)
         Me.gb_basic_info.Controls.Add(Me.tb_zip)
@@ -212,6 +214,47 @@ Partial Class dialog_add_person
         Me.gb_basic_info.TabIndex = 1
         Me.gb_basic_info.TabStop = False
         Me.gb_basic_info.Text = "Basic Info"
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.tb_single)
+        Me.Panel1.Controls.Add(Me.rb_married)
+        Me.Panel1.Controls.Add(Me.lbl_married_status)
+        Me.Panel1.Location = New System.Drawing.Point(401, 76)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(228, 31)
+        Me.Panel1.TabIndex = 31
+        '
+        'tb_single
+        '
+        Me.tb_single.AutoSize = True
+        Me.tb_single.Location = New System.Drawing.Point(162, 7)
+        Me.tb_single.Name = "tb_single"
+        Me.tb_single.Size = New System.Drawing.Size(54, 17)
+        Me.tb_single.TabIndex = 35
+        Me.tb_single.TabStop = True
+        Me.tb_single.Text = "Single"
+        Me.tb_single.UseVisualStyleBackColor = True
+        '
+        'rb_married
+        '
+        Me.rb_married.AutoSize = True
+        Me.rb_married.Location = New System.Drawing.Point(87, 7)
+        Me.rb_married.Name = "rb_married"
+        Me.rb_married.Size = New System.Drawing.Size(60, 17)
+        Me.rb_married.TabIndex = 34
+        Me.rb_married.TabStop = True
+        Me.rb_married.Text = "Married"
+        Me.rb_married.UseVisualStyleBackColor = True
+        '
+        'lbl_married_status
+        '
+        Me.lbl_married_status.AutoSize = True
+        Me.lbl_married_status.Location = New System.Drawing.Point(4, 9)
+        Me.lbl_married_status.Name = "lbl_married_status"
+        Me.lbl_married_status.Size = New System.Drawing.Size(71, 13)
+        Me.lbl_married_status.TabIndex = 33
+        Me.lbl_married_status.Text = "Marital Status"
         '
         'CheckBox_addLoginUser
         '
@@ -290,25 +333,6 @@ Partial Class dialog_add_person
         Me.lbl_exp.Size = New System.Drawing.Size(60, 13)
         Me.lbl_exp.TabIndex = 2
         Me.lbl_exp.Text = "Experience"
-        '
-        'cb_married_status
-        '
-        Me.cb_married_status.FormattingEnabled = True
-        Me.cb_married_status.Items.AddRange(New Object() {"Married", "Single"})
-        Me.cb_married_status.Location = New System.Drawing.Point(489, 81)
-        Me.cb_married_status.Name = "cb_married_status"
-        Me.cb_married_status.Size = New System.Drawing.Size(141, 21)
-        Me.cb_married_status.TabIndex = 11
-        Me.cb_married_status.Text = "Single"
-        '
-        'lbl_married_status
-        '
-        Me.lbl_married_status.AutoSize = True
-        Me.lbl_married_status.Location = New System.Drawing.Point(405, 85)
-        Me.lbl_married_status.Name = "lbl_married_status"
-        Me.lbl_married_status.Size = New System.Drawing.Size(75, 13)
-        Me.lbl_married_status.TabIndex = 27
-        Me.lbl_married_status.Text = "Married Status"
         '
         'tb_qual
         '
@@ -602,7 +626,7 @@ Partial Class dialog_add_person
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(699, 427)
+        Me.ClientSize = New System.Drawing.Size(699, 415)
         Me.Controls.Add(Me.gb_sal_info)
         Me.Controls.Add(Me.gb_basic_info)
         Me.Controls.Add(Me.tbl_button)
@@ -617,6 +641,8 @@ Partial Class dialog_add_person
         Me.tbl_button.ResumeLayout(False)
         Me.gb_basic_info.ResumeLayout(False)
         Me.gb_basic_info.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.panel_gen.ResumeLayout(False)
         Me.panel_gen.PerformLayout()
         Me.gb_workHistory.ResumeLayout(False)
@@ -650,8 +676,6 @@ Partial Class dialog_add_person
     Friend WithEvents tb_city As TextBox
     Friend WithEvents lbl_city As Label
     Friend WithEvents lbl_note As Label
-    Friend WithEvents cb_married_status As ComboBox
-    Friend WithEvents lbl_married_status As Label
     Friend WithEvents tb_qual As TextBox
     Friend WithEvents lbl_qual As Label
     Friend WithEvents panel_gen As Panel
@@ -677,4 +701,8 @@ Partial Class dialog_add_person
     Friend WithEvents tb_exp As TextBox
     Friend WithEvents tb_allow As TextBox
     Friend WithEvents CheckBox_addLoginUser As CheckBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents tb_single As RadioButton
+    Friend WithEvents rb_married As RadioButton
+    Friend WithEvents lbl_married_status As Label
 End Class

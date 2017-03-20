@@ -2,44 +2,14 @@
 
 Public Class frm_user
     Dim dr As SqlDataReader
-
-    Private Sub getLeave()
-        Try
-            If sqlCon.State = ConnectionState.Closed Then
-                sqlCon.Open()
-            End If
-
-            Dim query As String = "SELECT extra_leave,leaves_left,total_leave FROM Emp_leaves"
-
-            sqlcmd = New SqlCommand(query, sqlCon)
-
-            dr = sqlcmd.ExecuteReader()
-
-            If dr.HasRows Then
-                While dr.Read()
-
-                    tb_extra_leaves.Text = dr(0).ToString()
-                    tb_leaves_left.Text = dr(1).ToString()
-                    tb_total_leaves.Text = dr(2).ToString()
-
-                End While
-
-
-                closeDR(dr)
-
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-        sqlCon.Close()
-
-    End Sub
+    Dim sql As String
+    Dim numDays, paidleave As Integer
+    Dim leave_date As String
 
     Private Sub getEmpInfo()
         Dim loginPage As New frm_login()
 
-        Dim sql As String = "SELECT emp_id, firstname, lastname,email, dob, mob, city, address, zipcode, qualification, married_status FROM Emp_basic_details WHERE firstname='" & username & "'" ' AND lastname='" & loginPage.passwd & "'"
+        sql = "SELECT emp_id, firstname, lastname,email, dob, mob, city, address, zipcode, qualification, married_status FROM Emp_basic_details WHERE firstname='" & username & "'" ' AND lastname='" & loginPage.passwd & "'"
 
         Try
 
@@ -54,21 +24,25 @@ Public Class frm_user
             If dr.HasRows Then
 
                 While dr.Read()
-                lbl_val_empid.Text = dr(0).ToString()
-                lbl_val_empName.Text = dr(1).ToString() & " " & dr(2).ToString()
-                tb_firstname.Text = dr(1).ToString()
-                tb_lastname.Text = dr(2).ToString()
-                tb_email.Text = dr(3).ToString()
-                lbl_val_dob.Text = dr(4).ToString()
-                dtp_dob.Text = dr(4).ToString()
-                tb_mob.Text = dr(5).ToString()
-                tb_city.Text = dr(6).ToString()
-                tb_add.Text = dr(7).ToString()
-                tb_zip.Text = dr(8).ToString()
-                tb_qual.Text = dr(9).ToString()
-                cb_married_status.Text = dr(10).ToString()
+                    lbl_val_empid.Text = dr(0).ToString()
+                    lbl_val_empName.Text = dr(1).ToString() & " " & dr(2).ToString()
+                    tb_firstname.Text = dr(1).ToString()
+                    tb_lastname.Text = dr(2).ToString()
+                    tb_email.Text = dr(3).ToString()
+                    lbl_val_dob.Text = dr(4).ToString()
+                    dtp_dob.Text = dr(4).ToString()
+                    tb_mob.Text = dr(5).ToString()
+                    tb_city.Text = dr(6).ToString()
+                    tb_add.Text = dr(7).ToString()
+                    tb_zip.Text = dr(8).ToString()
+                    tb_qual.Text = dr(9).ToString()
+                    If dr(10).ToString() = "Married" Then
+                        rb_married.Checked = True
+                    Else
+                        rb_single.Checked = True
+                    End If
 
-            End While
+                End While
                 closeDR(dr)
             End If
 
@@ -80,48 +54,112 @@ Public Class frm_user
 
     End Sub
 
+
+    Private Sub applyLeaves()
+
+        Dim sr As SelectionRange = MonthCalendar_leaveDatePicker.SelectionRange
+        numDays = sr.End.Subtract(sr.Start).Days + 1
+
+        leave_date = sr.Start.ToString() & "-" & sr.End.ToString()
+
+        If checkBox_addToPaidLeave.Checked Then
+            paidleave = numDays
+        Else
+            paidleave = 0
+        End If
+
+        Try
+
+            If sqlCon.State = ConnectionState.Closed Then
+                sqlCon.Open()
+            End If
+
+
+            sql = "INSERT INTO Emp_leaves(emp_id,emp_name,leave_date,numOfDays,leave_reason,paid_leave) 
+               values(@emp_id,@emp_name,@leave_date,@numOfDays,@leave_reason,@paid_leave)"
+
+            sqlcmd = New SqlCommand(sql, sqlCon)
+            With sqlcmd.Parameters
+                .AddWithValue("@emp_id", lbl_val_empid.Text)
+                .AddWithValue("@emp_name", lbl_val_empName.Text)
+                .AddWithValue("@leave_date", leave_date)
+                .AddWithValue("@numOfDays", numDays)
+                .AddWithValue("@leave_reason", tb_reason.Text)
+                .AddWithValue("@paid_leave", paidleave)
+
+            End With
+            sqlcmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        sqlCon.Close()
+
+    End Sub
+
     Private Sub btn_appl_Click(sender As Object, e As EventArgs) Handles btn_appl.Click
-        'leaveReason = tb_reason.Text
-        'Dim sr As SelectionRange = MonthCalendar_leaveDatePicker.SelectionRange
-        'numDays = sr.End.Subtract(sr.Start).Days + 1
-        'If Not String.IsNullOrWhiteSpace(tb_reason.Text) Then
-        '    leaveReason = tb_reason.Text
-
-        '    If checkBox_addToPaidLeave.Checked Then
-        '        leaveLeft = totalPaidLeave - numDays
-        '    Else
-        '        UnpaidLeaves += numDays
-        '    End If
-
-        'End If
-
+        applyLeaves()
     End Sub
 
-    Private Sub checkBox_addToPaidLeave_CheckedChanged(sender As Object, e As EventArgs) Handles checkBox_addToPaidLeave.CheckedChanged
-        'If leaveLeft <> 0 Then
-        '    MsgBox("No Paid Leaves Left")
-        'End If
-    End Sub
 
     Private Sub llbl_logout_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llbl_logout.LinkClicked
         logout(Me) 'logout function call with form parameter
     End Sub
 
+
     Private Sub frm_user_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Events' table. You can move, or remove it, as needed.
+        Me.EventsTableAdapter.Fill(Me.EmployeeManagementDataSet.Events)
+        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Holiday_info' table. You can move, or remove it, as needed.
+        Me.Holiday_infoTableAdapter.Fill(Me.EmployeeManagementDataSet.Holiday_info)
 
-        getLeave()
         getEmpInfo()
+        RW_textboxes(True)
+        btn_update.Enabled = False
 
     End Sub
 
-    Private Sub RW_textboxes()
-        For Each ctrl As Control In Me.Controls
-            If TypeOf ctrl Is TextBox Then
-
-            End If
-        Next
-    End Sub
     Private Sub btn_personalInfo_edit_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_edit.Click
+        RW_textboxes(False)
+        btn_update.Enabled = True
+    End Sub
+
+    Private Sub empUpdate()
+        sql = "UPDATE Emp_basic_details SET 
+firstname= '" & tb_firstname.Text & "', lastname ='" & tb_lastname.Text & "', email ='" & tb_email.Text & "', dob='" & dtp_dob.Text &
+                       "', mob=" & tb_mob.Text & ", city='" & tb_city.Text & "', address='" & tb_add.Text & "', zipcode=" & tb_zip.Text &
+                       ", qualification='" & tb_qual.Text & "', married_status='" & maritalStatus & "'
+        WHERE emp_id=" & lbl_val_empid.Text
+
+        employeeINST(sql)
+
+    End Sub
+    Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+        empUpdate()
+
+    End Sub
+
+    Private Sub RW_textboxes(rw As Boolean)
+        Dim tb As TextBox
+
+        If Not rw Then
+            For Each ctrl As Control In gb_personal_info.Controls
+                If TypeOf ctrl Is TextBox Then
+                    tb = CType(ctrl, TextBox)
+                    tb.ReadOnly = False
+                End If
+            Next
+
+        Else
+            For Each ctrl As Control In gb_personal_info.Controls
+                If TypeOf ctrl Is TextBox Then
+                    tb = CType(ctrl, TextBox)
+                    tb.ReadOnly = True
+                End If
+            Next
+
+        End If
 
     End Sub
 End Class
