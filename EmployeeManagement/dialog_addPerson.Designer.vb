@@ -34,7 +34,7 @@ Partial Class dialog_add_person
         Me.dtp_dob = New System.Windows.Forms.DateTimePicker()
         Me.gb_basic_info = New System.Windows.Forms.GroupBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.tb_single = New System.Windows.Forms.RadioButton()
+        Me.rb_single = New System.Windows.Forms.RadioButton()
         Me.rb_married = New System.Windows.Forms.RadioButton()
         Me.lbl_married_status = New System.Windows.Forms.Label()
         Me.CheckBox_addLoginUser = New System.Windows.Forms.CheckBox()
@@ -217,7 +217,7 @@ Partial Class dialog_add_person
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.tb_single)
+        Me.Panel1.Controls.Add(Me.rb_single)
         Me.Panel1.Controls.Add(Me.rb_married)
         Me.Panel1.Controls.Add(Me.lbl_married_status)
         Me.Panel1.Location = New System.Drawing.Point(401, 76)
@@ -225,20 +225,20 @@ Partial Class dialog_add_person
         Me.Panel1.Size = New System.Drawing.Size(228, 31)
         Me.Panel1.TabIndex = 31
         '
-        'tb_single
+        'rb_single
         '
-        Me.tb_single.AutoSize = True
-        Me.tb_single.Location = New System.Drawing.Point(162, 7)
-        Me.tb_single.Name = "tb_single"
-        Me.tb_single.Size = New System.Drawing.Size(54, 17)
-        Me.tb_single.TabIndex = 35
-        Me.tb_single.TabStop = True
-        Me.tb_single.Text = "Single"
-        Me.tb_single.UseVisualStyleBackColor = True
+        Me.rb_single.AutoSize = True
+        Me.rb_single.Location = New System.Drawing.Point(162, 7)
+        Me.rb_single.Name = "rb_single"
+        Me.rb_single.Size = New System.Drawing.Size(54, 17)
+        Me.rb_single.TabIndex = 35
+        Me.rb_single.Text = "Single"
+        Me.rb_single.UseVisualStyleBackColor = True
         '
         'rb_married
         '
         Me.rb_married.AutoSize = True
+        Me.rb_married.Checked = True
         Me.rb_married.Location = New System.Drawing.Point(87, 7)
         Me.rb_married.Name = "rb_married"
         Me.rb_married.Size = New System.Drawing.Size(60, 17)
@@ -702,7 +702,7 @@ Partial Class dialog_add_person
     Friend WithEvents tb_allow As TextBox
     Friend WithEvents CheckBox_addLoginUser As CheckBox
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents tb_single As RadioButton
+    Friend WithEvents rb_single As RadioButton
     Friend WithEvents rb_married As RadioButton
     Friend WithEvents lbl_married_status As Label
 End Class

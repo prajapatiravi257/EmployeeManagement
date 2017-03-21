@@ -31,10 +31,15 @@ Partial Class frm_user
         Me.TabPage_holiday = New System.Windows.Forms.TabPage()
         Me.gb_events = New System.Windows.Forms.GroupBox()
         Me.DGV_user_events = New System.Windows.Forms.DataGridView()
+        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EventnameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EventdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EventsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.EmployeeManagementDataSet = New EmployeeManagement.EmployeeManagementDataSet()
         Me.gb_holidays = New System.Windows.Forms.GroupBox()
         Me.DGV_holidays = New System.Windows.Forms.DataGridView()
+        Me.HolidaydateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HolidaynameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HolidayinfoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPage_leave = New System.Windows.Forms.TabPage()
         Me.gb_leave_ctrl = New System.Windows.Forms.GroupBox()
@@ -91,12 +96,6 @@ Partial Class frm_user
         Me.TabPage_reports = New System.Windows.Forms.TabPage()
         Me.Holiday_infoTableAdapter = New EmployeeManagement.EmployeeManagementDataSetTableAdapters.Holiday_infoTableAdapter()
         Me.EventsTableAdapter = New EmployeeManagement.EmployeeManagementDataSetTableAdapters.EventsTableAdapter()
-        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EventnameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EventdateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HolidaydateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HolidaynameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnl_header.SuspendLayout()
         Me.TabPage_holiday.SuspendLayout()
         Me.gb_events.SuspendLayout()
@@ -199,6 +198,28 @@ Partial Class frm_user
         Me.DGV_user_events.Size = New System.Drawing.Size(389, 351)
         Me.DGV_user_events.TabIndex = 0
         '
+        'IdDataGridViewTextBoxColumn1
+        '
+        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "id"
+        Me.IdDataGridViewTextBoxColumn1.FillWeight = 25.0!
+        Me.IdDataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
+        Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'EventnameDataGridViewTextBoxColumn
+        '
+        Me.EventnameDataGridViewTextBoxColumn.DataPropertyName = "event_name"
+        Me.EventnameDataGridViewTextBoxColumn.HeaderText = "Event Name"
+        Me.EventnameDataGridViewTextBoxColumn.Name = "EventnameDataGridViewTextBoxColumn"
+        Me.EventnameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'EventdateDataGridViewTextBoxColumn
+        '
+        Me.EventdateDataGridViewTextBoxColumn.DataPropertyName = "event_date"
+        Me.EventdateDataGridViewTextBoxColumn.HeaderText = "Event Date"
+        Me.EventdateDataGridViewTextBoxColumn.Name = "EventdateDataGridViewTextBoxColumn"
+        Me.EventdateDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'EventsBindingSource
         '
         Me.EventsBindingSource.DataMember = "Events"
@@ -228,7 +249,7 @@ Partial Class frm_user
         Me.DGV_holidays.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGV_holidays.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGV_holidays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGV_holidays.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.HolidaydateDataGridViewTextBoxColumn, Me.HolidaynameDataGridViewTextBoxColumn})
+        Me.DGV_holidays.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.HolidaydateDataGridViewTextBoxColumn, Me.HolidaynameDataGridViewTextBoxColumn})
         Me.DGV_holidays.DataSource = Me.HolidayinfoBindingSource
         Me.DGV_holidays.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGV_holidays.Location = New System.Drawing.Point(3, 16)
@@ -238,6 +259,20 @@ Partial Class frm_user
         Me.DGV_holidays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGV_holidays.Size = New System.Drawing.Size(653, 351)
         Me.DGV_holidays.TabIndex = 0
+        '
+        'HolidaydateDataGridViewTextBoxColumn
+        '
+        Me.HolidaydateDataGridViewTextBoxColumn.DataPropertyName = "holiday_date"
+        Me.HolidaydateDataGridViewTextBoxColumn.HeaderText = "Holiday Date"
+        Me.HolidaydateDataGridViewTextBoxColumn.Name = "HolidaydateDataGridViewTextBoxColumn"
+        Me.HolidaydateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'HolidaynameDataGridViewTextBoxColumn
+        '
+        Me.HolidaynameDataGridViewTextBoxColumn.DataPropertyName = "holiday_name"
+        Me.HolidaynameDataGridViewTextBoxColumn.HeaderText = "Holiday Name"
+        Me.HolidaynameDataGridViewTextBoxColumn.Name = "HolidaynameDataGridViewTextBoxColumn"
+        Me.HolidaynameDataGridViewTextBoxColumn.ReadOnly = True
         '
         'HolidayinfoBindingSource
         '
@@ -790,50 +825,6 @@ Partial Class frm_user
         'EventsTableAdapter
         '
         Me.EventsTableAdapter.ClearBeforeFill = True
-        '
-        'IdDataGridViewTextBoxColumn1
-        '
-        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "id"
-        Me.IdDataGridViewTextBoxColumn1.FillWeight = 25.0!
-        Me.IdDataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
-        Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'EventnameDataGridViewTextBoxColumn
-        '
-        Me.EventnameDataGridViewTextBoxColumn.DataPropertyName = "event_name"
-        Me.EventnameDataGridViewTextBoxColumn.HeaderText = "Event Name"
-        Me.EventnameDataGridViewTextBoxColumn.Name = "EventnameDataGridViewTextBoxColumn"
-        Me.EventnameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'EventdateDataGridViewTextBoxColumn
-        '
-        Me.EventdateDataGridViewTextBoxColumn.DataPropertyName = "event_date"
-        Me.EventdateDataGridViewTextBoxColumn.HeaderText = "Event Date"
-        Me.EventdateDataGridViewTextBoxColumn.Name = "EventdateDataGridViewTextBoxColumn"
-        Me.EventdateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "ID"
-        Me.IdDataGridViewTextBoxColumn.FillWeight = 25.0!
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'HolidaydateDataGridViewTextBoxColumn
-        '
-        Me.HolidaydateDataGridViewTextBoxColumn.DataPropertyName = "holiday_date"
-        Me.HolidaydateDataGridViewTextBoxColumn.HeaderText = "Holiday Date"
-        Me.HolidaydateDataGridViewTextBoxColumn.Name = "HolidaydateDataGridViewTextBoxColumn"
-        Me.HolidaydateDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'HolidaynameDataGridViewTextBoxColumn
-        '
-        Me.HolidaynameDataGridViewTextBoxColumn.DataPropertyName = "holiday_name"
-        Me.HolidaynameDataGridViewTextBoxColumn.HeaderText = "Holiday Name"
-        Me.HolidaynameDataGridViewTextBoxColumn.Name = "HolidaynameDataGridViewTextBoxColumn"
-        Me.HolidaynameDataGridViewTextBoxColumn.ReadOnly = True
         '
         'frm_user
         '

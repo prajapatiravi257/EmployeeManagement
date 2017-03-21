@@ -3,15 +3,17 @@
 Public Class frm_admin
 
     Dim sql As String
-    Dim dialogbox As New dialog_add_person()
 
     Private Sub btn_newperson_Click(sender As Object, e As EventArgs) Handles btn_newperson.Click
+        Dim dialogbox As New dialog_add_person()
         dialogbox.ShowDialog()
         dialogbox.tb_firstname.Focus()
 
     End Sub
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
+        Dim dialogbox As New dialog_search()
+        dialogbox.ShowDialog()
 
     End Sub
     Private Sub llbl_logout_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llbl_logout.LinkClicked

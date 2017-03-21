@@ -24,19 +24,19 @@ Public Class frm_user
             If dr.HasRows Then
 
                 While dr.Read()
-                    lbl_val_empid.Text = dr(0).ToString()
-                    lbl_val_empName.Text = dr(1).ToString() & " " & dr(2).ToString()
-                    tb_firstname.Text = dr(1).ToString()
-                    tb_lastname.Text = dr(2).ToString()
-                    tb_email.Text = dr(3).ToString()
-                    lbl_val_dob.Text = dr(4).ToString()
-                    dtp_dob.Text = dr(4).ToString()
-                    tb_mob.Text = dr(5).ToString()
-                    tb_city.Text = dr(6).ToString()
-                    tb_add.Text = dr(7).ToString()
-                    tb_zip.Text = dr(8).ToString()
-                    tb_qual.Text = dr(9).ToString()
-                    If dr(10).ToString() = "Married" Then
+                    lbl_val_empid.Text = dr("emp_id").ToString()
+                    lbl_val_empName.Text = dr("firstname").ToString() & " " & dr("lastname").ToString()
+                    lbl_val_dob.Text = dr("dob").ToString()
+                    tb_firstname.Text = dr("firstname").ToString()
+                    tb_lastname.Text = dr("lastname").ToString()
+                    tb_email.Text = dr("email").ToString()
+                    dtp_dob.Text = lbl_val_dob.Text
+                    tb_mob.Text = dr("mob").ToString()
+                    tb_city.Text = dr("city").ToString()
+                    tb_add.Text = dr("address").ToString()
+                    tb_zip.Text = dr("zipcode").ToString()
+                    tb_qual.Text = dr("qualification").ToString()
+                    If dr("marital_status").ToString() = "Married" Then
                         rb_married.Checked = True
                     Else
                         rb_single.Checked = True
@@ -123,6 +123,8 @@ Public Class frm_user
     Private Sub btn_personalInfo_edit_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_edit.Click
         RW_textboxes(False)
         btn_update.Enabled = True
+        btn_personalInfo_edit.Enabled = False
+
     End Sub
 
     Private Sub empUpdate()
@@ -137,8 +139,9 @@ firstname= '" & tb_firstname.Text & "', lastname ='" & tb_lastname.Text & "', em
     End Sub
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
         empUpdate()
-
+        btn_personalInfo_edit.Enabled = True
     End Sub
+
 
     Private Sub RW_textboxes(rw As Boolean)
         Dim tb As TextBox

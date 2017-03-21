@@ -261,4 +261,7 @@ Public Class dialog_add_person
         errorProvider.SetError(tb_email, String.Empty)
     End Sub
 
+    Private Sub dialog_add_person_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

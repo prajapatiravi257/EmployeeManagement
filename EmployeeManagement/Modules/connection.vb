@@ -28,9 +28,7 @@ Module connection
             dr.Close()
         End If
     End Sub
-    Public Function employeeINST(ByVal sql As String) As Integer
-
-        Dim rowsAffected As Integer
+    Public Sub employeeINST(ByVal sql As String)
 
         Try
             If sqlCon.State = ConnectionState.Closed Then
@@ -53,7 +51,7 @@ Module connection
             sqlCon.Close()
         End Try
 
-    End Function
+    End Sub
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
         username = user.Text
         password = passwd.Text
