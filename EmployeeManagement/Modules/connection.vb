@@ -1,6 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-Imports System.Net.Mail
+Imports System.Configuration
 
 Module connection
 
@@ -9,15 +9,15 @@ Module connection
     Public dataAdapter As SqlDataAdapter
     Public sqlcmd As SqlCommand
     Public sql_dr As SqlDataReader
-    Public ds As DataSet
     Public dt As DataTable
     Public loginSuccess As Boolean = False
     Public username, password As String
-
-    Public gender, sql, maritalStatus As String
+    Public sql As String
     Public errorProvider As New ErrorProvider()
     Public todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
-
+    Public gender, maritalStatus As String
+    Public search_id As Integer
+    Public updateEmpInfo As Boolean = False
     Public Sub logout(page As Form)
         Dim login As New frm_login()
         login.Show()
@@ -28,7 +28,8 @@ Module connection
             dr.Close()
         End If
     End Sub
-    Public Sub employeeINST(ByVal sql As String)
+    Public Function employeeDS(sql As String) As Integer
+        Dim result As Integer
 
         Try
             If sqlCon.State = ConnectionState.Closed Then
@@ -37,26 +38,54 @@ Module connection
 
             sqlcmd = New SqlCommand(sql, sqlCon)
 
-            dataAdapter = New SqlDataAdapter(sqlcmd)
+            'dataAdapter = New SqlDataAdapter(sqlcmd)
 
-            dt = New DataTable()
+            'dt = New DataTable()
 
-            dataAdapter.Fill(dt)
-
+            'result = dataAdapter.Fill(dt)
+            result = sqlcmd.ExecuteNonQuery()
 
         Catch ex As Exception
 
             MsgBox(ex.Message)
 
-            sqlCon.Close()
         End Try
+        sqlCon.Close()
+        Return result
 
-    End Sub
+    End Function
+
+    Public Function employeeDb(sql As String, sqlcmd As SqlCommand) As Integer
+        Dim result As Integer
+
+        Try
+            If sqlCon.State = ConnectionState.Closed Then
+                sqlCon.Open()
+            End If
+
+            'sqlcmd = New SqlCommand(sql, sqlCon)
+
+            'dataAdapter = New SqlDataAdapter(sqlcmd)
+
+            'dt = New DataTable()
+
+            'result = dataAdapter.Fill(dt)
+            result = sqlcmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+
+            MsgBox(ex.Message)
+
+        End Try
+        sqlCon.Close()
+        Return result
+
+    End Function
     Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
         username = user.Text
         password = passwd.Text
 
-        Dim query As String = "SELECT * FROM Login_users WHERE username='" + username + "' AND passwd='" + password + "'"
+        Dim query As String = "SELECT usertype FROM Login_users WHERE username='" + username + "' AND passwd='" + password + "'"
 
         Try
             If Not sqlCon.State = ConnectionState.Open Then
@@ -71,17 +100,17 @@ Module connection
 
             If sql_dr.Read() And sql_dr.HasRows Then
 
-                type = sql_dr(2).ToString().ToUpper()
+                type = sql_dr("usertype").ToString()
 
                 loginSuccess = True
 
-                If user.Text = "admin" Then
+                If type = "admin" Then
 
                     Dim adminpage As New frm_admin()
 
                     With adminpage
-                        .Show()
-                        .lbl_loginuser.Text = type
+                        .Show()                     'trigger adminpage
+                        .lbl_loginuser.Text = username  'add username login text
                     End With
 
                 Else
@@ -89,41 +118,15 @@ Module connection
                     Dim userPage As New frm_user()
 
                     With userPage
-                        .Show()
-                        .lbl_loginuser.Text = type
+                        .Show()                     'trigger userpage 
+                        .lbl_loginuser.Text = username  'add username login text
                     End With
 
                 End If
 
             Else
+                loginCountCheck(user, passwd)
 
-                'integer variable to count the number of times
-                'the user has tried loggin in
-                Static count As Integer = 0
-
-                'display promt 
-                Dim prompt As DialogResult =
-                MessageBox.Show("Invalid Username or Password!", "Login Error",
-                MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning)
-
-                Select Case prompt
-
-                    Case DialogResult.Retry
-                        'keep login displayed for another trial 
-                        user.Text = ""
-                        passwd.Text = ""
-                        count += 1 'increment counter by one 
-                        If count = 3 Then
-                            MessageBox.Show("High value of failed login attempts " & count &
-                                           " Application will be terminated" &
-                                       " for security reasons", "Error", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Stop)
-                            End 'terminate application
-                        End If
-                    Case DialogResult.Cancel
-                        Application.Exit()  'terminate application
-
-                End Select
             End If
 
             closeDR(sql_dr)
@@ -135,5 +138,36 @@ Module connection
         End Try
 
     End Sub
+
+    Private Sub loginCountCheck(user As TextBox, passwd As TextBox)
+        'integer variable to count the number of times, the user has tried loggin in
+        Static count As Integer = 0
+
+        'display promt 
+        Dim prompt As DialogResult =
+                MessageBox.Show("Invalid Username or Password!", "Login Error",
+                MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning)
+
+        Select Case prompt
+
+            Case DialogResult.Retry
+                'keep login displayed for another trial 
+                user.Text = ""
+                passwd.Text = ""
+                count += 1 'increment counter by one 
+                If count = 3 Then
+                    MessageBox.Show("High value of failed login attempts Application will be terminated" &
+                                       " for security reasons", "Error", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Stop)
+                    End 'terminate application
+                End If
+            Case DialogResult.Cancel
+                Application.Exit()  'terminate application
+
+        End Select
+
+    End Sub
+
+
 
 End Module

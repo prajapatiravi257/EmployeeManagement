@@ -605,6 +605,10 @@ Partial Public Class EmployeeManagementDataSet
         
         Private columnc_address As Global.System.Data.DataColumn
         
+        Private columnc_email As Global.System.Data.DataColumn
+        
+        Private columnc_zipcode As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -689,6 +693,22 @@ Partial Public Class EmployeeManagementDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property c_emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnc_email
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property c_zipcodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnc_zipcode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -725,15 +745,21 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddContact_person_infoRow(ByVal parentEmp_basic_detailsRowByFK_Contact_person_info_Emp_basic_details As Emp_basic_detailsRow, ByVal c_firstname As String, ByVal c_lastname As String, ByVal c_mob As String, ByVal c_city As String, ByVal c_address As String) As Contact_person_infoRow
+        Public Overloads Function AddContact_person_infoRow(ByVal parentEmp_basic_detailsRowByFK_Contact_person_info_Emp_basic_details As Emp_basic_detailsRow, ByVal c_firstname As String, ByVal c_lastname As String, ByVal c_mob As String, ByVal c_city As String, ByVal c_address As String, ByVal c_email As String, ByVal c_zipcode As Integer) As Contact_person_infoRow
             Dim rowContact_person_infoRow As Contact_person_infoRow = CType(Me.NewRow,Contact_person_infoRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, c_firstname, c_lastname, c_mob, c_city, c_address}
+            Dim columnValuesArray() As Object = New Object() {Nothing, c_firstname, c_lastname, c_mob, c_city, c_address, c_email, c_zipcode}
             If (Not (parentEmp_basic_detailsRowByFK_Contact_person_info_Emp_basic_details) Is Nothing) Then
                 columnValuesArray(0) = parentEmp_basic_detailsRowByFK_Contact_person_info_Emp_basic_details(0)
             End If
             rowContact_person_infoRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowContact_person_infoRow)
             Return rowContact_person_infoRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByemp_id(ByVal emp_id As Integer) As Contact_person_infoRow
+            Return CType(Me.Rows.Find(New Object() {emp_id}),Contact_person_infoRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -759,6 +785,8 @@ Partial Public Class EmployeeManagementDataSet
             Me.columnc_mob = MyBase.Columns("c_mob")
             Me.columnc_city = MyBase.Columns("c_city")
             Me.columnc_address = MyBase.Columns("c_address")
+            Me.columnc_email = MyBase.Columns("c_email")
+            Me.columnc_zipcode = MyBase.Columns("c_zipcode")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -776,7 +804,13 @@ Partial Public Class EmployeeManagementDataSet
             MyBase.Columns.Add(Me.columnc_city)
             Me.columnc_address = New Global.System.Data.DataColumn("c_address", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnc_address)
+            Me.columnc_email = New Global.System.Data.DataColumn("c_email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnc_email)
+            Me.columnc_zipcode = New Global.System.Data.DataColumn("c_zipcode", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnc_zipcode)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnemp_id}, true))
             Me.columnemp_id.AllowDBNull = false
+            Me.columnemp_id.Unique = true
             Me.columnc_firstname.AllowDBNull = false
             Me.columnc_firstname.MaxLength = 15
             Me.columnc_lastname.AllowDBNull = false
@@ -787,6 +821,8 @@ Partial Public Class EmployeeManagementDataSet
             Me.columnc_city.MaxLength = 20
             Me.columnc_address.AllowDBNull = false
             Me.columnc_address.MaxLength = 50
+            Me.columnc_email.AllowDBNull = false
+            Me.columnc_email.MaxLength = 30
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -950,7 +986,9 @@ Partial Public Class EmployeeManagementDataSet
         
         Private columngender As Global.System.Data.DataColumn
         
-        Private columnmarried_status As Global.System.Data.DataColumn
+        Private columnemail As Global.System.Data.DataColumn
+        
+        Private columnmarital_status As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1093,9 +1131,17 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property married_statusColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property emailColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnmarried_status
+                Return Me.columnemail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property marital_statusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmarital_status
             End Get
         End Property
         
@@ -1136,9 +1182,9 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddEmp_basic_detailsRow(ByVal firstname As String, ByVal lastname As String, ByVal dob As String, ByVal mob As String, ByVal city As String, ByVal address As String, ByVal zipcode As Integer, ByVal qualification As String, ByVal curr_exp As Integer, ByVal start_date As String, ByVal end_date As Date, ByVal gender As String, ByVal married_status As String) As Emp_basic_detailsRow
+        Public Overloads Function AddEmp_basic_detailsRow(ByVal firstname As String, ByVal lastname As String, ByVal dob As String, ByVal mob As String, ByVal city As String, ByVal address As String, ByVal zipcode As Integer, ByVal qualification As String, ByVal curr_exp As Integer, ByVal start_date As String, ByVal end_date As Date, ByVal gender As String, ByVal email As String, ByVal marital_status As String) As Emp_basic_detailsRow
             Dim rowEmp_basic_detailsRow As Emp_basic_detailsRow = CType(Me.NewRow,Emp_basic_detailsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, firstname, lastname, dob, mob, city, address, zipcode, qualification, curr_exp, start_date, end_date, gender, married_status}
+            Dim columnValuesArray() As Object = New Object() {Nothing, firstname, lastname, dob, mob, city, address, zipcode, qualification, curr_exp, start_date, end_date, gender, email, marital_status}
             rowEmp_basic_detailsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowEmp_basic_detailsRow)
             Return rowEmp_basic_detailsRow
@@ -1180,7 +1226,8 @@ Partial Public Class EmployeeManagementDataSet
             Me.columnstart_date = MyBase.Columns("start_date")
             Me.columnend_date = MyBase.Columns("end_date")
             Me.columngender = MyBase.Columns("gender")
-            Me.columnmarried_status = MyBase.Columns("married_status")
+            Me.columnemail = MyBase.Columns("email")
+            Me.columnmarital_status = MyBase.Columns("marital_status")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1212,8 +1259,10 @@ Partial Public Class EmployeeManagementDataSet
             MyBase.Columns.Add(Me.columnend_date)
             Me.columngender = New Global.System.Data.DataColumn("gender", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columngender)
-            Me.columnmarried_status = New Global.System.Data.DataColumn("married_status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnmarried_status)
+            Me.columnemail = New Global.System.Data.DataColumn("email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemail)
+            Me.columnmarital_status = New Global.System.Data.DataColumn("marital_status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmarital_status)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnemp_id}, true))
             Me.columnemp_id.AutoIncrement = true
             Me.columnemp_id.AutoIncrementSeed = -1
@@ -1241,8 +1290,10 @@ Partial Public Class EmployeeManagementDataSet
             Me.columnstart_date.MaxLength = 10
             Me.columngender.AllowDBNull = false
             Me.columngender.MaxLength = 10
-            Me.columnmarried_status.AllowDBNull = false
-            Me.columnmarried_status.MaxLength = 10
+            Me.columnemail.AllowDBNull = false
+            Me.columnemail.MaxLength = 30
+            Me.columnmarital_status.AllowDBNull = false
+            Me.columnmarital_status.MaxLength = 10
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1975,9 +2026,13 @@ Partial Public Class EmployeeManagementDataSet
         
         Private columnmonthly_taxes As Global.System.Data.DataColumn
         
-        Private columnmonthly_deduct As Global.System.Data.DataColumn
-        
         Private columnmonthly_insurances As Global.System.Data.DataColumn
+        
+        Private columnmonthly_allowance As Global.System.Data.DataColumn
+        
+        Private columnfirstname As Global.System.Data.DataColumn
+        
+        Private columnlastname As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -2040,17 +2095,33 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property monthly_deductColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property monthly_insurancesColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnmonthly_deduct
+                Return Me.columnmonthly_insurances
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property monthly_insurancesColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property monthly_allowanceColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnmonthly_insurances
+                Return Me.columnmonthly_allowance
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property firstnameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfirstname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property lastnameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnlastname
             End Get
         End Property
         
@@ -2091,15 +2162,21 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddSalary_informationRow(ByVal parentEmp_basic_detailsRowByFK_Salary_information_Emp_basic_details As Emp_basic_detailsRow, ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_deduct As Integer, ByVal monthly_insurances As Integer) As Salary_informationRow
+        Public Overloads Function AddSalary_informationRow(ByVal parentEmp_basic_detailsRowByFK_Salary_information_Emp_basic_details As Emp_basic_detailsRow, ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_insurances As Integer, ByVal monthly_allowance As Integer, ByVal firstname As String, ByVal lastname As String) As Salary_informationRow
             Dim rowSalary_informationRow As Salary_informationRow = CType(Me.NewRow,Salary_informationRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, monthly_sal, monthly_taxes, monthly_deduct, monthly_insurances}
+            Dim columnValuesArray() As Object = New Object() {Nothing, monthly_sal, monthly_taxes, monthly_insurances, monthly_allowance, firstname, lastname}
             If (Not (parentEmp_basic_detailsRowByFK_Salary_information_Emp_basic_details) Is Nothing) Then
                 columnValuesArray(0) = parentEmp_basic_detailsRowByFK_Salary_information_Emp_basic_details(0)
             End If
             rowSalary_informationRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSalary_informationRow)
             Return rowSalary_informationRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByemp_id(ByVal emp_id As Integer) As Salary_informationRow
+            Return CType(Me.Rows.Find(New Object() {emp_id}),Salary_informationRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2122,8 +2199,10 @@ Partial Public Class EmployeeManagementDataSet
             Me.columnemp_id = MyBase.Columns("emp_id")
             Me.columnmonthly_sal = MyBase.Columns("monthly_sal")
             Me.columnmonthly_taxes = MyBase.Columns("monthly_taxes")
-            Me.columnmonthly_deduct = MyBase.Columns("monthly_deduct")
             Me.columnmonthly_insurances = MyBase.Columns("monthly_insurances")
+            Me.columnmonthly_allowance = MyBase.Columns("monthly_allowance")
+            Me.columnfirstname = MyBase.Columns("firstname")
+            Me.columnlastname = MyBase.Columns("lastname")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2135,15 +2214,25 @@ Partial Public Class EmployeeManagementDataSet
             MyBase.Columns.Add(Me.columnmonthly_sal)
             Me.columnmonthly_taxes = New Global.System.Data.DataColumn("monthly_taxes", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnmonthly_taxes)
-            Me.columnmonthly_deduct = New Global.System.Data.DataColumn("monthly_deduct", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnmonthly_deduct)
             Me.columnmonthly_insurances = New Global.System.Data.DataColumn("monthly_insurances", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnmonthly_insurances)
+            Me.columnmonthly_allowance = New Global.System.Data.DataColumn("monthly_allowance", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmonthly_allowance)
+            Me.columnfirstname = New Global.System.Data.DataColumn("firstname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfirstname)
+            Me.columnlastname = New Global.System.Data.DataColumn("lastname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlastname)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnemp_id}, true))
             Me.columnemp_id.AllowDBNull = false
+            Me.columnemp_id.Unique = true
             Me.columnmonthly_sal.AllowDBNull = false
             Me.columnmonthly_taxes.AllowDBNull = false
-            Me.columnmonthly_deduct.AllowDBNull = false
             Me.columnmonthly_insurances.AllowDBNull = false
+            Me.columnmonthly_allowance.AllowDBNull = false
+            Me.columnfirstname.AllowDBNull = false
+            Me.columnfirstname.MaxLength = 20
+            Me.columnlastname.AllowDBNull = false
+            Me.columnlastname.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3663,6 +3752,32 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property c_email() As String
+            Get
+                Return CType(Me(Me.tableContact_person_info.c_emailColumn),String)
+            End Get
+            Set
+                Me(Me.tableContact_person_info.c_emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property c_zipcode() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableContact_person_info.c_zipcodeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'c_zipcode' in table 'Contact_person_info' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableContact_person_info.c_zipcodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Emp_basic_detailsRow() As Emp_basic_detailsRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Contact_person_info_Emp_basic_details")),Emp_basic_detailsRow)
@@ -3671,6 +3786,18 @@ Partial Public Class EmployeeManagementDataSet
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_Contact_person_info_Emp_basic_details"))
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Isc_zipcodeNull() As Boolean
+            Return Me.IsNull(Me.tableContact_person_info.c_zipcodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Setc_zipcodeNull()
+            Me(Me.tableContact_person_info.c_zipcodeColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -3837,12 +3964,23 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property married_status() As String
+        Public Property email() As String
             Get
-                Return CType(Me(Me.tableEmp_basic_details.married_statusColumn),String)
+                Return CType(Me(Me.tableEmp_basic_details.emailColumn),String)
             End Get
             Set
-                Me(Me.tableEmp_basic_details.married_statusColumn) = value
+                Me(Me.tableEmp_basic_details.emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property marital_status() As String
+            Get
+                Return CType(Me(Me.tableEmp_basic_details.marital_statusColumn),String)
+            End Get
+            Set
+                Me(Me.tableEmp_basic_details.marital_statusColumn) = value
             End Set
         End Property
         
@@ -4078,23 +4216,45 @@ Partial Public Class EmployeeManagementDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property monthly_deduct() As Integer
-            Get
-                Return CType(Me(Me.tableSalary_information.monthly_deductColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableSalary_information.monthly_deductColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property monthly_insurances() As Integer
             Get
                 Return CType(Me(Me.tableSalary_information.monthly_insurancesColumn),Integer)
             End Get
             Set
                 Me(Me.tableSalary_information.monthly_insurancesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property monthly_allowance() As Integer
+            Get
+                Return CType(Me(Me.tableSalary_information.monthly_allowanceColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableSalary_information.monthly_allowanceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property firstname() As String
+            Get
+                Return CType(Me(Me.tableSalary_information.firstnameColumn),String)
+            End Get
+            Set
+                Me(Me.tableSalary_information.firstnameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property lastname() As String
+            Get
+                Return CType(Me(Me.tableSalary_information.lastnameColumn),String)
+            End Get
+            Set
+                Me(Me.tableSalary_information.lastnameColumn) = value
             End Set
         End Property
         
@@ -5016,19 +5176,68 @@ Namespace EmployeeManagementDataSetTableAdapters
             tableMapping.ColumnMappings.Add("c_mob", "c_mob")
             tableMapping.ColumnMappings.Add("c_city", "c_city")
             tableMapping.ColumnMappings.Add("c_address", "c_address")
+            tableMapping.ColumnMappings.Add("c_email", "c_email")
+            tableMapping.ColumnMappings.Add("c_zipcode", "c_zipcode")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Contact_person_info] WHERE (([emp_id] = @Original_emp_id) AND ([c_fi"& _ 
+                "rstname] = @Original_c_firstname) AND ([c_lastname] = @Original_c_lastname) AND "& _ 
+                "([c_email] = @Original_c_email) AND ([c_mob] = @Original_c_mob) AND ([c_city] = "& _ 
+                "@Original_c_city) AND ([c_address] = @Original_c_address) AND ((@IsNull_c_zipcod"& _ 
+                "e = 1 AND [c_zipcode] IS NULL) OR ([c_zipcode] = @Original_c_zipcode)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_mob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_city", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_address", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Contact_person_info] ([emp_id], [c_firstname], [c_lastname], ["& _ 
-                "c_mob], [c_city], [c_address]) VALUES (@emp_id, @c_firstname, @c_lastname, @c_mo"& _ 
-                "b, @c_city, @c_address)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Contact_person_info] ([emp_id], [c_firstname], [c_lastname], [c_emai"& _ 
+                "l], [c_mob], [c_city], [c_address], [c_zipcode]) VALUES (@emp_id, @c_firstname, "& _ 
+                "@c_lastname, @c_email, @c_mob, @c_city, @c_address, @c_zipcode)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_mob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_city", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_address", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [Contact_person_info] SET [emp_id] = @emp_id, [c_firstname] = @c_firstname"& _ 
+                ", [c_lastname] = @c_lastname, [c_email] = @c_email, [c_mob] = @c_mob, [c_city] ="& _ 
+                " @c_city, [c_address] = @c_address, [c_zipcode] = @c_zipcode WHERE (([emp_id] = "& _ 
+                "@Original_emp_id) AND ([c_firstname] = @Original_c_firstname) AND ([c_lastname] "& _ 
+                "= @Original_c_lastname) AND ([c_email] = @Original_c_email) AND ([c_mob] = @Orig"& _ 
+                "inal_c_mob) AND ([c_city] = @Original_c_city) AND ([c_address] = @Original_c_add"& _ 
+                "ress) AND ((@IsNull_c_zipcode = 1 AND [c_zipcode] IS NULL) OR ([c_zipcode] = @Or"& _ 
+                "iginal_c_zipcode)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_mob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_city", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_address", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_mob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_city", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_address", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_c_zipcode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "c_zipcode", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5044,8 +5253,7 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT emp_id, c_firstname, c_lastname, c_mob, c_city, c_address FROM dbo.Contact"& _ 
-                "_person_info"
+            Me._commandCollection(0).CommandText = "SELECT        Contact_person_info.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Contact_person_info"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -5104,8 +5312,66 @@ Namespace EmployeeManagementDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_emp_id As Integer, ByVal Original_c_firstname As String, ByVal Original_c_lastname As String, ByVal Original_c_email As String, ByVal Original_c_mob As String, ByVal Original_c_city As String, ByVal Original_c_address As String, ByVal Original_c_zipcode As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_emp_id,Integer)
+            If (Original_c_firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_firstname")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_c_firstname,String)
+            End If
+            If (Original_c_lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_lastname")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_c_lastname,String)
+            End If
+            If (Original_c_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_email")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_c_email,String)
+            End If
+            If (Original_c_mob Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_mob")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_c_mob,String)
+            End If
+            If (Original_c_city Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_city")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_c_city,String)
+            End If
+            If (Original_c_address Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_address")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_c_address,String)
+            End If
+            If (Original_c_zipcode.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_c_zipcode.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal emp_id As Integer, ByVal c_firstname As String, ByVal c_lastname As String, ByVal c_mob As String, ByVal c_city As String, ByVal c_address As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal emp_id As Integer, ByVal c_firstname As String, ByVal c_lastname As String, ByVal c_email As String, ByVal c_mob As String, ByVal c_city As String, ByVal c_address As String, ByVal c_zipcode As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(emp_id,Integer)
             If (c_firstname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("c_firstname")
@@ -5117,20 +5383,30 @@ Namespace EmployeeManagementDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = CType(c_lastname,String)
             End If
+            If (c_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_email")
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(c_email,String)
+            End If
             If (c_mob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("c_mob")
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(c_mob,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(c_mob,String)
             End If
             If (c_city Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("c_city")
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(c_city,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(c_city,String)
             End If
             If (c_address Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("c_address")
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(c_address,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(c_address,String)
+            End If
+            If (c_zipcode.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(c_zipcode.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -5145,6 +5421,124 @@ Namespace EmployeeManagementDataSetTableAdapters
                     Me.Adapter.InsertCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal emp_id As Integer,  _
+                    ByVal c_firstname As String,  _
+                    ByVal c_lastname As String,  _
+                    ByVal c_email As String,  _
+                    ByVal c_mob As String,  _
+                    ByVal c_city As String,  _
+                    ByVal c_address As String,  _
+                    ByVal c_zipcode As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_emp_id As Integer,  _
+                    ByVal Original_c_firstname As String,  _
+                    ByVal Original_c_lastname As String,  _
+                    ByVal Original_c_email As String,  _
+                    ByVal Original_c_mob As String,  _
+                    ByVal Original_c_city As String,  _
+                    ByVal Original_c_address As String,  _
+                    ByVal Original_c_zipcode As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(emp_id,Integer)
+            If (c_firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_firstname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(c_firstname,String)
+            End If
+            If (c_lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_lastname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(c_lastname,String)
+            End If
+            If (c_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_email")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(c_email,String)
+            End If
+            If (c_mob Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_mob")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(c_mob,String)
+            End If
+            If (c_city Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_city")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(c_city,String)
+            End If
+            If (c_address Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("c_address")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(c_address,String)
+            End If
+            If (c_zipcode.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(c_zipcode.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_emp_id,Integer)
+            If (Original_c_firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_firstname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_c_firstname,String)
+            End If
+            If (Original_c_lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_lastname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_c_lastname,String)
+            End If
+            If (Original_c_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_email")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_c_email,String)
+            End If
+            If (Original_c_mob Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_mob")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_c_mob,String)
+            End If
+            If (Original_c_city Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_city")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_c_city,String)
+            End If
+            If (Original_c_address Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_c_address")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_c_address,String)
+            End If
+            If (Original_c_zipcode.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_c_zipcode.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal c_firstname As String, ByVal c_lastname As String, ByVal c_email As String, ByVal c_mob As String, ByVal c_city As String, ByVal c_address As String, ByVal c_zipcode As Global.System.Nullable(Of Integer), ByVal Original_emp_id As Integer, ByVal Original_c_firstname As String, ByVal Original_c_lastname As String, ByVal Original_c_email As String, ByVal Original_c_mob As String, ByVal Original_c_city As String, ByVal Original_c_address As String, ByVal Original_c_zipcode As Global.System.Nullable(Of Integer)) As Integer
+            Return Me.Update(Original_emp_id, c_firstname, c_lastname, c_email, c_mob, c_city, c_address, c_zipcode, Original_emp_id, Original_c_firstname, Original_c_lastname, Original_c_email, Original_c_mob, Original_c_city, Original_c_address, Original_c_zipcode)
         End Function
     End Class
     
@@ -5288,22 +5682,24 @@ Namespace EmployeeManagementDataSetTableAdapters
             tableMapping.ColumnMappings.Add("start_date", "start_date")
             tableMapping.ColumnMappings.Add("end_date", "end_date")
             tableMapping.ColumnMappings.Add("gender", "gender")
-            tableMapping.ColumnMappings.Add("married_status", "married_status")
+            tableMapping.ColumnMappings.Add("email", "email")
+            tableMapping.ColumnMappings.Add("marital_status", "marital_status")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Emp_basic_details] WHERE (([emp_id] = @Original_emp_id) AND (["& _ 
-                "firstname] = @Original_firstname) AND ([lastname] = @Original_lastname) AND ([do"& _ 
-                "b] = @Original_dob) AND ([mob] = @Original_mob) AND ([city] = @Original_city) AN"& _ 
-                "D ([address] = @Original_address) AND ([zipcode] = @Original_zipcode) AND ([qual"& _ 
-                "ification] = @Original_qualification) AND ([curr_exp] = @Original_curr_exp) AND "& _ 
-                "([start_date] = @Original_start_date) AND ((@IsNull_end_date = 1 AND [end_date] "& _ 
-                "IS NULL) OR ([end_date] = @Original_end_date)) AND ([gender] = @Original_gender)"& _ 
-                " AND ([married_status] = @Original_married_status))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Emp_basic_details] WHERE (([emp_id] = @Original_emp_id) AND ([firstn"& _ 
+                "ame] = @Original_firstname) AND ([lastname] = @Original_lastname) AND ([email] ="& _ 
+                " @Original_email) AND ([dob] = @Original_dob) AND ([mob] = @Original_mob) AND (["& _ 
+                "city] = @Original_city) AND ([address] = @Original_address) AND ([zipcode] = @Or"& _ 
+                "iginal_zipcode) AND ([qualification] = @Original_qualification) AND ([curr_exp] "& _ 
+                "= @Original_curr_exp) AND ([start_date] = @Original_start_date) AND ((@IsNull_en"& _ 
+                "d_date = 1 AND [end_date] IS NULL) OR ([end_date] = @Original_end_date)) AND ([g"& _ 
+                "ender] = @Original_gender) AND ([marital_status] = @Original_marital_status))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_dob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -5315,19 +5711,20 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_end_date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_end_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_gender", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_married_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_marital_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "marital_status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Emp_basic_details] ([firstname], [lastname], [dob], [mob], [ci"& _ 
-                "ty], [address], [zipcode], [qualification], [curr_exp], [start_date], [end_date]"& _ 
-                ", [gender], [married_status]) VALUES (@firstname, @lastname, @dob, @mob, @city, "& _ 
-                "@address, @zipcode, @qualification, @curr_exp, @start_date, @end_date, @gender, "& _ 
-                "@married_status);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT emp_id, firstname, lastname, dob, mob, city, address, "& _ 
-                "zipcode, qualification, curr_exp, start_date, end_date, gender, married_status F"& _ 
-                "ROM Emp_basic_details WHERE (emp_id = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Emp_basic_details] ([firstname], [lastname], [email], [dob], [mob], "& _ 
+                "[city], [address], [zipcode], [qualification], [curr_exp], [start_date], [end_da"& _ 
+                "te], [gender], [marital_status]) VALUES (@firstname, @lastname, @email, @dob, @m"& _ 
+                "ob, @city, @address, @zipcode, @qualification, @curr_exp, @start_date, @end_date"& _ 
+                ", @gender, @marital_status);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT emp_id, firstname, lastname, email, dob, mo"& _ 
+                "b, city, address, zipcode, qualification, curr_exp, start_date, end_date, gender"& _ 
+                ", marital_status FROM Emp_basic_details WHERE (emp_id = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@dob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -5338,26 +5735,28 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@start_date", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "start_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@end_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@gender", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@married_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@marital_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "marital_status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Emp_basic_details] SET [firstname] = @firstname, [lastname] = @last"& _ 
-                "name, [dob] = @dob, [mob] = @mob, [city] = @city, [address] = @address, [zipcode"& _ 
-                "] = @zipcode, [qualification] = @qualification, [curr_exp] = @curr_exp, [start_d"& _ 
-                "ate] = @start_date, [end_date] = @end_date, [gender] = @gender, [married_status]"& _ 
-                " = @married_status WHERE (([emp_id] = @Original_emp_id) AND ([firstname] = @Orig"& _ 
-                "inal_firstname) AND ([lastname] = @Original_lastname) AND ([dob] = @Original_dob"& _ 
-                ") AND ([mob] = @Original_mob) AND ([city] = @Original_city) AND ([address] = @Or"& _ 
-                "iginal_address) AND ([zipcode] = @Original_zipcode) AND ([qualification] = @Orig"& _ 
-                "inal_qualification) AND ([curr_exp] = @Original_curr_exp) AND ([start_date] = @O"& _ 
-                "riginal_start_date) AND ((@IsNull_end_date = 1 AND [end_date] IS NULL) OR ([end_"& _ 
-                "date] = @Original_end_date)) AND ([gender] = @Original_gender) AND ([married_sta"& _ 
-                "tus] = @Original_married_status));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT emp_id, firstname, lastname, dob, mob"& _ 
-                ", city, address, zipcode, qualification, curr_exp, start_date, end_date, gender,"& _ 
-                " married_status FROM Emp_basic_details WHERE (emp_id = @emp_id)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [Emp_basic_details] SET [firstname] = @firstname, [lastname] = @lastname, "& _ 
+                "[email] = @email, [dob] = @dob, [mob] = @mob, [city] = @city, [address] = @addre"& _ 
+                "ss, [zipcode] = @zipcode, [qualification] = @qualification, [curr_exp] = @curr_e"& _ 
+                "xp, [start_date] = @start_date, [end_date] = @end_date, [gender] = @gender, [mar"& _ 
+                "ital_status] = @marital_status WHERE (([emp_id] = @Original_emp_id) AND ([firstn"& _ 
+                "ame] = @Original_firstname) AND ([lastname] = @Original_lastname) AND ([email] ="& _ 
+                " @Original_email) AND ([dob] = @Original_dob) AND ([mob] = @Original_mob) AND (["& _ 
+                "city] = @Original_city) AND ([address] = @Original_address) AND ([zipcode] = @Or"& _ 
+                "iginal_zipcode) AND ([qualification] = @Original_qualification) AND ([curr_exp] "& _ 
+                "= @Original_curr_exp) AND ([start_date] = @Original_start_date) AND ((@IsNull_en"& _ 
+                "d_date = 1 AND [end_date] IS NULL) OR ([end_date] = @Original_end_date)) AND ([g"& _ 
+                "ender] = @Original_gender) AND ([marital_status] = @Original_marital_status));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "SELECT emp_id, firstname, lastname, email, dob, mob, city, address, zipcode, qua"& _ 
+                "lification, curr_exp, start_date, end_date, gender, marital_status FROM Emp_basi"& _ 
+                "c_details WHERE (emp_id = @emp_id)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@dob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -5368,10 +5767,11 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@start_date", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "start_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@end_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@gender", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@married_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@marital_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "marital_status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_email", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "email", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_dob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_mob", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_city", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -5383,7 +5783,7 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_end_date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_end_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_gender", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_married_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_marital_status", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "marital_status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -5397,58 +5797,11 @@ Namespace EmployeeManagementDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT emp_id, firstname, lastname, dob, mob, city, address, zipcode, qualificati"& _ 
-                "on, curr_exp, start_date, end_date, gender, married_status FROM dbo.Emp_basic_de"& _ 
-                "tails"
+            Me._commandCollection(0).CommandText = "SELECT        Emp_basic_details.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Emp_basic_details"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE [dbo].[Emp_basic_details] SET [firstname] = @firstname, [lastname] = @last"& _ 
-                "name, [dob] = @dob, [mob] = @mob, [city] = @city, [address] = @address, [zipcode"& _ 
-                "] = @zipcode, [qualification] = @qualification, [curr_exp] = @curr_exp, [start_d"& _ 
-                "ate] = @start_date, [end_date] = @end_date, [gender] = @gender, [married_status]"& _ 
-                " = @married_status WHERE (([emp_id] = @Original_emp_id) AND ([firstname] = @Orig"& _ 
-                "inal_firstname) AND ([lastname] = @Original_lastname) AND ([dob] = @Original_dob"& _ 
-                ") AND ([mob] = @Original_mob) AND ([city] = @Original_city) AND ([address] = @Or"& _ 
-                "iginal_address) AND ([zipcode] = @Original_zipcode) AND ([qualification] = @Orig"& _ 
-                "inal_qualification) AND ([curr_exp] = @Original_curr_exp) AND ([start_date] = @O"& _ 
-                "riginal_start_date) AND ((@IsNull_end_date = 1 AND [end_date] IS NULL) OR ([end_"& _ 
-                "date] = @Original_end_date)) AND ([gender] = @Original_gender) AND ([married_sta"& _ 
-                "tus] = @Original_married_status));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT emp_id, firstname, lastname, dob, mob"& _ 
-                ", city, address, zipcode, qualification, curr_exp, start_date, end_date, gender,"& _ 
-                " married_status FROM Emp_basic_details WHERE (emp_id = @emp_id)"
-            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@firstname", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@lastname", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@dob", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@mob", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@city", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@address", Global.System.Data.SqlDbType.VarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@zipcode", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "zipcode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@qualification", Global.System.Data.SqlDbType.VarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "qualification", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@curr_exp", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "curr_exp", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@start_date", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "start_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@end_date", Global.System.Data.SqlDbType.[Date], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@gender", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@married_status", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_firstname", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_lastname", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_dob", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "dob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_mob", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "mob", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_city", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "city", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_address", Global.System.Data.SqlDbType.VarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_zipcode", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "zipcode", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_qualification", Global.System.Data.SqlDbType.VarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "qualification", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_curr_exp", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "curr_exp", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_start_date", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "start_date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_end_date", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "end_date", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_gender", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "gender", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_married_status", Global.System.Data.SqlDbType.VarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "married_status", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5507,7 +5860,7 @@ Namespace EmployeeManagementDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_emp_id As Integer, ByVal Original_firstname As String, ByVal Original_lastname As String, ByVal Original_dob As String, ByVal Original_mob As String, ByVal Original_city As String, ByVal Original_address As String, ByVal Original_zipcode As Integer, ByVal Original_qualification As String, ByVal Original_curr_exp As Integer, ByVal Original_start_date As String, ByVal Original_end_date As Global.System.Nullable(Of Date), ByVal Original_gender As String, ByVal Original_married_status As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_emp_id As Integer, ByVal Original_firstname As String, ByVal Original_lastname As String, ByVal Original_email As String, ByVal Original_dob As String, ByVal Original_mob As String, ByVal Original_city As String, ByVal Original_address As String, ByVal Original_zipcode As Integer, ByVal Original_qualification As String, ByVal Original_curr_exp As Integer, ByVal Original_start_date As String, ByVal Original_end_date As Global.System.Nullable(Of Date), ByVal Original_gender As String, ByVal Original_marital_status As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_emp_id,Integer)
             If (Original_firstname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_firstname")
@@ -5519,54 +5872,59 @@ Namespace EmployeeManagementDataSetTableAdapters
             Else
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_lastname,String)
             End If
+            If (Original_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_email")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_email,String)
+            End If
             If (Original_dob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_dob")
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_dob,String)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_dob,String)
             End If
             If (Original_mob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_mob")
             Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_mob,String)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_mob,String)
             End If
             If (Original_city Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_city")
             Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_city,String)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_city,String)
             End If
             If (Original_address Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_address")
             Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_address,String)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_address,String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_zipcode,Integer)
+            Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_zipcode,Integer)
             If (Original_qualification Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_qualification")
             Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_qualification,String)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_qualification,String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_curr_exp,Integer)
+            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_curr_exp,Integer)
             If (Original_start_date Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_start_date")
             Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_start_date,String)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_start_date,String)
             End If
             If (Original_end_date.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_end_date.Value,Date)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_end_date.Value,Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
             If (Original_gender Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_gender")
             Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_gender,String)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_gender,String)
             End If
-            If (Original_married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_married_status")
+            If (Original_marital_status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_marital_status")
             Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_married_status,String)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_marital_status,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -5587,7 +5945,7 @@ Namespace EmployeeManagementDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal firstname As String, ByVal lastname As String, ByVal dob As String, ByVal mob As String, ByVal city As String, ByVal address As String, ByVal zipcode As Integer, ByVal qualification As String, ByVal curr_exp As Integer, ByVal start_date As String, ByVal end_date As Global.System.Nullable(Of Date), ByVal gender As String, ByVal married_status As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal firstname As String, ByVal lastname As String, ByVal email As String, ByVal dob As String, ByVal mob As String, ByVal city As String, ByVal address As String, ByVal zipcode As Integer, ByVal qualification As String, ByVal curr_exp As Integer, ByVal start_date As String, ByVal end_date As Global.System.Nullable(Of Date), ByVal gender As String, ByVal marital_status As String) As Integer
             If (firstname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("firstname")
             Else
@@ -5598,52 +5956,57 @@ Namespace EmployeeManagementDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(lastname,String)
             End If
+            If (email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("email")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(email,String)
+            End If
             If (dob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("dob")
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(dob,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(dob,String)
             End If
             If (mob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("mob")
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(mob,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(mob,String)
             End If
             If (city Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("city")
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(city,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(city,String)
             End If
             If (address Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("address")
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(address,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(address,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(zipcode,Integer)
+            Me.Adapter.InsertCommand.Parameters(7).Value = CType(zipcode,Integer)
             If (qualification Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("qualification")
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(qualification,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(qualification,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(curr_exp,Integer)
+            Me.Adapter.InsertCommand.Parameters(9).Value = CType(curr_exp,Integer)
             If (start_date Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("start_date")
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(start_date,String)
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(start_date,String)
             End If
             If (end_date.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(end_date.Value,Date)
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(end_date.Value,Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (gender Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("gender")
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(gender,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(gender,String)
             End If
-            If (married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("married_status")
+            If (marital_status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("marital_status")
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(married_status,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(marital_status,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -5667,6 +6030,7 @@ Namespace EmployeeManagementDataSetTableAdapters
         Public Overloads Overridable Function Update( _
                     ByVal firstname As String,  _
                     ByVal lastname As String,  _
+                    ByVal email As String,  _
                     ByVal dob As String,  _
                     ByVal mob As String,  _
                     ByVal city As String,  _
@@ -5677,10 +6041,11 @@ Namespace EmployeeManagementDataSetTableAdapters
                     ByVal start_date As String,  _
                     ByVal end_date As Global.System.Nullable(Of Date),  _
                     ByVal gender As String,  _
-                    ByVal married_status As String,  _
+                    ByVal marital_status As String,  _
                     ByVal Original_emp_id As Integer,  _
                     ByVal Original_firstname As String,  _
                     ByVal Original_lastname As String,  _
+                    ByVal Original_email As String,  _
                     ByVal Original_dob As String,  _
                     ByVal Original_mob As String,  _
                     ByVal Original_city As String,  _
@@ -5691,7 +6056,7 @@ Namespace EmployeeManagementDataSetTableAdapters
                     ByVal Original_start_date As String,  _
                     ByVal Original_end_date As Global.System.Nullable(Of Date),  _
                     ByVal Original_gender As String,  _
-                    ByVal Original_married_status As String,  _
+                    ByVal Original_marital_status As String,  _
                     ByVal emp_id As Integer) As Integer
             If (firstname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("firstname")
@@ -5703,114 +6068,124 @@ Namespace EmployeeManagementDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(lastname,String)
             End If
+            If (email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("email")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(email,String)
+            End If
             If (dob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("dob")
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(dob,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(dob,String)
             End If
             If (mob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("mob")
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(mob,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(mob,String)
             End If
             If (city Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("city")
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(city,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(city,String)
             End If
             If (address Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("address")
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(address,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(address,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(zipcode,Integer)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(zipcode,Integer)
             If (qualification Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("qualification")
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(qualification,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(qualification,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(curr_exp,Integer)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(curr_exp,Integer)
             If (start_date Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("start_date")
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(start_date,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(start_date,String)
             End If
             If (end_date.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(end_date.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(end_date.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (gender Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("gender")
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(gender,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(gender,String)
             End If
-            If (married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("married_status")
+            If (marital_status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("marital_status")
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(married_status,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(marital_status,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_emp_id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_emp_id,Integer)
             If (Original_firstname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_firstname")
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_firstname,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_firstname,String)
             End If
             If (Original_lastname Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_lastname")
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_lastname,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_lastname,String)
+            End If
+            If (Original_email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_email")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_email,String)
             End If
             If (Original_dob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_dob")
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_dob,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_dob,String)
             End If
             If (Original_mob Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_mob")
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_mob,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_mob,String)
             End If
             If (Original_city Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_city")
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_city,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_city,String)
             End If
             If (Original_address Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_address")
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_address,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_address,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_zipcode,Integer)
+            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_zipcode,Integer)
             If (Original_qualification Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_qualification")
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_qualification,String)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_qualification,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_curr_exp,Integer)
+            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_curr_exp,Integer)
             If (Original_start_date Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_start_date")
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_start_date,String)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_start_date,String)
             End If
             If (Original_end_date.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_end_date.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_end_date.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             If (Original_gender Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_gender")
             Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_gender,String)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_gender,String)
             End If
-            If (Original_married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_married_status")
+            If (Original_marital_status Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_marital_status")
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_married_status,String)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_marital_status,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(emp_id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(30).Value = CType(emp_id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5833,6 +6208,7 @@ Namespace EmployeeManagementDataSetTableAdapters
         Public Overloads Overridable Function Update( _
                     ByVal firstname As String,  _
                     ByVal lastname As String,  _
+                    ByVal email As String,  _
                     ByVal dob As String,  _
                     ByVal mob As String,  _
                     ByVal city As String,  _
@@ -5843,10 +6219,11 @@ Namespace EmployeeManagementDataSetTableAdapters
                     ByVal start_date As String,  _
                     ByVal end_date As Global.System.Nullable(Of Date),  _
                     ByVal gender As String,  _
-                    ByVal married_status As String,  _
+                    ByVal marital_status As String,  _
                     ByVal Original_emp_id As Integer,  _
                     ByVal Original_firstname As String,  _
                     ByVal Original_lastname As String,  _
+                    ByVal Original_email As String,  _
                     ByVal Original_dob As String,  _
                     ByVal Original_mob As String,  _
                     ByVal Original_city As String,  _
@@ -5857,174 +6234,8 @@ Namespace EmployeeManagementDataSetTableAdapters
                     ByVal Original_start_date As String,  _
                     ByVal Original_end_date As Global.System.Nullable(Of Date),  _
                     ByVal Original_gender As String,  _
-                    ByVal Original_married_status As String) As Integer
-            Return Me.Update(firstname, lastname, dob, mob, city, address, zipcode, qualification, curr_exp, start_date, end_date, gender, married_status, Original_emp_id, Original_firstname, Original_lastname, Original_dob, Original_mob, Original_city, Original_address, Original_zipcode, Original_qualification, Original_curr_exp, Original_start_date, Original_end_date, Original_gender, Original_married_status, Original_emp_id)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateQuery( _
-                    ByVal firstname As String,  _
-                    ByVal lastname As String,  _
-                    ByVal dob As String,  _
-                    ByVal mob As String,  _
-                    ByVal city As String,  _
-                    ByVal address As String,  _
-                    ByVal zipcode As Integer,  _
-                    ByVal qualification As String,  _
-                    ByVal curr_exp As Integer,  _
-                    ByVal start_date As String,  _
-                    ByVal end_date As String,  _
-                    ByVal gender As String,  _
-                    ByVal married_status As String,  _
-                    ByVal Original_emp_id As Integer,  _
-                    ByVal Original_firstname As String,  _
-                    ByVal Original_lastname As String,  _
-                    ByVal Original_dob As String,  _
-                    ByVal Original_mob As String,  _
-                    ByVal Original_city As String,  _
-                    ByVal Original_address As String,  _
-                    ByVal Original_zipcode As Integer,  _
-                    ByVal Original_qualification As String,  _
-                    ByVal Original_curr_exp As Integer,  _
-                    ByVal Original_start_date As String,  _
-                    ByVal IsNull_end_date As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_gender As String,  _
-                    ByVal Original_married_status As String,  _
-                    ByVal emp_id As Integer) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
-            If (firstname Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("firstname")
-            Else
-                command.Parameters(0).Value = CType(firstname,String)
-            End If
-            If (lastname Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("lastname")
-            Else
-                command.Parameters(1).Value = CType(lastname,String)
-            End If
-            If (dob Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("dob")
-            Else
-                command.Parameters(2).Value = CType(dob,String)
-            End If
-            If (mob Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("mob")
-            Else
-                command.Parameters(3).Value = CType(mob,String)
-            End If
-            If (city Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("city")
-            Else
-                command.Parameters(4).Value = CType(city,String)
-            End If
-            If (address Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("address")
-            Else
-                command.Parameters(5).Value = CType(address,String)
-            End If
-            command.Parameters(6).Value = CType(zipcode,Integer)
-            If (qualification Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("qualification")
-            Else
-                command.Parameters(7).Value = CType(qualification,String)
-            End If
-            command.Parameters(8).Value = CType(curr_exp,Integer)
-            If (start_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("start_date")
-            Else
-                command.Parameters(9).Value = CType(start_date,String)
-            End If
-            If (end_date Is Nothing) Then
-                command.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(10).Value = CType(end_date,String)
-            End If
-            If (gender Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("gender")
-            Else
-                command.Parameters(11).Value = CType(gender,String)
-            End If
-            If (married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("married_status")
-            Else
-                command.Parameters(12).Value = CType(married_status,String)
-            End If
-            command.Parameters(13).Value = CType(Original_emp_id,Integer)
-            If (Original_firstname Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_firstname")
-            Else
-                command.Parameters(14).Value = CType(Original_firstname,String)
-            End If
-            If (Original_lastname Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_lastname")
-            Else
-                command.Parameters(15).Value = CType(Original_lastname,String)
-            End If
-            If (Original_dob Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_dob")
-            Else
-                command.Parameters(16).Value = CType(Original_dob,String)
-            End If
-            If (Original_mob Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_mob")
-            Else
-                command.Parameters(17).Value = CType(Original_mob,String)
-            End If
-            If (Original_city Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_city")
-            Else
-                command.Parameters(18).Value = CType(Original_city,String)
-            End If
-            If (Original_address Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_address")
-            Else
-                command.Parameters(19).Value = CType(Original_address,String)
-            End If
-            command.Parameters(20).Value = CType(Original_zipcode,Integer)
-            If (Original_qualification Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_qualification")
-            Else
-                command.Parameters(21).Value = CType(Original_qualification,String)
-            End If
-            command.Parameters(22).Value = CType(Original_curr_exp,Integer)
-            If (Original_start_date Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_start_date")
-            Else
-                command.Parameters(23).Value = CType(Original_start_date,String)
-            End If
-            If (IsNull_end_date.HasValue = true) Then
-                command.Parameters(24).Value = CType(IsNull_end_date.Value,Integer)
-            Else
-                command.Parameters(24).Value = Global.System.DBNull.Value
-            End If
-            If (Original_gender Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_gender")
-            Else
-                command.Parameters(25).Value = CType(Original_gender,String)
-            End If
-            If (Original_married_status Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_married_status")
-            Else
-                command.Parameters(26).Value = CType(Original_married_status,String)
-            End If
-            command.Parameters(27).Value = CType(emp_id,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
+                    ByVal Original_marital_status As String) As Integer
+            Return Me.Update(firstname, lastname, email, dob, mob, city, address, zipcode, qualification, curr_exp, start_date, end_date, gender, marital_status, Original_emp_id, Original_firstname, Original_lastname, Original_email, Original_dob, Original_mob, Original_city, Original_address, Original_zipcode, Original_qualification, Original_curr_exp, Original_start_date, Original_end_date, Original_gender, Original_marital_status, Original_emp_id)
         End Function
     End Class
     
@@ -6629,20 +6840,65 @@ Namespace EmployeeManagementDataSetTableAdapters
             tableMapping.ColumnMappings.Add("emp_id", "emp_id")
             tableMapping.ColumnMappings.Add("monthly_sal", "monthly_sal")
             tableMapping.ColumnMappings.Add("monthly_taxes", "monthly_taxes")
-            tableMapping.ColumnMappings.Add("monthly_deduct", "monthly_deduct")
             tableMapping.ColumnMappings.Add("monthly_insurances", "monthly_insurances")
+            tableMapping.ColumnMappings.Add("monthly_allowance", "monthly_allowance")
+            tableMapping.ColumnMappings.Add("firstname", "firstname")
+            tableMapping.ColumnMappings.Add("lastname", "lastname")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Salary_information] WHERE (([emp_id] = @Original_emp_id) AND ([month"& _ 
+                "ly_sal] = @Original_monthly_sal) AND ([monthly_taxes] = @Original_monthly_taxes)"& _ 
+                " AND ([monthly_allowance] = @Original_monthly_allowance) AND ([monthly_insurance"& _ 
+                "s] = @Original_monthly_insurances) AND ([firstname] = @Original_firstname) AND ("& _ 
+                "[lastname] = @Original_lastname))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_sal", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_sal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_taxes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_taxes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_allowance", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_allowance", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_insurances", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_insurances", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Salary_information] ([emp_id], [monthly_sal], [monthly_taxes],"& _ 
-                " [monthly_deduct], [monthly_insurances]) VALUES (@emp_id, @monthly_sal, @monthly"& _ 
-                "_taxes, @monthly_deduct, @monthly_insurances)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Salary_information] ([emp_id], [monthly_sal], [monthly_taxes], [mont"& _ 
+                "hly_allowance], [monthly_insurances], [firstname], [lastname]) VALUES (@emp_id, "& _ 
+                "@monthly_sal, @monthly_taxes, @monthly_allowance, @monthly_insurances, @firstnam"& _ 
+                "e, @lastname)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_sal", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_sal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_taxes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_taxes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_deduct", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_deduct", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_allowance", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_allowance", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_insurances", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_insurances", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [Salary_information] SET [emp_id] = @emp_id, [monthly_sal] = @monthly_sal,"& _ 
+                " [monthly_taxes] = @monthly_taxes, [monthly_allowance] = @monthly_allowance, [mo"& _ 
+                "nthly_insurances] = @monthly_insurances, [firstname] = @firstname, [lastname] = "& _ 
+                "@lastname WHERE (([emp_id] = @Original_emp_id) AND ([monthly_sal] = @Original_mo"& _ 
+                "nthly_sal) AND ([monthly_taxes] = @Original_monthly_taxes) AND ([monthly_allowan"& _ 
+                "ce] = @Original_monthly_allowance) AND ([monthly_insurances] = @Original_monthly"& _ 
+                "_insurances) AND ([firstname] = @Original_firstname) AND ([lastname] = @Original"& _ 
+                "_lastname))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_sal", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_sal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_taxes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_taxes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_allowance", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_allowance", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@monthly_insurances", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_insurances", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_emp_id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "emp_id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_sal", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_sal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_taxes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_taxes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_allowance", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_allowance", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_monthly_insurances", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "monthly_insurances", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_firstname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "firstname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_lastname", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "lastname", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6658,8 +6914,8 @@ Namespace EmployeeManagementDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT emp_id, monthly_sal, monthly_taxes, monthly_deduct, monthly_insurances FRO"& _ 
-                "M dbo.Salary_information"
+            Me._commandCollection(0).CommandText = "SELECT        emp_id, monthly_sal, monthly_taxes, monthly_allowance, monthly_insu"& _ 
+                "rances, firstname, lastname"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Salary_information"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -6718,13 +6974,58 @@ Namespace EmployeeManagementDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_emp_id As Integer, ByVal Original_monthly_sal As Integer, ByVal Original_monthly_taxes As Integer, ByVal Original_monthly_allowance As Integer, ByVal Original_monthly_insurances As Integer, ByVal Original_firstname As String, ByVal Original_lastname As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_emp_id,Integer)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_monthly_sal,Integer)
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_monthly_taxes,Integer)
+            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_monthly_allowance,Integer)
+            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_monthly_insurances,Integer)
+            If (Original_firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_firstname")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_firstname,String)
+            End If
+            If (Original_lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_lastname")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_lastname,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal emp_id As Integer, ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_deduct As Integer, ByVal monthly_insurances As Integer) As Integer
+        Public Overloads Overridable Function Insert(ByVal emp_id As Integer, ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_allowance As Integer, ByVal monthly_insurances As Integer, ByVal firstname As String, ByVal lastname As String) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(emp_id,Integer)
             Me.Adapter.InsertCommand.Parameters(1).Value = CType(monthly_sal,Integer)
             Me.Adapter.InsertCommand.Parameters(2).Value = CType(monthly_taxes,Integer)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(monthly_deduct,Integer)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(monthly_allowance,Integer)
             Me.Adapter.InsertCommand.Parameters(4).Value = CType(monthly_insurances,Integer)
+            If (firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("firstname")
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(firstname,String)
+            End If
+            If (lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("lastname")
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(lastname,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6738,6 +7039,64 @@ Namespace EmployeeManagementDataSetTableAdapters
                     Me.Adapter.InsertCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal emp_id As Integer, ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_allowance As Integer, ByVal monthly_insurances As Integer, ByVal firstname As String, ByVal lastname As String, ByVal Original_emp_id As Integer, ByVal Original_monthly_sal As Integer, ByVal Original_monthly_taxes As Integer, ByVal Original_monthly_allowance As Integer, ByVal Original_monthly_insurances As Integer, ByVal Original_firstname As String, ByVal Original_lastname As String) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(emp_id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(monthly_sal,Integer)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(monthly_taxes,Integer)
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(monthly_allowance,Integer)
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(monthly_insurances,Integer)
+            If (firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("firstname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(firstname,String)
+            End If
+            If (lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("lastname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(lastname,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_emp_id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_monthly_sal,Integer)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_monthly_taxes,Integer)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_monthly_allowance,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_monthly_insurances,Integer)
+            If (Original_firstname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_firstname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_firstname,String)
+            End If
+            If (Original_lastname Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_lastname")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_lastname,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal monthly_sal As Integer, ByVal monthly_taxes As Integer, ByVal monthly_allowance As Integer, ByVal monthly_insurances As Integer, ByVal firstname As String, ByVal lastname As String, ByVal Original_emp_id As Integer, ByVal Original_monthly_sal As Integer, ByVal Original_monthly_taxes As Integer, ByVal Original_monthly_allowance As Integer, ByVal Original_monthly_insurances As Integer, ByVal Original_firstname As String, ByVal Original_lastname As String) As Integer
+            Return Me.Update(Original_emp_id, monthly_sal, monthly_taxes, monthly_allowance, monthly_insurances, firstname, lastname, Original_emp_id, Original_monthly_sal, Original_monthly_taxes, Original_monthly_allowance, Original_monthly_insurances, Original_firstname, Original_lastname)
         End Function
     End Class
     

@@ -51,7 +51,7 @@ Partial Class frm_user
         Me.lbl_extraLeave = New System.Windows.Forms.Label()
         Me.tb_total_leaves = New System.Windows.Forms.TextBox()
         Me.gb_applyLeave = New System.Windows.Forms.GroupBox()
-        Me.btn_appl = New System.Windows.Forms.Button()
+        Me.btn_apply = New System.Windows.Forms.Button()
         Me.lbl_char_require = New System.Windows.Forms.Label()
         Me.checkBox_addToPaidLeave = New System.Windows.Forms.CheckBox()
         Me.tb_reason = New System.Windows.Forms.TextBox()
@@ -59,22 +59,22 @@ Partial Class frm_user
         Me.MonthCalendar_leaveDatePicker = New System.Windows.Forms.MonthCalendar()
         Me.TabPage_personal_details = New System.Windows.Forms.TabPage()
         Me.gb_personal_info_parent = New System.Windows.Forms.GroupBox()
-        Me.gb_profilw = New System.Windows.Forms.GroupBox()
+        Me.gb_profile = New System.Windows.Forms.GroupBox()
         Me.lbl_val_dob = New System.Windows.Forms.Label()
         Me.lbl_val_empName = New System.Windows.Forms.Label()
         Me.lbl_val_empid = New System.Windows.Forms.Label()
         Me.lbl_name = New System.Windows.Forms.Label()
         Me.lbl_empName = New System.Windows.Forms.Label()
         Me.lbl_dob = New System.Windows.Forms.Label()
-        Me.PictureBox_profilePic = New System.Windows.Forms.PictureBox()
+        Me.pictureBox_profilePic = New System.Windows.Forms.PictureBox()
         Me.gb_personal_info = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btn_personalInfo_edit = New System.Windows.Forms.Button()
-        Me.btn_update = New System.Windows.Forms.Button()
+        Me.btn_personalInfo_update = New System.Windows.Forms.Button()
         Me.pnl_maritalStatus = New System.Windows.Forms.Panel()
         Me.rb_single = New System.Windows.Forms.RadioButton()
         Me.rb_married = New System.Windows.Forms.RadioButton()
-        Me.lbl_married_status = New System.Windows.Forms.Label()
+        Me.lbl_marital_status = New System.Windows.Forms.Label()
         Me.tb_zip = New System.Windows.Forms.TextBox()
         Me.lbl_zip = New System.Windows.Forms.Label()
         Me.tb_add = New System.Windows.Forms.TextBox()
@@ -90,7 +90,7 @@ Partial Class frm_user
         Me.tb_lastname = New System.Windows.Forms.TextBox()
         Me.tb_firstname = New System.Windows.Forms.TextBox()
         Me.lbl_email = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lbl_user_dop = New System.Windows.Forms.Label()
         Me.lbl_Fullname = New System.Windows.Forms.Label()
         Me.TabControl_employee = New System.Windows.Forms.TabControl()
         Me.TabPage_reports = New System.Windows.Forms.TabPage()
@@ -111,8 +111,8 @@ Partial Class frm_user
         Me.gb_applyLeave.SuspendLayout()
         Me.TabPage_personal_details.SuspendLayout()
         Me.gb_personal_info_parent.SuspendLayout()
-        Me.gb_profilw.SuspendLayout()
-        CType(Me.PictureBox_profilePic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gb_profile.SuspendLayout()
+        CType(Me.pictureBox_profilePic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gb_personal_info.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.pnl_maritalStatus.SuspendLayout()
@@ -372,7 +372,7 @@ Partial Class frm_user
         '
         'gb_applyLeave
         '
-        Me.gb_applyLeave.Controls.Add(Me.btn_appl)
+        Me.gb_applyLeave.Controls.Add(Me.btn_apply)
         Me.gb_applyLeave.Controls.Add(Me.lbl_char_require)
         Me.gb_applyLeave.Controls.Add(Me.checkBox_addToPaidLeave)
         Me.gb_applyLeave.Controls.Add(Me.tb_reason)
@@ -385,14 +385,14 @@ Partial Class frm_user
         Me.gb_applyLeave.TabStop = False
         Me.gb_applyLeave.Text = "Apply Leave"
         '
-        'btn_appl
+        'btn_apply
         '
-        Me.btn_appl.Location = New System.Drawing.Point(502, 205)
-        Me.btn_appl.Name = "btn_appl"
-        Me.btn_appl.Size = New System.Drawing.Size(75, 23)
-        Me.btn_appl.TabIndex = 9
-        Me.btn_appl.Text = "APPLY"
-        Me.btn_appl.UseVisualStyleBackColor = True
+        Me.btn_apply.Location = New System.Drawing.Point(502, 205)
+        Me.btn_apply.Name = "btn_apply"
+        Me.btn_apply.Size = New System.Drawing.Size(75, 23)
+        Me.btn_apply.TabIndex = 9
+        Me.btn_apply.Text = "APPLY"
+        Me.btn_apply.UseVisualStyleBackColor = True
         '
         'lbl_char_require
         '
@@ -451,7 +451,7 @@ Partial Class frm_user
         '
         'gb_personal_info_parent
         '
-        Me.gb_personal_info_parent.Controls.Add(Me.gb_profilw)
+        Me.gb_personal_info_parent.Controls.Add(Me.gb_profile)
         Me.gb_personal_info_parent.Controls.Add(Me.gb_personal_info)
         Me.gb_personal_info_parent.Location = New System.Drawing.Point(84, 42)
         Me.gb_personal_info_parent.Name = "gb_personal_info_parent"
@@ -459,26 +459,26 @@ Partial Class frm_user
         Me.gb_personal_info_parent.TabIndex = 1
         Me.gb_personal_info_parent.TabStop = False
         '
-        'gb_profilw
+        'gb_profile
         '
-        Me.gb_profilw.Controls.Add(Me.lbl_val_dob)
-        Me.gb_profilw.Controls.Add(Me.lbl_val_empName)
-        Me.gb_profilw.Controls.Add(Me.lbl_val_empid)
-        Me.gb_profilw.Controls.Add(Me.lbl_name)
-        Me.gb_profilw.Controls.Add(Me.lbl_empName)
-        Me.gb_profilw.Controls.Add(Me.lbl_dob)
-        Me.gb_profilw.Controls.Add(Me.PictureBox_profilePic)
-        Me.gb_profilw.Location = New System.Drawing.Point(39, 53)
-        Me.gb_profilw.Name = "gb_profilw"
-        Me.gb_profilw.Size = New System.Drawing.Size(270, 275)
-        Me.gb_profilw.TabIndex = 4
-        Me.gb_profilw.TabStop = False
-        Me.gb_profilw.Text = "Profile"
+        Me.gb_profile.Controls.Add(Me.lbl_val_dob)
+        Me.gb_profile.Controls.Add(Me.lbl_val_empName)
+        Me.gb_profile.Controls.Add(Me.lbl_val_empid)
+        Me.gb_profile.Controls.Add(Me.lbl_name)
+        Me.gb_profile.Controls.Add(Me.lbl_empName)
+        Me.gb_profile.Controls.Add(Me.lbl_dob)
+        Me.gb_profile.Controls.Add(Me.pictureBox_profilePic)
+        Me.gb_profile.Location = New System.Drawing.Point(45, 53)
+        Me.gb_profile.Name = "gb_profile"
+        Me.gb_profile.Size = New System.Drawing.Size(274, 275)
+        Me.gb_profile.TabIndex = 4
+        Me.gb_profile.TabStop = False
+        Me.gb_profile.Text = "Profile"
         '
         'lbl_val_dob
         '
         Me.lbl_val_dob.AutoSize = True
-        Me.lbl_val_dob.Location = New System.Drawing.Point(173, 244)
+        Me.lbl_val_dob.Location = New System.Drawing.Point(182, 244)
         Me.lbl_val_dob.Name = "lbl_val_dob"
         Me.lbl_val_dob.Size = New System.Drawing.Size(25, 13)
         Me.lbl_val_dob.TabIndex = 9
@@ -487,7 +487,7 @@ Partial Class frm_user
         'lbl_val_empName
         '
         Me.lbl_val_empName.AutoSize = True
-        Me.lbl_val_empName.Location = New System.Drawing.Point(173, 220)
+        Me.lbl_val_empName.Location = New System.Drawing.Point(182, 220)
         Me.lbl_val_empName.Name = "lbl_val_empName"
         Me.lbl_val_empName.Size = New System.Drawing.Size(33, 13)
         Me.lbl_val_empName.TabIndex = 8
@@ -496,7 +496,7 @@ Partial Class frm_user
         'lbl_val_empid
         '
         Me.lbl_val_empid.AutoSize = True
-        Me.lbl_val_empid.Location = New System.Drawing.Point(173, 194)
+        Me.lbl_val_empid.Location = New System.Drawing.Point(182, 194)
         Me.lbl_val_empid.Name = "lbl_val_empid"
         Me.lbl_val_empid.Size = New System.Drawing.Size(41, 13)
         Me.lbl_val_empid.TabIndex = 7
@@ -505,7 +505,7 @@ Partial Class frm_user
         'lbl_name
         '
         Me.lbl_name.AutoSize = True
-        Me.lbl_name.Location = New System.Drawing.Point(31, 194)
+        Me.lbl_name.Location = New System.Drawing.Point(40, 194)
         Me.lbl_name.Name = "lbl_name"
         Me.lbl_name.Size = New System.Drawing.Size(67, 13)
         Me.lbl_name.TabIndex = 1
@@ -514,7 +514,7 @@ Partial Class frm_user
         'lbl_empName
         '
         Me.lbl_empName.AutoSize = True
-        Me.lbl_empName.Location = New System.Drawing.Point(31, 220)
+        Me.lbl_empName.Location = New System.Drawing.Point(40, 220)
         Me.lbl_empName.Name = "lbl_empName"
         Me.lbl_empName.Size = New System.Drawing.Size(84, 13)
         Me.lbl_empName.TabIndex = 2
@@ -523,23 +523,23 @@ Partial Class frm_user
         'lbl_dob
         '
         Me.lbl_dob.AutoSize = True
-        Me.lbl_dob.Location = New System.Drawing.Point(31, 244)
+        Me.lbl_dob.Location = New System.Drawing.Point(40, 244)
         Me.lbl_dob.Name = "lbl_dob"
         Me.lbl_dob.Size = New System.Drawing.Size(68, 13)
         Me.lbl_dob.TabIndex = 3
         Me.lbl_dob.Text = "Date Of Birth"
         '
-        'PictureBox_profilePic
+        'pictureBox_profilePic
         '
-        Me.PictureBox_profilePic.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox_profilePic.Image = CType(resources.GetObject("PictureBox_profilePic.Image"), System.Drawing.Image)
-        Me.PictureBox_profilePic.Location = New System.Drawing.Point(34, 19)
-        Me.PictureBox_profilePic.Name = "PictureBox_profilePic"
-        Me.PictureBox_profilePic.Size = New System.Drawing.Size(180, 165)
-        Me.PictureBox_profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox_profilePic.TabIndex = 0
-        Me.PictureBox_profilePic.TabStop = False
-        Me.PictureBox_profilePic.WaitOnLoad = True
+        Me.pictureBox_profilePic.BackColor = System.Drawing.Color.Transparent
+        Me.pictureBox_profilePic.Image = CType(resources.GetObject("pictureBox_profilePic.Image"), System.Drawing.Image)
+        Me.pictureBox_profilePic.Location = New System.Drawing.Point(43, 19)
+        Me.pictureBox_profilePic.Name = "pictureBox_profilePic"
+        Me.pictureBox_profilePic.Size = New System.Drawing.Size(180, 165)
+        Me.pictureBox_profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pictureBox_profilePic.TabIndex = 0
+        Me.pictureBox_profilePic.TabStop = False
+        Me.pictureBox_profilePic.WaitOnLoad = True
         '
         'gb_personal_info
         '
@@ -560,7 +560,7 @@ Partial Class frm_user
         Me.gb_personal_info.Controls.Add(Me.tb_lastname)
         Me.gb_personal_info.Controls.Add(Me.tb_firstname)
         Me.gb_personal_info.Controls.Add(Me.lbl_email)
-        Me.gb_personal_info.Controls.Add(Me.Label1)
+        Me.gb_personal_info.Controls.Add(Me.lbl_user_dop)
         Me.gb_personal_info.Controls.Add(Me.lbl_Fullname)
         Me.gb_personal_info.Location = New System.Drawing.Point(367, 53)
         Me.gb_personal_info.Name = "gb_personal_info"
@@ -575,12 +575,12 @@ Partial Class frm_user
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.btn_personalInfo_edit, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btn_update, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btn_personalInfo_update, 1, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(481, 235)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(176, 34)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(174, 34)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'btn_personalInfo_edit
@@ -592,20 +592,21 @@ Partial Class frm_user
         Me.btn_personalInfo_edit.Text = "Edit"
         Me.btn_personalInfo_edit.UseVisualStyleBackColor = True
         '
-        'btn_update
+        'btn_personalInfo_update
         '
-        Me.btn_update.Location = New System.Drawing.Point(91, 3)
-        Me.btn_update.Name = "btn_update"
-        Me.btn_update.Size = New System.Drawing.Size(75, 23)
-        Me.btn_update.TabIndex = 36
-        Me.btn_update.Text = "Update"
-        Me.btn_update.UseVisualStyleBackColor = True
+        Me.btn_personalInfo_update.Enabled = False
+        Me.btn_personalInfo_update.Location = New System.Drawing.Point(90, 3)
+        Me.btn_personalInfo_update.Name = "btn_personalInfo_update"
+        Me.btn_personalInfo_update.Size = New System.Drawing.Size(75, 23)
+        Me.btn_personalInfo_update.TabIndex = 36
+        Me.btn_personalInfo_update.Text = "Update"
+        Me.btn_personalInfo_update.UseVisualStyleBackColor = True
         '
         'pnl_maritalStatus
         '
         Me.pnl_maritalStatus.Controls.Add(Me.rb_single)
         Me.pnl_maritalStatus.Controls.Add(Me.rb_married)
-        Me.pnl_maritalStatus.Controls.Add(Me.lbl_married_status)
+        Me.pnl_maritalStatus.Controls.Add(Me.lbl_marital_status)
         Me.pnl_maritalStatus.Location = New System.Drawing.Point(417, 92)
         Me.pnl_maritalStatus.Name = "pnl_maritalStatus"
         Me.pnl_maritalStatus.Size = New System.Drawing.Size(228, 26)
@@ -614,6 +615,7 @@ Partial Class frm_user
         'rb_single
         '
         Me.rb_single.AutoSize = True
+        Me.rb_single.Checked = True
         Me.rb_single.Location = New System.Drawing.Point(162, 7)
         Me.rb_single.Name = "rb_single"
         Me.rb_single.Size = New System.Drawing.Size(54, 17)
@@ -629,18 +631,17 @@ Partial Class frm_user
         Me.rb_married.Name = "rb_married"
         Me.rb_married.Size = New System.Drawing.Size(60, 17)
         Me.rb_married.TabIndex = 34
-        Me.rb_married.TabStop = True
         Me.rb_married.Text = "Married"
         Me.rb_married.UseVisualStyleBackColor = True
         '
-        'lbl_married_status
+        'lbl_marital_status
         '
-        Me.lbl_married_status.AutoSize = True
-        Me.lbl_married_status.Location = New System.Drawing.Point(3, 9)
-        Me.lbl_married_status.Name = "lbl_married_status"
-        Me.lbl_married_status.Size = New System.Drawing.Size(71, 13)
-        Me.lbl_married_status.TabIndex = 33
-        Me.lbl_married_status.Text = "Marital Status"
+        Me.lbl_marital_status.AutoSize = True
+        Me.lbl_marital_status.Location = New System.Drawing.Point(3, 9)
+        Me.lbl_marital_status.Name = "lbl_marital_status"
+        Me.lbl_marital_status.Size = New System.Drawing.Size(71, 13)
+        Me.lbl_marital_status.TabIndex = 33
+        Me.lbl_marital_status.Text = "Marital Status"
         '
         'tb_zip
         '
@@ -775,14 +776,14 @@ Partial Class frm_user
         Me.lbl_email.TabIndex = 4
         Me.lbl_email.Text = "Email ID"
         '
-        'Label1
+        'lbl_user_dop
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(420, 57)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(65, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Date of birth"
+        Me.lbl_user_dop.AutoSize = True
+        Me.lbl_user_dop.Location = New System.Drawing.Point(420, 57)
+        Me.lbl_user_dop.Name = "lbl_user_dop"
+        Me.lbl_user_dop.Size = New System.Drawing.Size(65, 13)
+        Me.lbl_user_dop.TabIndex = 2
+        Me.lbl_user_dop.Text = "Date of birth"
         '
         'lbl_Fullname
         '
@@ -854,9 +855,9 @@ Partial Class frm_user
         Me.gb_applyLeave.PerformLayout()
         Me.TabPage_personal_details.ResumeLayout(False)
         Me.gb_personal_info_parent.ResumeLayout(False)
-        Me.gb_profilw.ResumeLayout(False)
-        Me.gb_profilw.PerformLayout()
-        CType(Me.PictureBox_profilePic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gb_profile.ResumeLayout(False)
+        Me.gb_profile.PerformLayout()
+        CType(Me.pictureBox_profilePic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gb_personal_info.ResumeLayout(False)
         Me.gb_personal_info.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
@@ -888,8 +889,8 @@ Partial Class frm_user
     Friend WithEvents tb_leaves_left As TextBox
     Friend WithEvents tb_total_leaves As TextBox
     Friend WithEvents MonthCalendar_leaveDatePicker As MonthCalendar
-    Friend WithEvents btn_appl As Button
-    Friend WithEvents PictureBox_profilePic As PictureBox
+    Friend WithEvents btn_apply As Button
+    Friend WithEvents pictureBox_profilePic As PictureBox
     Friend WithEvents gb_personal_info_parent As GroupBox
     Friend WithEvents lbl_dob As Label
     Friend WithEvents lbl_empName As Label
@@ -910,10 +911,10 @@ Partial Class frm_user
     Friend WithEvents tb_lastname As TextBox
     Friend WithEvents tb_firstname As TextBox
     Friend WithEvents lbl_email As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lbl_user_dop As Label
     Friend WithEvents lbl_Fullname As Label
     Friend WithEvents btn_personalInfo_edit As Button
-    Friend WithEvents gb_profilw As GroupBox
+    Friend WithEvents gb_profile As GroupBox
     Friend WithEvents lbl_val_dob As Label
     Friend WithEvents lbl_val_empName As Label
     Friend WithEvents lbl_val_empid As Label
@@ -934,9 +935,9 @@ Partial Class frm_user
     Friend WithEvents pnl_maritalStatus As Panel
     Friend WithEvents rb_single As RadioButton
     Friend WithEvents rb_married As RadioButton
-    Friend WithEvents lbl_married_status As Label
+    Friend WithEvents lbl_marital_status As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents btn_update As Button
+    Friend WithEvents btn_personalInfo_update As Button
     Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents EventnameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents EventdateDataGridViewTextBoxColumn As DataGridViewTextBoxColumn

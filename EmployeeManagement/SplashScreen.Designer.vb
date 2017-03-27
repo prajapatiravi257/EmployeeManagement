@@ -39,6 +39,7 @@ Partial Class SplashScreen
         '
         'MainLayoutPanel
         '
+        Me.MainLayoutPanel.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.MainLayoutPanel.BackgroundImage = CType(resources.GetObject("MainLayoutPanel.BackgroundImage"), System.Drawing.Image)
         Me.MainLayoutPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MainLayoutPanel.ColumnCount = 2

@@ -7,7 +7,7 @@ Module validation
     Public Const rgx_mob As String = "^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$"
     Public Const rgx_str As String = "^[A-Za-z]+$"
     Public Const rgx_digit As String = "[^\d]"
-
+    Public Const rgx_emp_id As String = "^\d{4}$"
 
     Public Function ValidateEmail(ByVal strCheck As String) As Boolean
         Try
