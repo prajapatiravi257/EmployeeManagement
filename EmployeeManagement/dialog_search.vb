@@ -1,18 +1,48 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
-Imports System.Windows.Forms
 
 Public Class dialog_search
 
-    Private Function getEmpDetail(sql As String, update_person As dialog_add_person)
+    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+
+        If Regex.IsMatch(tb_search_id.Text, rgx_emp_id) Then
+
+            Dim update_person As New dialog_add_person()
+            search_id = CInt(tb_search_id.Text)
+            getEmpDetail(update_person)
+            Me.DialogResult = DialogResult.OK
+
+        Else
+            Me.DialogResult = DialogResult.None
+
+            MessageBox.Show("Enter the Employee ID")
+
+        End If
+
+    End Sub
+    Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Me.DialogResult = DialogResult.Cancel
+        Me.Close()
+    End Sub
+
+    Private Sub getEmpDetail(update_person As dialog_add_person)
+
+        sql = "SELECT Emp_basic_details.*, Login_users.username, Salary_information.monthly_sal, Salary_information.monthly_taxes, Salary_information.monthly_allowance, Salary_information.monthly_insurances, 
+                          Work_history.comp_name, Work_history.p_start_date, Work_history.p_end_date, Work_history.post
+                   FROM   Emp_basic_details INNER JOIN
+                          Login_users ON Emp_basic_details.emp_id = Login_users.emp_id INNER JOIN
+                          Salary_information ON Emp_basic_details.emp_id = Salary_information.emp_id INNER JOIN
+                          Work_history ON Emp_basic_details.emp_id = Work_history.emp_id
+                   WHERE  Emp_basic_details.emp_id = " & search_id
+
         Try
 
             If sqlCon.State = ConnectionState.Closed Then
                 sqlCon.Open()
             End If
+            Dim dr As SqlDataReader
 
             sqlcmd = New SqlCommand(sql, sqlCon)
-            Dim dr As SqlDataReader
             dr = sqlcmd.ExecuteReader()
 
             If dr.HasRows Then
@@ -24,25 +54,31 @@ Public Class dialog_search
                         update_person.rb_single.Checked = True
                     End If
 
+
                     If dr("gender").ToString() = "Male" Then
                         update_person.rb_male.Checked = True
                     Else
                         update_person.rb_single.Checked = True
                     End If
 
-                    If dr("username").ToString() Then
-
+                    If dr("username").ToString().Length() <= 0 Then
+                        update_person.cb_addLoginUser.Checked = True
+                    Else
+                        update_person.cb_addLoginUser.Checked = True
                     End If
 
                     With update_person
                         .Show()
-                        .Name = "Update Person"
+                        .BringToFront()
+                        .Text = "Update Person"
+                        .btn_save.Text = "Update"
                         .tb_firstname.Text = dr("firstname").ToString()
                         .tb_lastname.Text = dr("lastname").ToString()
                         .tb_email.Text = dr("email").ToString()
                         .dtp_dob.Text = dr("dob").ToString()
                         .tb_mob.Text = dr("mob").ToString()
                         .tb_city.Text = dr("city").ToString()
+                        .tb_exp.Text = dr("curr_exp").ToString()
                         .tb_add.Text = dr("address").ToString()
                         .tb_zip.Text = dr("zipcode").ToString()
                         .tb_qual.Text = dr("qualification").ToString()
@@ -55,43 +91,20 @@ Public Class dialog_search
                         .tb_insure.Text = dr("monthly_insurances").ToString()
                         .tb_allow.Text = dr("monthly_allowance").ToString()
                     End With
-
                 End While
+                Me.Close()
+            Else
+                MessageBox.Show("Not Found!")
             End If
 
-            Return dr
-
+            closeDR(dr)
+            updateEmpInfo = True
         Catch ex As Exception
-            MessageBox.Show("Something went wrong" & ex.Message)
+            MessageBox.Show("Something went wrong " & ex.Message)
         End Try
-    End Function
-    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        If String.IsNullOrEmpty(tb_search_name.Text) And String.IsNullOrEmpty(tb_search_name.Text) Or Regex.IsMatch(tb_search_id.Text, rgx_digit) Then
-            sql = "SELECT Emp_basic_details.*, Salary_information.monthly_sal, Salary_information.monthly_taxes, Salary_information.monthly_deduct, Salary_information.monthly_insurances, Work_history.comp_name, 
-                          Work_history.emp_name, Work_history.p_start_date
-                   FROM   Emp_basic_details INNER JOIN
-                          Salary_information ON Emp_basic_details.emp_id = Salary_information.emp_id INNER JOIN
-                          Work_history ON Emp_basic_details.emp_id = Work_history.emp_id
-                   WHERE  emp_id = " & tb_search_id.Text & " OR firstname='" & tb_search_name.Text & "' AND lastname='" & tb_search_lastname.Text & "'"
-
-            Me.DialogResult = DialogResult.OK
-            Me.Close()
-            Dim update_person As New dialog_add_person()
-
-
-        Else
-            Me.DialogResult = DialogResult.None
-
-            MessageBox.Show("Enter the Employee ID And employee name first")
-
-        End If
-
-
     End Sub
 
-    Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
-        Me.DialogResult = DialogResult.Cancel
-        Me.Close()
+    Private Sub dialog_search_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        tb_search_id.Focus()
     End Sub
-
 End Class
