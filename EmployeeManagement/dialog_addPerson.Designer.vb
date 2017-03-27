@@ -37,13 +37,12 @@ Partial Class dialog_add_person
         Me.rb_single = New System.Windows.Forms.RadioButton()
         Me.rb_married = New System.Windows.Forms.RadioButton()
         Me.lbl_married_status = New System.Windows.Forms.Label()
-        Me.CheckBox_addLoginUser = New System.Windows.Forms.CheckBox()
+        Me.cb_addLoginUser = New System.Windows.Forms.CheckBox()
         Me.tb_exp = New System.Windows.Forms.TextBox()
         Me.panel_gen = New System.Windows.Forms.Panel()
         Me.lbl_gender = New System.Windows.Forms.Label()
         Me.rb_male = New System.Windows.Forms.RadioButton()
         Me.rb_female = New System.Windows.Forms.RadioButton()
-        Me.lbl_note = New System.Windows.Forms.Label()
         Me.lbl_exp = New System.Windows.Forms.Label()
         Me.tb_qual = New System.Windows.Forms.TextBox()
         Me.lbl_qual = New System.Windows.Forms.Label()
@@ -55,6 +54,7 @@ Partial Class dialog_add_person
         Me.lbl_city = New System.Windows.Forms.Label()
         Me.tb_mob = New System.Windows.Forms.TextBox()
         Me.lbl_mob = New System.Windows.Forms.Label()
+        Me.lbl_note = New System.Windows.Forms.Label()
         Me.gb_workHistory = New System.Windows.Forms.GroupBox()
         Me.tb_post = New System.Windows.Forms.TextBox()
         Me.lbl_post = New System.Windows.Forms.Label()
@@ -91,7 +91,7 @@ Partial Class dialog_add_person
         Me.tbl_button.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tbl_button.Controls.Add(Me.btn_save, 0, 0)
         Me.tbl_button.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.tbl_button.Location = New System.Drawing.Point(541, 383)
+        Me.tbl_button.Location = New System.Drawing.Point(541, 388)
         Me.tbl_button.Name = "tbl_button"
         Me.tbl_button.RowCount = 1
         Me.tbl_button.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -186,10 +186,9 @@ Partial Class dialog_add_person
         'gb_basic_info
         '
         Me.gb_basic_info.Controls.Add(Me.Panel1)
-        Me.gb_basic_info.Controls.Add(Me.CheckBox_addLoginUser)
+        Me.gb_basic_info.Controls.Add(Me.cb_addLoginUser)
         Me.gb_basic_info.Controls.Add(Me.tb_exp)
         Me.gb_basic_info.Controls.Add(Me.panel_gen)
-        Me.gb_basic_info.Controls.Add(Me.lbl_note)
         Me.gb_basic_info.Controls.Add(Me.lbl_exp)
         Me.gb_basic_info.Controls.Add(Me.tb_qual)
         Me.gb_basic_info.Controls.Add(Me.lbl_qual)
@@ -256,15 +255,15 @@ Partial Class dialog_add_person
         Me.lbl_married_status.TabIndex = 33
         Me.lbl_married_status.Text = "Marital Status"
         '
-        'CheckBox_addLoginUser
+        'cb_addLoginUser
         '
-        Me.CheckBox_addLoginUser.AutoSize = True
-        Me.CheckBox_addLoginUser.Location = New System.Drawing.Point(408, 144)
-        Me.CheckBox_addLoginUser.Name = "CheckBox_addLoginUser"
-        Me.CheckBox_addLoginUser.Size = New System.Drawing.Size(234, 17)
-        Me.CheckBox_addLoginUser.TabIndex = 30
-        Me.CheckBox_addLoginUser.Text = "Check this to give employee the login acces"
-        Me.CheckBox_addLoginUser.UseVisualStyleBackColor = True
+        Me.cb_addLoginUser.AutoSize = True
+        Me.cb_addLoginUser.Location = New System.Drawing.Point(408, 144)
+        Me.cb_addLoginUser.Name = "cb_addLoginUser"
+        Me.cb_addLoginUser.Size = New System.Drawing.Size(234, 17)
+        Me.cb_addLoginUser.TabIndex = 30
+        Me.cb_addLoginUser.Text = "Check this to give employee the login acces"
+        Me.cb_addLoginUser.UseVisualStyleBackColor = True
         '
         'tb_exp
         '
@@ -315,15 +314,6 @@ Partial Class dialog_add_person
         Me.rb_female.TabStop = True
         Me.rb_female.Text = "Female"
         Me.rb_female.UseVisualStyleBackColor = True
-        '
-        'lbl_note
-        '
-        Me.lbl_note.AutoSize = True
-        Me.lbl_note.Location = New System.Drawing.Point(230, 179)
-        Me.lbl_note.Name = "lbl_note"
-        Me.lbl_note.Size = New System.Drawing.Size(220, 13)
-        Me.lbl_note.TabIndex = 29
-        Me.lbl_note.Text = "NOTE: All the fields are mandatory to be filled"
         '
         'lbl_exp
         '
@@ -419,6 +409,15 @@ Partial Class dialog_add_person
         Me.lbl_mob.Size = New System.Drawing.Size(56, 13)
         Me.lbl_mob.TabIndex = 17
         Me.lbl_mob.Text = "Mobile no."
+        '
+        'lbl_note
+        '
+        Me.lbl_note.AutoSize = True
+        Me.lbl_note.Location = New System.Drawing.Point(49, 396)
+        Me.lbl_note.Name = "lbl_note"
+        Me.lbl_note.Size = New System.Drawing.Size(220, 13)
+        Me.lbl_note.TabIndex = 29
+        Me.lbl_note.Text = "NOTE: All the fields are mandatory to be filled"
         '
         'gb_workHistory
         '
@@ -626,17 +625,18 @@ Partial Class dialog_add_person
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(699, 415)
+        Me.ClientSize = New System.Drawing.Size(699, 429)
         Me.Controls.Add(Me.gb_sal_info)
         Me.Controls.Add(Me.gb_basic_info)
         Me.Controls.Add(Me.tbl_button)
         Me.Controls.Add(Me.gb_workHistory)
+        Me.Controls.Add(Me.lbl_note)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "dialog_add_person"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Add Person"
         Me.tbl_button.ResumeLayout(False)
         Me.gb_basic_info.ResumeLayout(False)
@@ -650,6 +650,7 @@ Partial Class dialog_add_person
         Me.gb_sal_info.ResumeLayout(False)
         Me.gb_sal_info.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents tbl_button As System.Windows.Forms.TableLayoutPanel
@@ -700,7 +701,7 @@ Partial Class dialog_add_person
     Friend WithEvents lbl_sal_percent As Label
     Friend WithEvents tb_exp As TextBox
     Friend WithEvents tb_allow As TextBox
-    Friend WithEvents CheckBox_addLoginUser As CheckBox
+    Friend WithEvents cb_addLoginUser As CheckBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents rb_single As RadioButton
     Friend WithEvents rb_married As RadioButton
