@@ -5,7 +5,7 @@ Public Class dialog_search
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
 
-        If Regex.IsMatch(tb_search_id.Text, rgx_emp_id) Then
+        If String.IsNullOrWhiteSpace(tb_search_id.Text) And IsNumeric(tb_search_id) Then
 
             Dim update_person As New dialog_add_person()
             search_id = CInt(tb_search_id.Text)
@@ -68,7 +68,7 @@ Public Class dialog_search
                     End If
 
                     With update_person
-                        .Show()
+                        .ShowDialog()
                         .BringToFront()
                         .Text = "Update Person"
                         .btn_save.Text = "Update"
@@ -107,4 +107,5 @@ Public Class dialog_search
     Private Sub dialog_search_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         tb_search_id.Focus()
     End Sub
+
 End Class

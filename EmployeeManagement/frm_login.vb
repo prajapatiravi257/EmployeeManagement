@@ -10,12 +10,10 @@
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
 
-        userLogin(UsernameTextBox, PasswordTextBox)
-
-        If loginSuccess = True Then
-            Close()
+        If userLogin(UsernameTextBox, PasswordTextBox) = True Then
+            Me.Close()
+            loginSuccess = False
         End If
-        loginSuccess = False
 
     End Sub
 

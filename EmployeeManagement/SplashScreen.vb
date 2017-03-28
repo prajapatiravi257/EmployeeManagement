@@ -12,7 +12,8 @@
 
         'Application title
         If My.Application.Info.Title <> "" Then
-            ApplicationTitle.Text = My.Application.Info.Title
+            ApplicationTitle.Text = "Employee " + Environment.NewLine + " Management"
+            'My.Application.Info.Title
         Else
             'If the application title is missing, use the application name, without the extension
             ApplicationTitle.Text = System.IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName)
@@ -32,4 +33,23 @@
         Copyright.Text = My.Application.Info.Copyright
     End Sub
 
+    Private Sub ApplicationTitle_Click(sender As Object, e As EventArgs) Handles ApplicationTitle.Click
+
+    End Sub
+
+    Private Sub Copyright_Click(sender As Object, e As EventArgs) Handles Copyright.Click
+
+    End Sub
+
+    Private Sub Version_Click(sender As Object, e As EventArgs) Handles Version.Click
+
+    End Sub
+
+    Private Sub MainLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles MainLayoutPanel.Paint
+
+    End Sub
+
+    Private Sub DetailsLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles DetailsLayoutPanel.Paint
+
+    End Sub
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text.RegularExpressions
 
 Public Class frm_user
     Dim dr As SqlDataReader
@@ -6,10 +7,50 @@ Public Class frm_user
     Dim numDays, paidleave As Integer
     Dim leave_date As String
 
+
+    Private Sub frm_user_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Events' table. You can move, or remove it, as needed.
+        Me.EventsTableAdapter.Fill(Me.EmployeeManagementDataSet.Events)
+        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Holiday_info' table. You can move, or remove it, as needed.
+        Me.Holiday_infoTableAdapter.Fill(Me.EmployeeManagementDataSet.Holiday_info)
+
+        getEmpInfo()
+        RW_textboxes(True)
+
+    End Sub
+
+    Private Sub btn_personalInfo_edit_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_edit.Click
+        RW_textboxes(False)
+        btn_personalInfo_update.Enabled = True
+        btn_personalInfo_edit.Enabled = False
+    End Sub
+
+    Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_update.Click
+        If rb_married.Checked Then
+            maritalStatus = "Married"
+        Else
+            maritalStatus = "Single"
+        End If
+        If ValidateChildren(ValidationConstraints.None) Then
+            empUpdate()
+            btn_personalInfo_edit.Enabled = True
+            btn_personalInfo_update.Enabled = False
+        End If
+    End Sub
+
+    Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
+        applyLeaves()
+    End Sub
+
+
+    Private Sub llbl_logout_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llbl_logout.LinkClicked
+        logout(Me) 'logout function call with form parameter
+    End Sub
+
     Private Sub getEmpInfo()
         Dim loginPage As New frm_login()
 
-        sql = "SELECT emp_id, firstname, lastname,email, dob, mob, city, address, zipcode, qualification, marital_status FROM Emp_basic_details WHERE firstname='" & username & "'" ' AND lastname='" & loginPage.passwd & "'"
+        sql = "SELECT emp_id, firstname, lastname,email, dob, mob, city, address, zipcode, qualification, marital_status FROM Emp_basic_details WHERE firstname='" & username & "' AND lastname='" & password & "'"
 
         Try
 
@@ -102,39 +143,6 @@ Public Class frm_user
 
     End Sub
 
-    Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
-        applyLeaves()
-
-    End Sub
-
-
-    Private Sub llbl_logout_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llbl_logout.LinkClicked
-        logout(Me) 'logout function call with form parameter
-    End Sub
-
-
-    Private Sub frm_user_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Events' table. You can move, or remove it, as needed.
-        Me.EventsTableAdapter.Fill(Me.EmployeeManagementDataSet.Events)
-        'TODO: This line of code loads data into the 'EmployeeManagementDataSet.Holiday_info' table. You can move, or remove it, as needed.
-        Me.Holiday_infoTableAdapter.Fill(Me.EmployeeManagementDataSet.Holiday_info)
-
-        getEmpInfo()
-        RW_textboxes(True)
-
-    End Sub
-
-    Private Sub btn_personalInfo_edit_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_edit.Click
-        RW_textboxes(False)
-        btn_personalInfo_update.Enabled = True
-        btn_personalInfo_edit.Enabled = False
-    End Sub
-
-    Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_personalInfo_update.Click
-        empUpdate()
-        btn_personalInfo_edit.Enabled = True
-        btn_personalInfo_update.Enabled = False
-    End Sub
 
     Private Sub empUpdate()
         Dim result As Integer
@@ -142,8 +150,8 @@ Public Class frm_user
         Try
 
             sql = "UPDATE Emp_basic_details
-               SET  firstname = @firstname, marital_status = @marital_status, gender = @gender, end_date = @end_date, 
-                    start_date = @start_date, curr_exp = @curr_exp, qualification = @qualification, zipcode = @zipcode, 
+               SET  firstname = @firstname, marital_status = @marital_status,
+                   qualification = @qualification, zipcode = @zipcode, 
                     address = @address, city = @city, mob = @mob, dob = @dob, email = @email, lastname = @lastname 
                WHERE   emp_id = @emp_id"
 
@@ -159,15 +167,15 @@ Public Class frm_user
                 .AddWithValue("@mob", tb_mob.Text)
                 .AddWithValue("@dob", dtp_dob.Text)
                 .AddWithValue("@qualification", tb_qual.Text)
-                .AddWithValue("@gender", gender)
                 .AddWithValue("@marital_status", maritalStatus)
+                .AddWithValue("@emp_id", lbl_val_empid.Text)
             End With
 
-            result = employeeDb(sql, sqlcmd)
+            result = employeeDB(sql, sqlcmd)
 
             sql = "UPDATE Contact_person_info
-               SET    c_firstname =@c_firstname, c_zipcode =@c_zipcode, c_address =@c_address, c_city =@c_city,
-                    c_mob =@c_mob, c_email =@c_email, c_lastname =@c_lastname
+               SET    c_firstname =@c_firstname,c_lastname=@c_lastname, c_zipcode =@c_zipcode, c_address =@c_address, c_city =@c_city,
+                    c_mob =@c_mob, c_email =@c_email
                WHERE   emp_id = @emp_id"
 
             sqlcmd = New SqlCommand(sql, sqlCon)
@@ -180,9 +188,10 @@ Public Class frm_user
                 .AddWithValue("@c_zipcode", tb_zip.Text)
                 .AddWithValue("@c_email", tb_email.Text)
                 .AddWithValue("@c_mob", tb_mob.Text)
+                .AddWithValue("@emp_id", lbl_val_empid.Text)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
 
             sqlcmd = New SqlCommand(sql, sqlCon)
@@ -196,7 +205,7 @@ Public Class frm_user
                 .AddWithValue("@emp_id", lbl_val_empid.Text)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             If result = 3 Then
                 MessageBox.Show("Record's Updated of Employee ")
@@ -207,6 +216,7 @@ Public Class frm_user
         End Try
 
     End Sub
+
 
     Private Sub RW_textboxes(rw As Boolean)
         Dim tb As TextBox
@@ -228,4 +238,91 @@ Public Class frm_user
         End If
 
     End Sub
+
+
+    Private Sub tb_email_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_email.Validating
+        If Not String.IsNullOrWhiteSpace(tb_email.Text) Then
+            If ValidateEmail(tb_email.Text) = False Then
+                errorProvider.SetError(tb_email, "Enter an valid email id")
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+
+    Private Sub tb_email_Validated(sender As Object, e As EventArgs) Handles tb_email.Validated
+        errorProvider.SetError(tb_email, String.Empty)
+    End Sub
+
+    Private Sub tb_firstname_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_firstname.Validating
+        If Not Regex.IsMatch(tb_firstname.Text, rgx_str) Then
+            errorProvider.SetError(tb_firstname, "Enter a valid name")
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub tb_firstname_Validated(sender As Object, e As EventArgs) Handles tb_firstname.Validated
+        errorProvider.SetError(tb_firstname, String.Empty)
+    End Sub
+
+
+    Private Sub tb_lastname_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_lastname.Validating
+        If Not Regex.IsMatch(tb_lastname.Text, rgx_str) Then
+            errorProvider.SetError(tb_lastname, "Enter a valid lastname")
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub tb_city_Validated(sender As Object, e As EventArgs) Handles tb_city.Validated
+        errorProvider.SetError(tb_city, String.Empty)
+    End Sub
+
+    Private Sub tb_city_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_city.Validating
+        If Not Regex.IsMatch(tb_city.Text, rgx_str) Then
+            errorProvider.SetError(tb_city, "Enter a valid city name")
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub tb_zip_Validated(sender As Object, e As EventArgs) Handles tb_zip.Validated
+        errorProvider.SetError(tb_city, String.Empty)
+    End Sub
+
+    Private Sub tb_zip_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_zip.Validating
+        If Not Regex.IsMatch(tb_zip.Text, rgx_zipcode) Then
+            errorProvider.SetError(tb_zip, "Not a valid zip code")
+            e.Cancel = True
+        End If
+
+    End Sub
+
+
+    Private Sub tb_mob_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_mob.Validating
+        If Not Regex.IsMatch(tb_mob.Text, rgx_mob) Then
+            errorProvider.SetError(tb_mob, "Enter a valid Mobile number")
+            e.Cancel = True
+        End If
+
+    End Sub
+
+    Private Sub tb_mob_Validated(sender As Object, e As EventArgs) Handles tb_mob.Validated
+        errorProvider.SetError(tb_mob, String.Empty)
+
+    End Sub
+
+    Private Sub tb_qual_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_qual.Validating
+        If Not Regex.IsMatch(tb_qual.Text, rgx_str) Or String.IsNullOrEmpty(tb_qual.Text) Then
+            errorProvider.SetError(tb_qual, "Enter a valid qualification")
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub tb_qual_Validated(sender As Object, e As EventArgs) Handles tb_qual.Validated
+        errorProvider.SetError(tb_qual, String.Empty)
+    End Sub
+
+    Private Sub tb_lastname_Validated(sender As Object, e As EventArgs) Handles tb_lastname.Validated
+        errorProvider.SetError(tb_lastname, String.Empty)
+    End Sub
+
+
 End Class

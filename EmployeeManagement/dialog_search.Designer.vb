@@ -32,9 +32,9 @@ Partial Class dialog_search
         'OK_Button
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.OK_Button.Location = New System.Drawing.Point(239, 21)
+        Me.OK_Button.Location = New System.Drawing.Point(279, 24)
         Me.OK_Button.Name = "OK_Button"
-        Me.OK_Button.Size = New System.Drawing.Size(82, 23)
+        Me.OK_Button.Size = New System.Drawing.Size(96, 27)
         Me.OK_Button.TabIndex = 0
         Me.OK_Button.Text = "SEARCH"
         '
@@ -43,36 +43,37 @@ Partial Class dialog_search
         Me.gb_search.Controls.Add(Me.OK_Button)
         Me.gb_search.Controls.Add(Me.tb_search_id)
         Me.gb_search.Controls.Add(Me.Label1)
-        Me.gb_search.Location = New System.Drawing.Point(12, 9)
+        Me.gb_search.Location = New System.Drawing.Point(14, 10)
         Me.gb_search.Name = "gb_search"
-        Me.gb_search.Size = New System.Drawing.Size(327, 72)
+        Me.gb_search.Size = New System.Drawing.Size(381, 83)
         Me.gb_search.TabIndex = 3
         Me.gb_search.TabStop = False
         Me.gb_search.Text = "Employee Search"
         '
         'tb_search_id
         '
-        Me.tb_search_id.Location = New System.Drawing.Point(88, 23)
+        Me.tb_search_id.Location = New System.Drawing.Point(103, 27)
         Me.tb_search_id.Name = "tb_search_id"
-        Me.tb_search_id.Size = New System.Drawing.Size(119, 20)
+        Me.tb_search_id.Size = New System.Drawing.Size(138, 23)
         Me.tb_search_id.TabIndex = 4
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(15, 26)
+        Me.Label1.Location = New System.Drawing.Point(17, 30)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(67, 13)
+        Me.Label1.Size = New System.Drawing.Size(72, 15)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Employee ID"
         '
         'dialog_search
         '
         Me.AcceptButton = Me.OK_Button
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(349, 93)
+        Me.ClientSize = New System.Drawing.Size(407, 107)
         Me.Controls.Add(Me.gb_search)
+        Me.Font = New System.Drawing.Font("Comic Sans MS", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False

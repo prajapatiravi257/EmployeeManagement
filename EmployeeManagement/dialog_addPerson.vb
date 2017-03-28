@@ -1,4 +1,5 @@
 ﻿
+
 Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
 
@@ -8,6 +9,12 @@ Public Class dialog_add_person
 
     Private Sub dialog_add_person_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         tb_firstname.Focus()
+        dtp_left_date.MinDate = DateTime.Now.AddDays(-1)
+        dtp_join_date.MinDate = DateTime.Now.AddMonths(-6)
+
+        dtp_dob.MinDate = DateTime.Now.AddYears(-40)
+        dtp_dob.MaxDate = DateTime.Now.AddYears(-18)
+
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_save.Click
@@ -28,10 +35,12 @@ Public Class dialog_add_person
             If btn_save.Text = "Save" Then
                 insertSql()
                 DialogResult = DialogResult.OK
+
                 Close()
             Else
                 updateEmp()
                 DialogResult = DialogResult.OK
+
                 Close()
             End If
 
@@ -69,13 +78,13 @@ Public Class dialog_add_person
                 .AddWithValue("@dob", dtp_dob.Text)
                 .AddWithValue("@qualification", tb_qual.Text)
                 .AddWithValue("@curr_exp", tb_exp.Text)
-                .AddWithValue("@start_date", dtp_join_date.Value)
-                .AddWithValue("@end_date", dtp_left_date.Value)
+                .AddWithValue("@start_date", dtp_join_date.Text)
+                .AddWithValue("@end_date", dtp_left_date.Text)
                 .AddWithValue("@gender", gender)
                 .AddWithValue("@marital_status", maritalStatus)
             End With
 
-            result = employeeDb(sql, sqlcmd)
+            result = employeeDB(sql, sqlcmd)
 
             sql = "INSERT INTO Work_history(emp_id, comp_name, emp_name, p_start_date, p_end_date, post)
                SELECT                   emp_id, @comp_name, @emp_name, @p_start_date, @p_end_date, @post
@@ -89,12 +98,12 @@ Public Class dialog_add_person
                 .AddWithValue("@firstname1", tb_firstname.Text)
                 .AddWithValue("@lastname", tb_lastname.Text)
                 .AddWithValue("@comp_name", tb_comp_name.Text)
-                .AddWithValue("@p_start_date", dtp_join_date.Value)
-                .AddWithValue("@p_end_date", dtp_left_date.Value)
+                .AddWithValue("@p_start_date", dtp_join_date.Text)
+                .AddWithValue("@p_end_date", dtp_left_date.Text)
                 .AddWithValue("@post", tb_post.Text)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             sql = "INSERT INTO Salary_information (emp_id,firstname, lastname, monthly_sal, monthly_taxes, monthly_allowance, monthly_insurances)
                SELECT emp_id, @firstname, @lastname, @monthly_sal, @monthly_taxes, @monthly_allowance, @monthly_insurances
@@ -114,7 +123,7 @@ Public Class dialog_add_person
                 .AddWithValue("@monthly_taxes", tb_taxes.Text)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             sql = "INSERT INTO Contact_person_info (emp_id,c_firstname,c_lastname,c_email,c_mob,c_city,c_address,c_zipcode)
                Select emp_id,@c_firstname,@c_lastname,@c_email,@c_mob,@c_city,@c_address,@c_zipcode 
@@ -135,7 +144,7 @@ Public Class dialog_add_person
                 .AddWithValue("@c_mob", tb_mob.Text)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             If cb_addLoginUser.Checked Then 'add user to login_users table if checked
                 sql = "INSERT INTO Login_users (emp_id,usertype,username,passwd)
@@ -153,11 +162,12 @@ Public Class dialog_add_person
                     .AddWithValue("@usertype", "user")
                 End With
 
-                result += employeeDb(sql, sqlcmd)
+                result += employeeDB(sql, sqlcmd)
 
             End If
 
             If result >= 4 Then
+
                 MessageBox.Show("New Employee Added!")
             End If
 
@@ -197,7 +207,7 @@ Public Class dialog_add_person
                 .AddWithValue("@emp_id", search_id)
             End With
 
-            result = employeeDb(sql, sqlcmd)
+            result = employeeDB(sql, sqlcmd)
 
             sql = "UPDATE Contact_person_info
                SET    c_firstname =@c_firstname, c_zipcode =@c_zipcode, c_address =@c_address, c_city =@c_city,
@@ -217,7 +227,7 @@ Public Class dialog_add_person
                 .AddWithValue("@emp_id", search_id)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             sql = "UPDATE  Work_history
               SET   comp_name = @comp_name, post = @post, p_end_date = @p_end_date, p_start_date = @p_start_date, 
@@ -235,7 +245,7 @@ Public Class dialog_add_person
                 .AddWithValue("@emp_id", search_id)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
 
 
@@ -256,11 +266,11 @@ Public Class dialog_add_person
                 .AddWithValue("@emp_id", search_id)
             End With
 
-            result += employeeDb(sql, sqlcmd)
+            result += employeeDB(sql, sqlcmd)
 
             If cb_addLoginUser.Checked = False Then 'add user to login_users table if checked
                 sql = "DELETE FROM Login_users WHERE emp_id=" & search_id
-                result += employeeDS(sql)
+                result += employeeDB(sql)
             Else
 
                 If Not checkQuery("SELECT COUNT(emp_id) FROM Emp_basic_details WHERE emp_id=" & search_id) = 1 Then
@@ -280,7 +290,7 @@ Public Class dialog_add_person
                         .AddWithValue("@usertype", "user")
                     End With
 
-                    result += employeeDb(sql, sqlcmd)
+                    result += employeeDB(sql, sqlcmd)
 
                 End If
             End If
@@ -363,9 +373,13 @@ Public Class dialog_add_person
 
 
     Private Sub tb_exp_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_exp.Validating
-        If Not IsNumeric(tb_exp.Text) And String.IsNullOrWhiteSpace(tb_exp.Text) Then
-            errorProvider.SetError(tb_exp, "Enter a valid digit")
-            e.Cancel = True
+        If Not IsNumeric(tb_exp) And String.IsNullOrWhiteSpace(tb_exp.Text) Then
+            Dim val As Integer = CInt(tb_exp.Text)
+            If val < 0 And val > 30 Then
+
+                errorProvider.SetError(tb_exp, "Enter a valid digit")
+                e.Cancel = True
+            End If
         End If
     End Sub
 
@@ -407,9 +421,11 @@ Public Class dialog_add_person
     End Sub
 
     Private Sub tb_sal_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_sal.Validating
-        If Not IsNumeric(tb_sal.Text) And String.IsNullOrWhiteSpace(tb_sal.Text) Then
-            errorProvider.SetError(tb_sal, "Enter a valid Number")
-            e.Cancel = True
+        If Not IsNumeric(tb_sal) And String.IsNullOrWhiteSpace(tb_sal.Text) Then
+            If CInt(tb_sal.Text) > 100000 Then
+                errorProvider.SetError(tb_sal, "Enter a valid Number")
+                e.Cancel = True
+            End If
         End If
 
     End Sub

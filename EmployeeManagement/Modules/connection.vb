@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
+Imports EmployeeManagement.EmployeeManagementDataSetTableAdapters
 
 Module connection
 
@@ -11,13 +12,14 @@ Module connection
     Public sql_dr As SqlDataReader
     Public dt As DataTable
     Public loginSuccess As Boolean = False
-    Public username, password As String
     Public sql As String
     Public errorProvider As New ErrorProvider()
     Public todayDate As String = Format(Date.Today, "dd/MM/yyyy").ToString()
     Public gender, maritalStatus As String
     Public search_id As Integer
     Public updateEmpInfo As Boolean = False
+    Public username, password As String
+
     Public Sub logout(page As Form)
         Dim login As New frm_login()
         login.Show()
@@ -28,7 +30,7 @@ Module connection
             dr.Close()
         End If
     End Sub
-    Public Function employeeDS(sql As String) As Integer
+    Public Function employeeDB(sql As String) As Integer
         Dim result As Integer
 
         Try
@@ -38,11 +40,11 @@ Module connection
 
             sqlcmd = New SqlCommand(sql, sqlCon)
 
-            'dataAdapter = New SqlDataAdapter(sqlcmd)
+            dataAdapter = New SqlDataAdapter(sqlcmd)
 
-            'dt = New DataTable()
+            dt = New DataTable()
 
-            'result = dataAdapter.Fill(dt)
+            result = dataAdapter.Fill(dt)
             result = sqlcmd.ExecuteNonQuery()
 
         Catch ex As Exception
@@ -55,7 +57,7 @@ Module connection
 
     End Function
 
-    Public Function employeeDb(sql As String, sqlcmd As SqlCommand) As Integer
+    Public Function employeeDB(sql As String, sqlcmd As SqlCommand) As Integer
         Dim result As Integer
 
         Try
@@ -63,13 +65,6 @@ Module connection
                 sqlCon.Open()
             End If
 
-            'sqlcmd = New SqlCommand(sql, sqlCon)
-
-            'dataAdapter = New SqlDataAdapter(sqlcmd)
-
-            'dt = New DataTable()
-
-            'result = dataAdapter.Fill(dt)
             result = sqlcmd.ExecuteNonQuery()
 
         Catch ex As Exception
@@ -81,11 +76,12 @@ Module connection
         Return result
 
     End Function
-    Public Sub userLogin(ByVal user As TextBox, ByVal passwd As TextBox)
+    Public Function userLogin(ByVal user As TextBox, ByVal passwd As TextBox) As Boolean
+
         username = user.Text
         password = passwd.Text
 
-        Dim query As String = "SELECT usertype FROM Login_users WHERE username='" + username + "' AND passwd='" + password + "'"
+        Dim query As String = "SELECT usertype,username FROM Login_users WHERE username='" + username + "' AND passwd='" + password + "'"
 
         Try
             If Not sqlCon.State = ConnectionState.Open Then
@@ -96,12 +92,12 @@ Module connection
 
             sql_dr = sqlcmd.ExecuteReader()
 
-            Dim type As String
+            Dim type, loginuser As String
 
             If sql_dr.Read() And sql_dr.HasRows Then
 
                 type = sql_dr("usertype").ToString()
-
+                loginuser = sql_dr("username").ToString().ToUpper()
                 loginSuccess = True
 
                 If type = "admin" Then
@@ -110,7 +106,7 @@ Module connection
 
                     With adminpage
                         .Show()                     'trigger adminpage
-                        .lbl_loginuser.Text = username  'add username login text
+                        .lbl_loginuser.Text = loginuser + " (Administrator)" 'add username login text
                     End With
 
                 Else
@@ -119,7 +115,7 @@ Module connection
 
                     With userPage
                         .Show()                     'trigger userpage 
-                        .lbl_loginuser.Text = username  'add username login text
+                        .lbl_loginuser.Text = loginuser  'add username login text
                     End With
 
                 End If
@@ -137,7 +133,9 @@ Module connection
 
         End Try
 
-    End Sub
+        Return loginSuccess
+
+    End Function
 
     Private Sub loginCountCheck(user As TextBox, passwd As TextBox)
         'integer variable to count the number of times, the user has tried loggin in
