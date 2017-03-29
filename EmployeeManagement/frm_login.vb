@@ -8,16 +8,24 @@
     ' Subsequently, My.User will return identity information encapsulated in the CustomPrincipal object
     ' such as the username, display name, etc.
 
-    Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-
-        If userLogin(UsernameTextBox, PasswordTextBox) = True Then
-            Me.Close()
-            loginSuccess = False
+    Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_login.Click
+        If Not String.IsNullOrWhiteSpace(tb_username.Text) And String.IsNullOrEmpty(tb_passwd.Text) Then
+            If userLogin(tb_username, tb_passwd) = True Then
+                Me.Close()
+                loginSuccess = False
+            End If
+        Else
+            MessageBox.Show("Enter your credentails")
         End If
+
 
     End Sub
 
-    Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
+    Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_cancel.Click
         Close()
+    End Sub
+
+    Private Sub frm_login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        tb_username.Focus()
     End Sub
 End Class
