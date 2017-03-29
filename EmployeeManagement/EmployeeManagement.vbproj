@@ -246,11 +246,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="hr_management_KkM_icon.ico" />
-    <Content Include="icon.ico" />
+    <None Include="Assets\login_user_profile.png" />
+    <None Include="Assets\splash-screen.png" />
+    <None Include="Assets\default_profile_pic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

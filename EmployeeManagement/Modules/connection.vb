@@ -152,6 +152,7 @@ Module connection
                 'keep login displayed for another trial 
                 user.Text = ""
                 passwd.Text = ""
+                user.Focus()
                 count += 1 'increment counter by one 
                 If count = 3 Then
                     MessageBox.Show("High value of failed login attempts Application will be terminated" &

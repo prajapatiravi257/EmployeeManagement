@@ -132,24 +132,25 @@ Partial Class frm_user
         'lbl_loginuser
         '
         Me.lbl_loginuser.AutoSize = True
-        Me.lbl_loginuser.Location = New System.Drawing.Point(82, 7)
+        Me.lbl_loginuser.Location = New System.Drawing.Point(77, 7)
         Me.lbl_loginuser.Name = "lbl_loginuser"
-        Me.lbl_loginuser.Size = New System.Drawing.Size(0, 15)
+        Me.lbl_loginuser.Size = New System.Drawing.Size(55, 15)
         Me.lbl_loginuser.TabIndex = 5
+        Me.lbl_loginuser.Text = "username"
         '
         'lbl_login
         '
         Me.lbl_login.AutoSize = True
         Me.lbl_login.Location = New System.Drawing.Point(13, 7)
         Me.lbl_login.Name = "lbl_login"
-        Me.lbl_login.Size = New System.Drawing.Size(61, 15)
+        Me.lbl_login.Size = New System.Drawing.Size(58, 15)
         Me.lbl_login.TabIndex = 4
-        Me.lbl_login.Text = "Login as :: "
+        Me.lbl_login.Text = "Login as ::"
         '
         'llbl_logout
         '
         Me.llbl_logout.AutoSize = True
-        Me.llbl_logout.Location = New System.Drawing.Point(1434, 7)
+        Me.llbl_logout.Location = New System.Drawing.Point(1223, 9)
         Me.llbl_logout.Name = "llbl_logout"
         Me.llbl_logout.Size = New System.Drawing.Size(41, 15)
         Me.llbl_logout.TabIndex = 3
@@ -298,7 +299,7 @@ Partial Class frm_user
         Me.gb_leave_ctrl.Controls.Add(Me.gb_applyLeave)
         Me.gb_leave_ctrl.Location = New System.Drawing.Point(124, 71)
         Me.gb_leave_ctrl.Name = "gb_leave_ctrl"
-        Me.gb_leave_ctrl.Size = New System.Drawing.Size(1007, 402)
+        Me.gb_leave_ctrl.Size = New System.Drawing.Size(981, 402)
         Me.gb_leave_ctrl.TabIndex = 0
         Me.gb_leave_ctrl.TabStop = False
         Me.gb_leave_ctrl.Text = "Leave Planner"
@@ -381,7 +382,7 @@ Partial Class frm_user
         Me.gb_applyLeave.Controls.Add(Me.tb_reason)
         Me.gb_applyLeave.Controls.Add(Me.lbl_reason)
         Me.gb_applyLeave.Controls.Add(Me.MonthCalendar_leaveDatePicker)
-        Me.gb_applyLeave.Location = New System.Drawing.Point(244, 73)
+        Me.gb_applyLeave.Location = New System.Drawing.Point(132, 70)
         Me.gb_applyLeave.Name = "gb_applyLeave"
         Me.gb_applyLeave.Size = New System.Drawing.Size(705, 292)
         Me.gb_applyLeave.TabIndex = 5
@@ -437,7 +438,7 @@ Partial Class frm_user
         'MonthCalendar_leaveDatePicker
         '
         Me.MonthCalendar_leaveDatePicker.Location = New System.Drawing.Point(31, 39)
-        Me.MonthCalendar_leaveDatePicker.Margin = New System.Windows.Forms.Padding(10, 10, 10, 10)
+        Me.MonthCalendar_leaveDatePicker.Margin = New System.Windows.Forms.Padding(10)
         Me.MonthCalendar_leaveDatePicker.MaxDate = New Date(2025, 12, 31, 0, 0, 0, 0)
         Me.MonthCalendar_leaveDatePicker.Name = "MonthCalendar_leaveDatePicker"
         Me.MonthCalendar_leaveDatePicker.TabIndex = 4
@@ -536,11 +537,10 @@ Partial Class frm_user
         'pictureBox_profilePic
         '
         Me.pictureBox_profilePic.BackColor = System.Drawing.Color.Transparent
-        Me.pictureBox_profilePic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pictureBox_profilePic.Image = CType(resources.GetObject("pictureBox_profilePic.Image"), System.Drawing.Image)
+        Me.pictureBox_profilePic.Image = Global.EmployeeManagement.My.Resources.Resources.default_profile_pic
         Me.pictureBox_profilePic.Location = New System.Drawing.Point(50, 22)
         Me.pictureBox_profilePic.Name = "pictureBox_profilePic"
-        Me.pictureBox_profilePic.Size = New System.Drawing.Size(210, 190)
+        Me.pictureBox_profilePic.Size = New System.Drawing.Size(206, 179)
         Me.pictureBox_profilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.pictureBox_profilePic.TabIndex = 0
         Me.pictureBox_profilePic.TabStop = False

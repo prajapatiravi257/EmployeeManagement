@@ -9,7 +9,7 @@
     ' such as the username, display name, etc.
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_login.Click
-        If Not String.IsNullOrWhiteSpace(tb_username.Text) And String.IsNullOrEmpty(tb_passwd.Text) Then
+        If String.IsNullOrWhiteSpace(tb_username.Text) And String.IsNullOrEmpty(tb_passwd.Text) Then
             If userLogin(tb_username, tb_passwd) = True Then
                 Me.Close()
                 loginSuccess = False
