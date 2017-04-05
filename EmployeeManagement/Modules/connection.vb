@@ -1,11 +1,9 @@
-﻿Imports System.Data
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.Configuration
-Imports EmployeeManagement.EmployeeManagementDataSetTableAdapters
 
 Module connection
 
-    Public conString As String = "Data Source=DESKTOP-KKN0DTS;Initial Catalog=EmployeeManagement; MultipleActiveResultSets=True; User ID=sa;Password=123456"
+    Public conString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
     Public sqlCon As New SqlConnection(conString)
     Public dataAdapter As SqlDataAdapter
     Public sqlcmd As SqlCommand
@@ -19,6 +17,7 @@ Module connection
     Public search_id As Integer
     Public updateEmpInfo As Boolean = False
     Public username, password As String
+
 
     Public Sub logout(page As Form)
         Dim login As New frm_login()
