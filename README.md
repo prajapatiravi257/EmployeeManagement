@@ -1,6 +1,8 @@
-# EmployeeManagement
+# EmployeeManagementSystem Project
 Documentation https://goo.gl/sYIV1I
+
 Git https://github.com/prajapatiravi257/EmployeeManagement.git
+
 Author: Ravi Prajapati (rio)
 
 To get started with this project on your machine
